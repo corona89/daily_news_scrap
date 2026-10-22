@@ -1,1 +1,22 @@
 매일 AI 뉴스를 정리하는 공간
+
+웹 페이지: [https://corona89.github.io/daily_news_scrap/](https://corona89.github.io/daily_news_scrap/)
+
+## 다이제스트 목록
+- [2026-10-21](https://corona89.github.io/daily_news_scrap/2026-10-21.html)
+- [2026-10-20](https://corona89.github.io/daily_news_scrap/2026-10-20.html)
+- [2026-10-19](https://corona89.github.io/daily_news_scrap/2026-10-19.html)
+- [2026-10-18](https://corona89.github.io/daily_news_scrap/2026-10-18.html)
+- [2026-10-17](https://corona89.github.io/daily_news_scrap/2026-10-17.html)
+- [2026-10-16](https://corona89.github.io/daily_news_scrap/2026-10-16.html)
+- [2026-10-15](https://corona89.github.io/daily_news_scrap/2026-10-15.html)
+- [2026-10-14](https://corona89.github.io/daily_news_scrap/2026-10-14.html)
+- [2026-10-13](https://corona89.github.io/daily_news_scrap/2026-10-13.html)
+- [2026-10-12](https://corona89.github.io/daily_news_scrap/2026-10-12.html)
+- [2026-10-11](https://corona89.github.io/daily_news_scrap/2026-10-11.html)
+- [2026-10-10](https://corona89.github.io/daily_news_scrap/2026-10-10.html)
+- [2026-10-09](https://corona89.github.io/daily_news_scrap/2026-10-09.html)
+- [2026-10-07](https://corona89.github.io/daily_news_scrap/2026-10-07.html)
+- [2026-10-06](https://corona89.github.io/daily_news_scrap/2026-10-06.html)
+- [2026-10-05](https://corona89.github.io/daily_news_scrap/2026-10-05.html)
+- [2026-10-04](https://corona89.github.io/daily_news_scrap/2026-10-04.html)
