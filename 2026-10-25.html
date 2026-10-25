@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-10-25</title></head>
+<body style='font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;background:#f7f7f5;color:#222;line-height:1.65;margin:0;padding:16px'><div style="max-width:680px;margin:0 auto;background:#fff;padding:20px 22px;border-radius:8px;border:1px solid #e3e3e0">
+<h1 style="font-size:24px;margin:0 0 6px">AI 데일리 다이제스트 — 2026-10-25</h1>
+<p style="color:#666;font-size:13px;margin:0 0 16px">기간: 2026-10-25 00:00–24:00 KST (일요일). 반응 수치는 2026-10-26 07:53 KST에 가져왔다. 표기: HN 점수/댓글.</p>
+<h2 style="font-size:19px;border-bottom:2px solid #0b3d91;padding-bottom:4px">요약</h2><ul style="padding-left:20px">
+<li>새 모델: Nanbeige4.3-33B가 Apache-2.0으로 나왔다. 512K 컨텍스트이다. Terminal-Bench 2.1에서 80.9이다(자체 보고).</li>
+<li>추론 구조: GVS5H는 Qwen3.8-27B 5개 협업으로 LiveCodeBench Hard 92.4%를 냈다. Cerebras는 3T 모델을 웨이퍼 59장에 나누는 방법을 공개했다.</li>
+<li>연구: AI 글이 읽기 어려운 이유를 측정한 논문이 HN 238/196을 받았다. Dan Luu 글(731/672)은 AI 코딩으로 더 큰 프로젝트를 만들자고 말한다.</li>
+<li>오픈소스: VoiceStudio, Impeccable이 트렌딩 상위이다. Farol, Argus, Hurston-1은 새 프로젝트이다.</li>
+<li>사회: 창작 일자리 감소, Altman의 보안 경고, Samsung TV 화면 분석이 논의되었다.</li>
+<li>소스: Reddit JSON은 403이었다. HF daily papers(10-25)는 0개였다(일요일).</li></ul>
+<h2 style="font-size:19px;border-bottom:2px solid #0b3d91;padding-bottom:4px">기술 (모델·오픈소스·논문)</h2>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">1. <a href="https://huggingface.co/Nanbeige/Nanbeige4.3-33B" style="color:#0b3d91">Nanbeige4.3-33B: 33B 오픈 웨이트 에이전트 코딩 모델</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: Hugging Face 모델 카드 (Nanbeige LLM Lab)</p>
+<p style="margin:6px 0">Nanbeige LLM Lab이 Nanbeige4.3-33B를 공개했다. 파라미터는 33,118,977,024개(BF16)이다. 라이선스는 Apache-2.0이다. 컨텍스트는 524,288 토큰(512K)이다. 모델 카드는 Qwen3.8-27B, Muse-Glimmer-30B, Gemma4-31B와 비교한다. Terminal-Bench 2.1은 80.9이다. Qwen3.8-27B는 73.0이다. DeepSWE는 65.5 대 42.5이다. SWE-Bench Pro는 60.3이다. Qwen3.8-27B(61.7)보다 낮다. GPQA Diamond는 89.5이다. Gemma4-31B(91.3)보다 낮다. AIME 2026은 95.2이다. Transformers, SGLang, vLLM 실행 예시가 있다. 서버 예시는 4-way 텐서 병렬이다. 가격은 출처에 없음. 이 모델은 시리즈의 &#x27;교사 모델&#x27;이다. 작은 모델로 증류할 계획이다.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> 30B급 오픈 모델에서 에이전트 코딩 점수가 올랐다. 모든 수치는 자체 보고이다. 독립 재현은 아직 없다.</p>
+<p style="margin:6px 0"><b>반응.</b> HF 좋아요 344, 다운로드 0(API 집계). HF 업로드는 10-24 11:49 KST이다. 확산은 10-25이다. HN 2/0.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://huggingface.co/Nanbeige/Nanbeige4.3-33B" style="color:#0b3d91">모델 카드</a> · <a href="https://www.marktechpost.com/2026/10/25/nanbeige-releases-nanbeige4-3-33b-open-agentic-coding-model/" style="color:#0b3d91">MarkTechPost 보도</a> · <a href="https://news.ycombinator.com/item?id=50231099" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">2. <a href="https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras" style="color:#0b3d91">Cerebras: 3T 파라미터 모델을 웨이퍼 여러 장에 나누는 방법</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: Cerebras 블로그 (10-22 작성)</p>
+<p style="margin:6px 0">WSE-3T 웨이퍼 1장의 온칩 메모리는 44GB이다. 예시 모델은 Kimi K3(약 3T 파라미터)이다. 층은 linear-attention 69개, dense 24개이다. 4비트 가중치에서 층 1개는 약 16GB이다. dense 층은 KV 캐시가 필요하다. 그래서 웨이퍼 1장에 1개를 둔다. linear 층은 웨이퍼 1장에 2개를 둔다. 합계는 59장이다. 웨이퍼 사이에는 활성값만 보낸다. RDMA over Ethernet으로 1홉에 약 2µs이다. 회사는 1000–2000+ 토큰/초를 말한다.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> 초대형 오픈 모델의 서빙 구조를 숫자로 보여 준다. 동시 요청 한도는 KV 캐시 메모리가 정한다.</p>
+<p style="margin:6px 0"><b>반응.</b> HN 344/127.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50227356" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">3. <a href="https://github.com/slee-persis/GVS5H" style="color:#0b3d91">GVS5H: Qwen3.8-27B 5개 협업으로 LiveCodeBench Hard에서 Fable 5 수준</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: GitHub (slee-persis/GVS5H) + 논문</p>
+<p style="margin:6px 0">방법은 &#x27;원장 기반 제로샷 자기 조정&#x27;이다. 같은 모델의 새 인스턴스들이 공유 파일 시스템으로 협업한다. 파일에는 계획, 메모, 현재 답이 있다. 학습은 없다. 평가는 최신 LiveCodeBench Hard 100문제이다. 모델은 11개이다. 로컬 Qwen3.8-27B는 66.8%에서 92.4%로 올랐다. Qwen3.8 Flash Next는 93.0%이다. Fable 5는 90.4%이다. 비용은 9%이다. 최대 향상은 25.6%p이다. 일부 모델은 변화가 없거나 더 나빠졌다. 성숙도: 스타 971, 포크 107, MIT(코드)·CC-BY-4.0(논문). 마지막 push는 09-24 KST이다. 릴리스는 없다.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> 모델을 바꾸지 않고 추론 구조만 바꿔 코딩 정확도를 크게 올렸다. 판정: 지켜볼 만함. 효과가 모델마다 다르다.</p>
+<p style="margin:6px 0"><b>반응.</b> HN 180/68.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://github.com/slee-persis/GVS5H" style="color:#0b3d91">저장소</a> · <a href="https://news.ycombinator.com/item?id=50228167" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">4. <a href="https://arxiv.org/abs/2610.29162" style="color:#0b3d91">논문: AI가 만든 글은 왜 이해하기 어려운가</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: arXiv 2610.29162 (Clark, Martin, Mahowald)</p>
+<p style="margin:6px 0">저자들은 읽기를 어렵게 하는 언어 특징을 측정했다. 예는 목적어 관계절, 긴 구문 의존, 드문 n-gram이다. 프런티어급 모델 9개를 사람 글과 비교했다. 9개 모두 무생물 주어와 드문 n-gram을 더 많이 썼다. 대부분은 의존 거리도 더 길었다. 저자들의 가설: 모델은 수학·코드·추론에 맞춰 최적화된다. 그래서 정보 밀도를 높인다. 길이 벌점 미세조정 실험이 이 가설을 지지한다.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> 모델 출력의 가독성 문제를 측정 가능한 특징으로 바꿨다. 학습 목표 설계에 바로 쓸 수 있다.</p>
+<p style="margin:6px 0"><b>반응.</b> HN 238/196. 10-24 다이제스트 AFTER 후보였다.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://arxiv.org/abs/2610.29162" style="color:#0b3d91">arXiv</a> · <a href="https://news.ycombinator.com/item?id=50223647" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">5. <a href="https://danluu.com/ambitious/" style="color:#0b3d91">Dan Luu: 우리는 더 큰 소프트웨어를 만들어야 한다</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: danluu.com</p>
+<p style="margin:6px 0">글은 Michael Malis의 pgrust(Rust 재작성 Postgres)를 예로 든다. pgrust 테스트는 Postgres의 실제 버그를 여러 개 찾았다. 저자는 AI 코딩 도구로 정규식 엔진, ripgrep 포크, Rust 빌드 가속을 만들었다고 쓴다. 저자는 Fable 5.1과 Opus 5.5를 언급한다. 저자는 대부분의 AI 프로젝트가 저품질이라고 인정한다. 그러나 테스트와 벤치마크를 잘하면 큰 프로젝트도 쓸 만하다고 말한다.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> 이날 HN 1위 글이다. AI 코딩으로 프로젝트 범위를 넓히는 실제 사례를 준다.</p>
+<p style="margin:6px 0"><b>반응.</b> HN 731/672.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://danluu.com/ambitious/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50225695" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">6. <a href="https://github.com/debpalash/VoiceStudio" style="color:#0b3d91">VoiceStudio: 로컬에서 도는 오픈소스 ElevenLabs 대안</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: GitHub 트렌딩</p>
+<p style="margin:6px 0">음성 복제, 음성 설계, 영상 더빙, 받아쓰기, 오디오북 제작을 한다. 지원 언어는 646개라고 쓴다. 기본 엔진은 k2-fsa/OmniVoice이다. 에이전트용 로컬 API와 MCP를 제공한다. NVIDIA CUDA, Apple Metal을 지원한다. GPU가 없으면 CPU로 느리게 돈다. 성숙도: 스타 86,685, AGPL-3.0, 최신 릴리스 v0.5.6(09-23), 마지막 push 10-26 07:48 KST.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> 유료 음성 API 없이 로컬 음성 파이프라인을 만들 수 있다. 판정: 써볼 만함. 활동이 활발하다. AGPL 조건은 확인해야 한다.</p>
+<p style="margin:6px 0"><b>반응.</b> GitHub 트렌딩 오늘 스타 1,588.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://github.com/debpalash/VoiceStudio" style="color:#0b3d91">저장소</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">7. <a href="https://github.com/pbakaus/impeccable" style="color:#0b3d91">Impeccable: AI 코딩 에이전트용 디자인 스킬</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: GitHub 트렌딩</p>
+<p style="margin:6px 0">스킬 1개와 명령 24개를 준다. 예는 audit, critique, polish이다. AI가 만든 프런트엔드에 결정적 탐지 규칙 62개를 적용한다. 규칙 검사는 LLM과 API 키 없이 CLI와 브라우저 확장에서 돈다. init 명령은 PRODUCT.md를 만든다. 성숙도: 스타 87,613, Apache-2.0, engine-v0.1.17(10-24 08:26 KST), 마지막 push 10-26 03:04 KST.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> 에이전트가 만드는 UI의 반복 패턴을 규칙으로 잡는다. 판정: 써볼 만함. 결정적 규칙이라 결과가 재현된다.</p>
+<p style="margin:6px 0"><b>반응.</b> GitHub 트렌딩 오늘 스타 1,113.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://github.com/pbakaus/impeccable" style="color:#0b3d91">저장소</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">8. <a href="https://github.com/winnin/farol" style="color:#0b3d91">Show HN: Farol — PR 승인자를 위한 위험 지도</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: GitHub (winnin/farol)</p>
+<p style="margin:6px 0">Farol은 AI 리뷰 다음 단계에서 쓴다. PR 병합 위험을 0–100 점수로 준다. 판정은 fast track, quick review, careful review 3단계이다. 변경 코드가 닿는 페이지, API, 작업을 호출 경로와 함께 보여 준다. 정적 분석을 쓴다. 그래서 같은 PR은 같은 결과를 받는다. 코드를 실행하거나 외부로 보내지 않는다. 성숙도: 스타 112, MIT, v0.1.2(10-25 00:15 KST), 저장소 생성 10-22 KST. CLI와 GitHub Action으로 쓴다.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> 에이전트가 코드를 많이 쓰면 사람 승인이 병목이 된다. 판정: 지켜볼 만함. 아이디어는 좋다. 저장소가 아주 새롭다.</p>
+<p style="margin:6px 0"><b>반응.</b> HN 58/37.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://github.com/winnin/farol" style="color:#0b3d91">저장소</a> · <a href="https://news.ycombinator.com/item?id=50231349" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">9. <a href="https://github.com/thomasunise/argus" style="color:#0b3d91">Argus: 오픈소스 에이전트형 보안 운영 플랫폼</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: GitHub (thomasunise/argus)</p>
+<p style="margin:6px 0">Argus는 클라우드, ID, 코드, 엔드포인트, 네트워크, Kubernetes를 감시한다. 전문 에이전트 7개가 읽기 전용 도구로 조사한다. 에이전트는 수정을 제안만 한다. 대응 동작은 27개이다. 모두 되돌릴 수 있고 shadow 모드로 시작한다. AI 게이트웨이와 가짜 MCP 서버 같은 에이전트용 미끼(canary)도 있다. 성숙도: 스타 85, MIT, 저장소 생성 10-25 01:12 KST, 릴리스 없음. 자체 호스팅, 멀티 테넌트이다.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> AI 에이전트 공격을 막는 기능과 AI 사용 통제를 한곳에 둔다. 판정: 아직 이름. 저장소가 하루 되었다.</p>
+<p style="margin:6px 0"><b>반응.</b> HN 27/9, 17/4, 15/4 (같은 프로젝트 글 3개).</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://github.com/thomasunise/argus" style="color:#0b3d91">저장소</a> · <a href="https://news.ycombinator.com/item?id=50225748" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">10. <a href="https://huggingface.co/destined/hurston-1" style="color:#0b3d91">Show HN: Hurston-1 — 남부 미국·아프리카 억양 오픈 TTS</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: Hugging Face (Destined AI)</p>
+<p style="margin:6px 0">Hurston-1은 Maya1(Apache-2.0)의 미세조정 모델이다. 억양은 미국 남부, 나이지리아, 서·동·남아프리카 영어이다. 전화 모드는 8kHz G.711 오디오를 낸다. Twilio 같은 전화 시스템에 바로 넣는다. 기본은 24kHz이다. 파라미터는 약 3,300,928,512개이다(HF 메타데이터). 라이선스는 Apache-2.0이다. 파일을 받으려면 조건 동의가 필요하다.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> 대부분 TTS가 약한 억양을 다룬다. 콜센터 음성 에이전트에 맞춘다. 판정: 지켜볼 만함. 반응이 작다.</p>
+<p style="margin:6px 0"><b>반응.</b> HN 34/10. HF 좋아요 10.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://huggingface.co/destined/hurston-1" style="color:#0b3d91">모델 카드</a> · <a href="https://news.ycombinator.com/item?id=50227330" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 18px"><h3 style="font-size:17px;margin:0 0 4px">11. <a href="https://terrytao.wordpress.com/2026/10/24/oai-math-revised-a-community-hub-for-revising-openais-math-write-ups/" style="color:#0b3d91">oai-math-revised: OpenAI 수학 결과를 고치는 커뮤니티 저장소</a></h3>
+<p style="margin:0;color:#555;font-size:13px">출처: Terence Tao 블로그 (게스트 글)</p>
+<p style="margin:6px 0">게스트 저자는 Nellore, Schmitt, Villar, Ward이다. 그들은 OpenAI의 github.com/openai/math 문서가 이해하기 어렵다고 쓴다. 인용도 불완전하다고 쓴다. 새 저장소 mathcommunity/oai-math-revised가 문서를 고친다. 학생, 연구자, 애호가가 참여할 수 있다.</p>
+<p style="margin:6px 0"><b>왜 중요한가.</b> AI가 만든 수학 결과를 사람이 검증하는 공개 절차가 생겼다.</p>
+<p style="margin:6px 0"><b>반응.</b> HN 51/41. 10-24 다이제스트 AFTER 후보였다.</p>
+<p style="margin:6px 0"><b>링크.</b> <a href="https://terrytao.wordpress.com/2026/10/24/oai-math-revised-a-community-hub-for-revising-openais-math-write-ups/" style="color:#0b3d91">원문</a> · <a href="https://github.com/mathcommunity/oai-math-revised/" style="color:#0b3d91">저장소</a> · <a href="https://news.ycombinator.com/item?id=50222283" style="color:#0b3d91">HN</a></p></div>
+<h2 style="font-size:19px;border-bottom:2px solid #0b3d91;padding-bottom:4px">기업·정책·사회</h2>
+<div style="margin:0 0 14px"><h3 style="font-size:16px;margin:0 0 4px">12. <a href="https://www.apricitas.io/p/ai-and-the-fall-of-the-creative-class" style="color:#0b3d91">미국 창작 산업 일자리 20만 개 감소, AI의 몫은?</a></h3><p style="margin:0">출처: Apricitas Economics (09-27 글). 미국 창작 산업은 4년간 20만 개 넘는 일자리를 잃었다. 최근 1년에 약 5만 개이다. 저자는 디지털 분야만 줄고 현장 공연은 늘었다고 쓴다. HN 497/532 · <a href="https://news.ycombinator.com/item?id=50226419" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 14px"><h3 style="font-size:16px;margin:0 0 4px">13. <a href="https://gizmodo.com/sam-altman-i-no-longer-think-were-gonna-be-able-to-just-patch-all-the-bugs-2000829947" style="color:#0b3d91">Sam Altman: &quot;모든 버그를 패치할 수는 없다&quot;</a></h3><p style="margin:0">출처: Gizmodo. Altman은 Stanford GSB에서 AI 보안 위기를 말했다. 그는 조직들이 이 문제를 아직 진지하게 다루지 않는다고 말했다. HN 63/123 · <a href="https://news.ycombinator.com/item?id=50222976" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 14px"><h3 style="font-size:16px;margin:0 0 4px">14. <a href="https://twitter.com/mike64_t/status/2114150399406202896" style="color:#0b3d91">Samsung TV, AlexNet TFLite 모델로 화면을 분석</a></h3><p style="margin:0">출처: X (@mike64_t). 작성자는 TV가 960×540 INT8 이미지로 몇 초마다 alex.tflite를 돌린다고 썼다. 목적은 게임 식별이다. 그는 동의 절차가 이 처리 뒤에 온다고 썼다. 같은 날 Bluetooth 마이크 탐색 글(HN 134/3)도 올랐다. HN 285/1 · <a href="https://news.ycombinator.com/item?id=50230181" style="color:#0b3d91">HN</a></p></div>
+<div style="margin:0 0 14px"><h3 style="font-size:16px;margin:0 0 4px">15. <a href="https://www.reddit.com/r/opensource/comments/1xelcuf/your_tokens_arent_valuable_no_more_ai" style="color:#0b3d91">r/opensource, 1인 프로젝트와 LLM 사용 프로젝트 금지</a></h3><p style="margin:0">출처: Reddit (HN 제목 기준). HN 제목에 따르면 r/opensource가 이 규칙을 정했다. Reddit 원문은 403 오류로 열지 못했다. HN 76/104 · <a href="https://news.ycombinator.com/item?id=50231722" style="color:#0b3d91">HN</a></p></div>
+<h2 style="font-size:18px;border-bottom:1px solid #999;padding-bottom:4px">각주</h2><ul style="padding-left:20px;font-size:14px">
+<li>Apollo: 기술 산업 밖 AI 성과 신호 없음 — HN 608/645 · <a href="https://news.ycombinator.com/item?id=50224463" style="color:#0b3d91">HN</a>. 10-24 AFTER 항목이다.</li>
+<li>Dream-1 (Dream Labs) — HN 179/77 · <a href="https://news.ycombinator.com/item?id=50223785" style="color:#0b3d91">HN</a>. 10-24 AFTER 항목이다.</li>
+<li>Bye Bye Brotli? — HN 23/7 · <a href="https://news.ycombinator.com/item?id=50230362" style="color:#0b3d91">HN</a>. 10-24 HTTP2Shell Brotli CVE의 후속이다.</li>
+<li>Nikon 대회 AI 영상 실격 — HN 127/68 · <a href="https://news.ycombinator.com/item?id=50229827" style="color:#0b3d91">HN</a>. 10-12 기사이다. 10-11 다이제스트에 이미 있었다.</li>
+<li>GitHub 트렌딩 재등장: cloudflare/security-audit-skill(오늘 2,874), Nutlope/hallmark(스타 33,645, 오늘 1,359), makecindy/cindy(스타 4,803, 오늘 677), TauricResearch/TradingAgents(스타 114,538, 오늘 636, v0.7.0 10-17). 새 저장소가 아니다.</li>
+<li>Skyvern: RAG를 지워 웹 에이전트 2.3배 빠름 — HN 21/2 · <a href="https://news.ycombinator.com/item?id=50222826" style="color:#0b3d91">HN</a>. 10-01 글이다.</li>
+</ul>
+<h2 style="font-size:18px;border-bottom:1px solid #999;padding-bottom:4px">AFTER (2026-10-26 00:00 KST 이후 게시, 다음 날 후보)</h2><ul style="padding-left:20px;font-size:14px">
+<li><a href="https://lynchlab.net/llm-skin-cancer" style="color:#0b3d91">10년 된 CNN이 피부암 진단에서 프런티어 LLM을 이겼다</a> — HN 350/178 · <a href="https://news.ycombinator.com/item?id=50233779" style="color:#0b3d91">HN</a> 생검 확인 병변 200개에서 CNN 62%, GPT-6 Astra·Claude Fable 5.1은 42%.</li>
+<li><a href="https://www.dailycal.org/news/campus/academics/ai-use-leads-uc-berkeley-math-professor-to-see-no-point-in-grading-homework/article_bdf1eae2-c08b-491f-b9f1-81a7cea177de.html" style="color:#0b3d91">UC Berkeley Borcherds 교수, AI 때문에 숙제 채점 중단</a> — HN 175/256 · <a href="https://news.ycombinator.com/item?id=50233304" style="color:#0b3d91">HN</a></li>
+<li><a href="https://github.com/JetBrains/thinkrail" style="color:#0b3d91">JetBrains ThinkRail (10-24 본문 항목)</a> — HN 144/103 · <a href="https://news.ycombinator.com/item?id=50233294" style="color:#0b3d91">HN</a></li>
+<li><a href="https://minimaxir.com/2026/10/cheap-llms/" style="color:#0b3d91">OpenAI·Anthropic가 몇 달 사이 가격을 최대 80% 내린 이유 (minimaxir)</a> — HN 36/50 · <a href="https://news.ycombinator.com/item?id=50236102" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.wiz.io/blog/gheist-attempted-scaled-abuse-of-stolen-github-tokens-st" style="color:#0b3d91">Wiz: Gheist 캠페인, 훔친 GitHub 토큰으로 비밀 유출 워크플로 심기</a> — HN 39/0 · <a href="https://news.ycombinator.com/item?id=50235010" style="color:#0b3d91">HN</a></li>
+</ul><h2 style="font-size:18px;border-bottom:1px solid #999;padding-bottom:4px">소스 상태</h2><p style="font-size:14px">HN(Algolia)은 정상이다. HF 인기 모델과 GitHub 트렌딩은 확인했다. HF daily papers(2026-10-25)는 0개였다. Reddit r/MachineLearning, r/LocalLLaMA JSON은 403 오류였다.</p>
+</div></body></html>
