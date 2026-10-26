@@ -3,6 +3,7 @@
 웹 페이지: [https://corona89.github.io/daily_news_scrap/](https://corona89.github.io/daily_news_scrap/)
 
 ## 다이제스트 목록
+- [2026-10-26](https://corona89.github.io/daily_news_scrap/2026-10-26.html)
 - [2026-10-25](https://corona89.github.io/daily_news_scrap/2026-10-25.html)
 - [2026-10-24](https://corona89.github.io/daily_news_scrap/2026-10-24.html)
 - [2026-10-23](https://corona89.github.io/daily_news_scrap/2026-10-23.html)
