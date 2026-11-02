@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-02</title>
+<style>body{margin:0;background:#f7f7f5;color:#222;font-family:-apple-system,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',Roboto,sans-serif;line-height:1.65;font-size:15px}
+.w{max-width:680px;margin:0 auto;padding:24px 18px;background:#fff}
+h1{font-size:23px;margin:0 0 6px}h2{font-size:18px;margin:28px 0 10px;border-bottom:2px solid #e3e3e0;padding-bottom:4px}
+h3{font-size:16px;margin:18px 0 4px}a{color:#1a5fb4}.m{color:#666;font-size:13px}.it{margin-bottom:18px}ul{padding-left:20px}p{margin:6px 0}</style></head>
+<body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-02</h1>
+<p class="m">대상 기간: 2026-11-02 00:00–24:00 KST (2026-11-01 15:00 UTC–2026-11-02 15:00 UTC). HN 점수와 댓글 수는 2026-11-03 07:57 KST 무렵 HN Algolia API에서 확인했다. GitHub와 Hugging Face 수치도 같은 시각 각 API에서 확인했다. Reddit은 403 오류로 열리지 않았다.</p>
+
+<h2>요약</h2>
+<ul>
+<li>Meituan이 LongCat-2.5를 발표했다. 총 1.6T 파라미터, 토큰당 약 48B 활성 MoE다. Terminal Bench v2.1에서 88.4점으로 GPT-5.6-Sol(88.8)과 비슷하다.</li>
+<li>ServiceNow가 음성 모델 Apriel Voice 27B Preview를 MIT 라이선스로 공개했다. τ-Voice 과제 성공률은 65.51%다.</li>
+<li>Egzakta의 KVARK Sparkle 1.0(27B)은 Qwen3.8-27B와 정확도가 비슷하다. 추론 토큰은 34–67% 적다.</li>
+<li>OpenAI GPT-Rosalind-6 시스템 카드: GeneBench Pro v13에서 37.7%로 이전 버전(16.7%)의 두 배를 넘었다.</li>
+<li>오픈소스: Heretic 2.0(별 38,049개)이 범용 모델 수정 도구로 바뀌었다. 837줄짜리 코딩 하네스 UNCUT이 별 570개를 받았다.</li>
+<li>Trail of Bits는 Codex로 리눅스 커널 안정판에 CVE 수정 149개를 넣었다.</li>
+<li>기업·정책: Anthropic 3분기 매출은 약 $17B다. 중국은 프런티어 AI 수출 통제 초안을 냈다.</li>
+</ul>
+
+<h2>기술 (모델·오픈소스·논문)</h2>
+
+<div class="it"><h3>1. <a href="https://longcat.ai/blog/longcat-2.5/">LongCat-2.5: Meituan의 1.6T MoE 멀티모달 에이전트 모델</a></h3>
+<p class="m">출처: LongCat 블로그 · Meituan 뉴스 · LongCat API 문서</p>
+<p>Meituan이 11월 2일 LongCat-2.5를 발표했다. 총 파라미터는 1.6T이고 토큰당 약 48B를 활성화한다. 문맥은 1M 토큰, 최대 출력은 128K 토큰이다. 학습은 전부 중국산 가속기에서 했다고 Meituan은 밝혔다.</p>
+<p>자체 표 기준 점수: Terminal Bench v2.1 88.4(GPT-5.6-Sol 88.8, Claude-Opus-5 89.1, DeepSeek-V4.1-Flash 90.6). BrowseComp 91.9(Claude-Opus-5 90.8). HLE w/ tools 63.1(Claude-Opus-5 64.7). DeepSWE v1.1 64.6(Claude-Opus-5 68.8). 이전 버전 LongCat-2.0의 DeepSWE v1.1 점수는 9.7이었다.</p>
+<p>API 가격은 한시 할인가로 입력 $0.30, 캐시 입력 $0.006, 출력 $1.20(1M 토큰당)이다. W4A4 추론은 W8A8 대비 prefill 처리량을 43.3%, decode 처리량을 42.77% 높였다고 밝혔다. 오픈 웨이트 공개 여부는 출처에 없음. 확인 시각에 Hugging Face meituan-longcat 계정에 2.5 가중치는 없었다.</p>
+<p><b>왜 중요한가.</b> 중국산 칩으로 학습한 모델이 상용 최상위 모델과 비슷한 에이전트 점수를 냈다고 주장한다. 가격은 비교 모델보다 훨씬 낮다. 다만 비교 점수 다수는 공개 자료 인용이고, 일부는 자체 측정이다.</p>
+<p><b>반응.</b> HN에서 의미 있는 토론을 찾지 못했다. Reddit은 확인 실패.</p>
+<p><b>링크.</b> <a href="https://longcat.ai/blog/longcat-2.5/">블로그</a> · <a href="https://www.meituan.com/news/NN261102280001343">Meituan 뉴스(중국어)</a> · <a href="https://longcat.ai/platform/docs/pricing/longcat-2.5">가격</a></p></div>
+
+<div class="it"><h3>2. <a href="https://huggingface.co/ServiceNow-AI/Apriel-Voice-27B-preview">Apriel Voice 27B Preview: 음성·추론·도구 호출을 한 모델로</a></h3>
+<p class="m">출처: Hugging Face 모델 카드 · arXiv 2610.40738 (HF Papers 11-02 제출)</p>
+<p>ServiceNow가 공개한 오픈 음성-언어 모델이다. Whisper large-v3-turbo 음성 인코더를 Gemma 4 26B-A4B 백본에 붙였다. 모델은 음성을 바로 받아 텍스트 답과 도구 호출을 만든다. 음성 합성은 외부 TTS가 맡는다.</p>
+<p>τ-Voice pass@1은 65.51%, 평균 지연은 1.91초다. 비교 값은 GPT Realtime 2.1 69.82%·1.55초, Gemini-3.8 Live 84.19%·1.50초, Parakeet+Gemma 4-26B 3단계 구성 67.78%·3.01초다. EVA-X(대화 경험)는 74.13으로 표의 모든 모델보다 높다. LibriSpeech WER은 test-clean 2.23%, test-other 5.15%다. 텍스트 GPQA Diamond는 80.40으로 원 백본(77.80)보다 높다.</p>
+<p>라이선스는 MIT다. 공식 vLLM 예시는 GPU 4장(H100 80GB 기준)과 262,144 토큰 문맥을 쓴다.</p>
+<p><b>왜 중요한가.</b> 오픈 2단계 음성 모델이 3단계(ASR+LLM+TTS) 구성과 비슷한 과제 성공률을 더 낮은 지연으로 냈다. 음성 상담 에이전트를 직접 운영하려는 팀에게 쓸 만한 기준점이다.</p>
+<p><b>판정:</b> 써볼 만함. 라이선스가 자유롭고 vLLM 서빙 설정이 카드에 있다. 다만 아직 Preview 판이다.</p>
+<p><b>반응.</b> Hugging Face 좋아요 63개, 다운로드 338회. HF Papers 추천 33개.</p>
+<p><b>링크.</b> <a href="https://huggingface.co/ServiceNow-AI/Apriel-Voice-27B-preview">모델 카드</a> · <a href="https://huggingface.co/papers/2610.40738">HF Papers</a> · <a href="https://arxiv.org/abs/2610.40738">arXiv</a></p></div>
+
+<div class="it"><h3>3. <a href="https://huggingface.co/Egzakta/Kvark-Sparkle-1.0-27B">KVARK Sparkle 1.0 (27B): Qwen3.8-27B보다 생각 토큰을 줄인 미세조정 모델</a></h3>
+<p class="m">출처: Hugging Face 모델 카드 · r/LocalLLaMA 공지(ReadmeX 요약, 11-02)</p>
+<p>Egzakta AI Lab의 첫 오픈 웨이트 모델이다. 구조는 Qwen3.8-27B 그대로이고 파라미터는 27.8B다. 문맥은 262,144 토큰이고 64K까지 평가했다.</p>
+<p>정확도는 GPQA Diamond 89.3(Qwen 89.4), AIME 93.3(94.0), LiveCodeBench v6 82.7(77.3), IFEval 91.3(92.4), MMLU-Pro 83.3(84.0)이다. 중앙값 추론 토큰은 34–67% 줄었다. H200 1장에서 답 하나의 중앙값 시간은 13.7초로, Qwen의 28.1초보다 짧다.</p>
+<p>라이선스는 Apache-2.0이다. BF16 52GB, FP8 29GB, GGUF 15.3–29.0GB 판이 있다. GGUF 판은 로컬 실행용이다.</p>
+<p><b>왜 중요한가.</b> 같은 정확도에서 답이 두 배 빠르면 로컬 사용 비용이 크게 준다. 수치는 모두 제작사 자체 측정이다.</p>
+<p><b>판정:</b> 써볼 만함. Qwen3.8-27B를 이미 쓰면 바로 바꿔 볼 수 있다.</p>
+<p><b>반응.</b> Hugging Face 좋아요 4개(GGUF판 5개, 다운로드 2,926회). Reddit 직접 확인 실패.</p>
+<p><b>링크.</b> <a href="https://huggingface.co/Egzakta/Kvark-Sparkle-1.0-27B">모델 카드</a> · <a href="https://huggingface.co/Egzakta/Kvark-Sparkle-1.0-27B-GGUF">GGUF</a> · <a href="https://readmex.ai/story/we-released-kvark-sparkle-1-0-a-qwen3-8-27b-based-model-with-up-to-67--c92df8c3">Reddit 글 요약</a></p></div>
+
+<div class="it"><h3>4. <a href="https://deploymentsafety.openai.com/gpt-rosalind-6">GPT-Rosalind-6 시스템 카드: 생물학 전용 신뢰 접근 모델</a></h3>
+<p class="m">출처: OpenAI Deployment Safety Hub (2026-10-30 게시) · HN (11-02 게시)</p>
+<p>GPT-Rosalind-6은 생물학, 신약 개발용 추론 모델이다. 가중치는 GPT-6 Astra와 같다. 추가 학습은 없었다. 승인된 연구 기관에만 제공한다.</p>
+<p>최고 추론 예산에서 MedChemBench v7 49.6%(GPT-Rosalind-5.5 28.9%), GeneBench Pro v13 37.7%(16.7%), LifeSciBench Gold 61.3%(44.0%)다. OpenAI는 생물·화학 영역을 High로, 사이버보안을 Critical로 분류했다. 가격, 문맥 길이는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 같은 가중치에서 거절 정책과 접근 통제만 바꾸어 전문 모델을 만든 사례다. 성능 향상은 부모 모델 GPT-6 Astra에서 온다.</p>
+<p><b>반응.</b> HN 62점, 댓글 50개.</p>
+<p><b>링크.</b> <a href="https://deploymentsafety.openai.com/gpt-rosalind-6">시스템 카드 부록</a> · <a href="https://news.ycombinator.com/item?id=50337503">HN 토론</a></p></div>
+
+<div class="it"><h3>5. <a href="https://github.com/p-e-w/heretic">Heretic 2.0: 검열 제거 도구에서 범용 모델 수정 도구로</a></h3>
+<p class="m">출처: GitHub p-e-w/heretic v2.0.0 (2026-11-01 22:03 KST) · HN</p>
+<p>Heretic은 학습 없이 언어 모델의 거절 동작을 없애는 도구다. 2.0은 범용 플러그인 시스템, 수정자(modifier) 플러그인, 벤치마크 점수기, 헤드리스 실행을 넣었다. 제작자는 이제 아첨 줄이기와 "slop" 억제도 된다고 밝혔다. 1.x 설정 파일은 호환되지 않는다. 연구 기능은 별도 프로젝트 Lophius로 옮겼다.</p>
+<p><b>왜 중요한가.</b> 제작자에 따르면 Hugging Face에 Heretic으로 만든 모델이 8,500개가 넘고 다운로드는 8,800만 회다. 가중치 직접 수정이 흔한 작업이 되었다는 뜻이다. 안전 장치 제거에 쓰인다는 점은 그대로다.</p>
+<p><b>판정:</b> 지켜볼 만함. 성숙한 프로젝트다. 다만 2.0의 새 기능은 아직 검증 사례가 적다.</p>
+<p><b>반응.</b> GitHub 별 38,049개. 라이선스 AGPL-3.0. v2.0.0 릴리스 2026-11-01 22:03 KST. HN 21점, 댓글 3개.</p>
+<p><b>링크.</b> <a href="https://github.com/p-e-w/heretic/releases/tag/v2.0.0">릴리스 노트</a> · <a href="https://github.com/p-e-w/heretic">저장소</a> · <a href="https://news.ycombinator.com/item?id=50328567">HN 토론</a></p></div>
+
+<div class="it"><h3>6. <a href="https://github.com/Balanov/uncut">UNCUT: 문맥을 자르지 않는 7MB 헤드리스 코딩 에이전트 하네스</a></h3>
+<p class="m">출처: GitHub Balanov/uncut</p>
+<p>UNCUT은 Go로 만든 정적 바이너리 하나(7MB)다. 도구는 4개뿐이다. 입출력은 stdin/stdout이고, --json을 주면 NDJSON을 낸다. 문맥 압축이 없다. 모든 호출에 대화 전체를 보낸다. 공급자가 출력을 자르면 성공으로 보이지 않고 오류로 끝낸다.</p>
+<p>OpenAI 호환 Chat Completions 엔드포인트를 쓰므로 로컬 서버와도 동작한다. 구현 코드는 837줄이다. 세션은 JSONL로 저장하고 다시 이어 갈 수 있다.</p>
+<p><b>왜 중요한가.</b> 기존 하네스는 문맥을 몰래 요약하거나 잘라서 결과를 흐리게 만들 수 있다. UNCUT은 CI 파이프라인과 에이전트 실험에서 재현성을 높인다. 대신 긴 작업은 토큰 비용이 커진다.</p>
+<p><b>판정:</b> 지켜볼 만함. 생성 하루 만에 별이 많이 붙었지만 버전은 0.1.1이다.</p>
+<p><b>반응.</b> GitHub 별 570개. 생성 2026-11-02 02:19 KST. 마지막 push 2026-11-03 05:58 KST. 라이선스 MIT.</p>
+<p><b>링크.</b> <a href="https://github.com/Balanov/uncut">저장소</a></p></div>
+
+<div class="it"><h3>7. <a href="https://blog.trailofbits.com/2026/11/02/backporting-security-fixes-at-scale-with-codex/">Trail of Bits: Codex로 보안 수정 백포트를 며칠에서 몇 시간으로</a></h3>
+<p class="m">출처: Trail of Bits 블로그 (2026-11-02) · HN</p>
+<p>Trail of Bits는 Codex와 GPT-5.6으로 안정판 리눅스에 빠진 보안 수정을 찾고 옮긴다. 에이전트가 누락 수정 찾기, 패치 수정, 테스트, 제출 자료 작성을 한다. 사람은 검토하고 제출한다.</p>
+<p>10월 29일까지 CVE 149개의 수정이 안정판 커널에 들어갔다. 간단한 백포트는 사람 시간 약 30분, 복잡한 건은 약 3시간이 든다. 커널 5.10.y 브랜치에는 아직 수정이 없는 CVE가 2,006개 있다(2026-09-18 기준).</p>
+<p><b>왜 중요한가.</b> AI 버그 탐색이 빨라질수록 오래된 안정판의 취약점이 더 위험해진다. 이 글은 같은 AI로 수정 쪽도 빠르게 할 수 있다는 실제 수치를 준다.</p>
+<p><b>반응.</b> HN 15점, 댓글 1개.</p>
+<p><b>링크.</b> <a href="https://blog.trailofbits.com/2026/11/02/backporting-security-fixes-at-scale-with-codex/">블로그</a> · <a href="https://news.ycombinator.com/item?id=50336405">HN 토론</a></p></div>
+
+<div class="it"><h3>8. <a href="https://x.com/OcanaSantero/status/2115442964574908902">AI 에이전트가 생쥐 뇌 수술을 수행했다</a></h3>
+<p class="m">출처: X @OcanaSantero (2026-10-28 22:58 KST 게시) · HN (11-02 게시)</p>
+<p>ExinTx의 Gabriel Ocana-Santero가 실험을 공개했다. 에이전트는 유전자 치료 벡터 19개 중 약을 고르고 뇌 부위를 정했다. 논문 3편에서 좌표를 계산했다. 그다음 정위 수술 장비를 움직여 250나노리터를 주입했다. 수의사가 되돌릴 수 없는 단계마다 승인했고 물리적 정지 스위치를 쥐었다.</p>
+<p>HN 댓글에 따르면 실험에 Sonnet 5.5가 쓰였고, Opus 5는 요청을 거절했다. 이 내용은 원 스레드에서 직접 확인하지 못했다.</p>
+<p><b>왜 중요한가.</b> 범용 LLM 에이전트가 물리 실험 장비를 직접 조작한 사례다. 사람 승인 단계와 정지 스위치 설계가 핵심 안전 장치였다.</p>
+<p><b>반응.</b> HN 116점, 댓글 97개. X 좋아요 9,590개, 답글 309개.</p>
+<p><b>링크.</b> <a href="https://x.com/OcanaSantero/status/2115442964574908902">X 스레드</a> · <a href="https://news.ycombinator.com/item?id=50336138">HN 토론</a></p></div>
+
+<div class="it"><h3>9. <a href="https://huggingface.co/papers/2610.36545">HF Daily Papers 상위: FrameForge, R^2Orch</a></h3>
+<p class="m">출처: Hugging Face Daily Papers (2026-11-02 목록)</p>
+<p>FrameForge는 비디오 기반 모델을 이미지 생성에 쓴다. 조건 이미지와 목표 이미지 사이의 "가상 시간 간격"을 입력마다 다르게 고른다(Mixture of Temporal Experts). DreamBench, COCO2017, GEdit-Bench에서 비교 방법보다 낫다고 밝혔다. 구체 수치는 초록에 없음.</p>
+<p>R^2Orch는 에이전트 오케스트레이터를 자기 대국(self-play)으로 개선한다. 실패를 스킬로 만들고, 스킬을 파라미터로 옮긴 뒤 스킬을 빼 나간다. 목표는 스킬 없이 배포하는 것이다. 12개 데이터셋에서 기준 방법보다 낫다고 밝혔다. 구체 수치는 초록에 없음.</p>
+<p><b>왜 중요한가.</b> R^2Orch는 스킬 카탈로그를 학습으로 흡수하는 방향을 보여 준다. 스킬 기반 에이전트 빌더 설계에 참고가 된다.</p>
+<p><b>반응.</b> HF 추천 FrameForge 112개, R^2Orch 87개. FrameForge GitHub 별 3개.</p>
+<p><b>링크.</b> <a href="https://huggingface.co/papers/2610.36545">FrameForge</a> · <a href="https://huggingface.co/papers/2610.22740">R^2Orch</a> · <a href="https://github.com/beita6969/R2Orch">R^2Orch 코드</a></p></div>
+
+<h2>기업·정책·사회</h2>
+
+<div class="it"><h3>10. <a href="https://www.cnbc.com/2026/11/02/anthropic-ant-s-1-quarter-financials.html">Anthropic 수정 S-1: 3분기 매출 약 $17B, 약정 지출 $895.4B</a></h3>
+<p class="m">출처: CNBC · HN</p>
+<p>3분기 매출은 약 $17B로 전년 대비 약 1,127% 늘었다. 전 분기 대비 증가율은 47%로, 2분기(144%)보다 크게 낮다. 9개월 매출은 $33.24B, 9개월 순손실은 $104B다. 손실 대부분은 전환사채 공정가치 변동에서 왔다. 컴퓨팅·인프라 약정은 약 $895.4B다.</p>
+<p><b>반응.</b> HN 224점, 댓글 250개. <a href="https://news.ycombinator.com/item?id=50337439">HN 토론</a></p></div>
+
+<div class="it"><h3>11. <a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-china-ai-export-controls-announcement-48-2/">중국 첫 프런티어 AI 수출 통제 초안(MOFCOM 공고 제48호)</a></h3>
+<p class="m">출처: Cloud Security Alliance 연구 노트 (10-23) · HN (11-02 게시)</p>
+<p>10^26 FLOPs 이상, 2T 파라미터 이상, 또는 세계 상위 10위 모델의 가중치 수출을 제한한다. 에이전트도 따로 통제한다(예: 통합 도구 200개 이상). API·SaaS 이용은 수출이 아니지만, 중국 밖 로컬 배포는 수출로 본다. 이미 공개된 오픈소스 기술은 제외한다. 의견 마감은 11월 15일이다.</p>
+<p><b>반응.</b> HN 148점, 댓글 83개. <a href="https://news.ycombinator.com/item?id=50334038">HN 토론</a></p></div>
+
+<div class="it"><h3>12. <a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/">미국 인구조사국 설문이 "AI"를 "Super Intelligence"로 바꾸었다</a></h3>
+<p class="m">출처: Simon Willison 블로그 · HN</p>
+<p>BTOS 설문은 10월 19일부터 행정명령 14434에 따라 "Super Intelligence(SI)"라는 말을 쓴다. 직원 250명 이상 기업의 AI 사용 응답은 2026년 10월 약 40%였다. 질문 문구가 두 번 바뀌어 기간별 비교가 어렵다.</p>
+<p><b>반응.</b> HN 92점, 댓글 40개. <a href="https://news.ycombinator.com/item?id=50336840">HN 토론</a></p></div>
+
+<h2>각주 (이전 다이제스트 항목의 후속)</h2>
+<ul>
+<li>craft-anything(11-01 본문): GitHub 별이 3,885개로 늘었다. <a href="https://github.com/storytold/craft-anything">저장소</a></li>
+<li>stack-diagram(11-01 본문): GitHub 별 1,144개. <a href="https://github.com/caru-ini/stack-diagram">저장소</a></li>
+<li>Clover-35B-A3B-Preview(10-28 본문): Open Model Weights가 11-02에 다시 다루었다. <a href="https://openmodelweights.com/news/clover-35b-a3b-open-diffusion-coding-agents-20261102/">기사</a></li>
+<li>Terence Tao "Mathematics has changed"(11-01 AFTER): HN 376점·댓글 488개. <a href="https://news.ycombinator.com/item?id=50328251">HN</a></li>
+<li>Anthropic Mythos급 모델 유출 주장(11-01 AFTER): HN 45점·47개, 35점·13개. 댓글 다수는 가짜나 악성코드 미끼로 본다. <a href="https://news.ycombinator.com/item?id=50326727">HN</a></li>
+<li>Show HN: HackerBooks(11-01 AFTER): HN 1,801점·299개. <a href="https://news.ycombinator.com/item?id=50326821">HN</a></li>
+<li>Proton AI 재면접(10-31 기업 항목) 후속 글 "It wasn't AI that flipped Proton's charge": HN 165점·99개. <a href="https://news.ycombinator.com/item?id=50328488">HN</a></li>
+<li>Apollo 경제학자 "AI는 대부분 기업에 재무 효과 0"(TechCrunch 10-25 기사, 오래된 기사): HN 241점·247개. <a href="https://news.ycombinator.com/item?id=50330456">HN</a></li>
+</ul>
+
+<h2>AFTER (기간 뒤 게시)</h2>
+<ul>
+<li>Hydrogen-1.0(Deep Principle): GLM-5.3 기반 753B 오픈 웨이트 과학 모델, MIT, 1M 문맥. FrontierScience-Research 38.3%(GPT-6-Astra 33.3%, 자체 측정). MarkTechPost 기사 2026-11-03 03:41 KST. <a href="https://huggingface.co/deep-principle/Hydrogen-1.0">모델 카드</a> · <a href="https://www.marktechpost.com/2026/11/02/deep-principle-hydrogen-1-0-open-weight-scientific-model/">기사</a></li>
+</ul>
+
+<p class="m">출처 실패: Reddit(r/MachineLearning, r/LocalLLaMA)은 403으로 열리지 않았다. Reddit 글은 2차 요약으로만 인용했다.</p>
+</div></body></html>
