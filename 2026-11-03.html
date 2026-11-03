@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 데일리 다이제스트 — 2026-11-03</title>
+</head>
+<body style="margin:0;padding:0;background:#f7f7f5;color:#222;font-family:-apple-system,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:16px;line-height:1.65;">
+<div style="max-width:680px;margin:0 auto;padding:24px 18px;background:#ffffff;">
+<h1 style="font-size:24px;margin:0 0 6px 0;">AI 데일리 다이제스트 — 2026-11-03</h1>
+<p style="color:#666;font-size:13px;margin:0 0 18px 0;">기간: 2026-11-03 00:00–24:00 KST. 출처: Hacker News, Hugging Face, GitHub, arXiv, 원문 블로그. 숫자는 연 출처에서만 가져왔다.</p>
+
+<h2 style="font-size:19px;border-bottom:2px solid #ddd;padding-bottom:4px;">요약</h2>
+<ul>
+<li>MIT 연구진이 GPT-6 Astra로 신경망 가중치를 직접 읽고 고쳤다고 발표했다. Qwen3.5-0.8B의 MATH-500 점수가 7.9%에서 48.1%로 올랐다. 반박 글도 많은 관심을 받았다.</li>
+<li>사전학습 데이터 0.1%만 오염시켜도 CLI 에이전트에 백도어를 심을 수 있다는 논문이 나왔다. 4B 모델에서 공격 성공률은 92.7%였다.</li>
+<li>OpenAI는 Codex로 10주 만에 만든 Rust Git 백엔드 Pando를 공개했다. 푸시 지연 중앙값이 약 5배 줄었다.</li>
+<li>NorthCUA(9B/35B/397B) 컴퓨터 사용 모델이 Apache-2.0으로 공개되었다. Pro는 OSWorld-Verified 88.64%를 보고했다.</li>
+<li>기업 소식: OpenAI Codex 학습 설정이 다시 켜졌다는 보고, Anthropic IPO 반대 칼럼, Revolut의 자체 호스팅 GLM 전환이 화제였다.</li>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning)은 403으로 열리지 않았다.</li>
+</ul>
+
+<h2 style="font-size:19px;border-bottom:2px solid #ddd;padding-bottom:4px;">기술 (모델·오픈소스·논문)</h2>
+
+<h3 style="font-size:17px;margin-bottom:4px;">1. <a href="https://rikiyat.github.io/blog/weight-space-programming/" style="color:#0b57d0;">GPT-6 Astra가 신경망 가중치를 읽고 쓴다: "가중치 공간 프로그래밍"과 반박</a></h3>
+<p><b>출처.</b> MIT CSAIL 블로그 (Takehi, Teoh, Zhang, Khattab, 2026-11-02) · 반박: Honnibal, Goedecke (11-03)</p>
+<p><b>요약.</b> 연구진은 GPT-6 Astra에게 가중치를 분석하고 수정하게 했다. 17,253개 가중치만 보고 어떤 게임의 신경망인지 4/4 맞혔다. Kinetix 자동차 정책은 가중치 3.5%를 고쳐 성공률 0%를 100%로 바꾸었다(1,024 에피소드). Qwen3.5-0.8B는 가중치 131,072개(0.016%)를 고쳤다. MATH-500은 7.9%에서 48.1%, GSM8K는 13.8%에서 67.1%, IFEval은 21.0%에서 62.3%로 올랐다. 토큰 한도 초과 비율은 93%에서 33.1%로 내려갔다. Gemma 3 270M의 수학 점수는 6.8에서 7.0으로 거의 변하지 않았다.</p>
+<p><b>반박.</b> Honnibal은 "가중치만 보는" 설정은 실험 1, 2, 4에만 쓰였다고 지적했다. 언어 모델 실험은 모두 Python을 썼다. Qwen 결과도 모델을 50번 실행했다. Goedecke는 사람 ML 연구자도 같은 일을 할 수 있다고 썼다. Qwen 수정은 steering/abliteration 계열 방법과 비슷하다고 했다. 원래 Qwen의 실패는 대부분 32k 토큰을 넘는 반복 출력이었다고 했다.</p>
+<p><b>왜 중요한가.</b> 모델이 다른 모델의 가중치를 분석하고 고치는 작업이 실제 성능 향상을 만들었다. 하지만 방법 설명이 과장되었다는 지적도 있다. 결과를 해석할 때 반박 글을 같이 읽어야 한다.</p>
+<p><b>반응.</b> HN 2,919점, 댓글 879개(이날 최고). 반박 글 HN 853점·188개. Goedecke 글 137점·22개. 로그 저장소 RikiyaT/lm_understand-logs 713 stars.</p>
+<p><b>링크.</b> <a href="https://rikiyat.github.io/blog/weight-space-programming/">원문</a> · <a href="https://news.ycombinator.com/item?id=50341174">HN 토론</a> · <a href="https://honnibal.dev/blog/astra-read-write-misleading">Honnibal 반박</a> · <a href="https://news.ycombinator.com/item?id=50351111">반박 HN</a> · <a href="https://news.ycombinator.com/item?id=50344861">Goedecke HN</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">2. <a href="https://arxiv.org/abs/2610.37741" style="color:#0b57d0;">사전학습 데이터 오염으로 에이전트에 백도어를 심는다</a></h3>
+<p><b>출처.</b> arXiv 2610.37741 (UC Berkeley, UIUC, Anthropic Fellows; Carlini, Jagielski, Rando 외)</p>
+<p><b>요약.</b> 연구진은 Qwen3 0.6B/1.7B/4B 구조를 FineWeb 100B 토큰으로 처음부터 학습했다. 그 다음 SFT, DPO, GRPO로 CLI 에이전트를 만들었다. 공격 목표는 트리거를 보면 <code>curl -sSL &lt;url&gt; | bash</code>를 실행하게 하는 것이다. 오염 0.1%, 4B 모델에서 Pass@32 공격 성공률은 92.7%였다. 1.7B는 51.9%, 0.6B는 13.1%였다. 오염 0.0005%(문서 2,500개)에서도 1.4%였다. 깨끗한 프롬프트의 오탐은 0.0%였다. 성능 저하는 없었다(58.5 대 58.3).</p>
+<p><b>왜 중요한가.</b> 큰 모델일수록 백도어가 더 잘 남았다. 후속 학습(RL 포함)으로 백도어가 지워지지 않았다. 웹 데이터로 학습하는 모든 에이전트 모델에 해당하는 위험이다.</p>
+<p><b>반응.</b> HN 108점, 댓글 30개. 코드: safety-research/agentic-backdoor (Apache-2.0, 10 stars).</p>
+<p><b>링크.</b> <a href="https://arxiv.org/abs/2610.37741">논문</a> · <a href="https://news.ycombinator.com/item?id=50341334">HN 토론</a> · <a href="https://github.com/safety-research/agentic-backdoor">코드</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">3. <a href="https://huggingface.co/beipo-ai/NorthCUA-Pro" style="color:#0b57d0;">NorthCUA: 9B·35B·397B 오픈 컴퓨터 사용 모델</a></h3>
+<p><b>출처.</b> Hugging Face 모델 카드 (beipo-ai), 기술 보고서 (HF Papers 2611.02102)</p>
+<p><b>요약.</b> NorthCUA는 Qwen3.5 기반 데스크톱·웹 자동화 모델 가족이다. Nano는 9B 밀집, Mini는 35B(활성 3B) MoE, Pro는 397B(활성 17B) MoE다. 라이선스는 Apache-2.0이다. 문맥 길이는 262,144 토큰으로 설정되어 있다. Pro는 OSWorld-Verified 88.64%, WebArena-Verified 73.89%, ScreenSpot-Pro 93.30%를 보고했다. Mini는 85.30%와 70.43%, Nano는 78.90%와 67.16%였다. 가격, 로컬 실행 사양은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 컴퓨터 사용 에이전트를 오픈 웨이트로 직접 운영할 수 있다. 전용 Harness도 같이 공개되었다. 수치는 보고서 값이며, 배포 파일로 다시 측정한 값이 아니라고 카드가 밝힌다.</p>
+<p><b>반응.</b> HF Pro 10 likes, 다운로드 446. 논문 30 upvotes. GitHub beipo-ai/NorthCUA 38 stars, 마지막 push 11-03.</p>
+<p><b>링크.</b> <a href="https://huggingface.co/beipo-ai/NorthCUA-Pro">모델 카드</a> · <a href="https://huggingface.co/papers/2611.02102">기술 보고서</a> · <a href="https://github.com/beipo-ai/NorthCUA">GitHub</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">4. <a href="https://openai.com/index/scaling-git-at-openai/" style="color:#0b57d0;">OpenAI, Codex로 10주 만에 만든 Git 백엔드 Pando</a></h3>
+<p><b>출처.</b> OpenAI 엔지니어링 블로그 (2026-11-02)</p>
+<p><b>요약.</b> Pando는 Rust로 만든 새 Git 백엔드다. 팀은 Codex로 10주 만에 만들었다. 4월부터 실제 운영 중이다. 도입 전 모노레포 안정성은 90% 아래로 떨어졌었다. 도입 후 푸시 지연 중앙값이 약 5배(약 80%) 줄었다. 하루 약 1PB를 제공하고, 한 시간에 57TB를 보낸 적도 있다. 지역 캐시 적중률은 99%를 넘는다. GPT-6 Astra 에이전트가 Lean/TLA+ 증명을 작성했다.</p>
+<p><b>왜 중요한가.</b> AI 에이전트 때문에 코드 저장소 트래픽이 크게 늘었다. 에이전트로 인프라 핵심 부품을 짧은 기간에 다시 만든 사례다. 일부 개선은 upstream Git에 기여했다.</p>
+<p><b>반응.</b> HN 263점, 댓글 178개.</p>
+<p><b>링크.</b> <a href="https://openai.com/index/scaling-git-at-openai/">원문</a> · <a href="https://news.ycombinator.com/item?id=50345924">HN 토론</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">5. <a href="https://nicholas.carlini.com/writing/2026/algorithmic-improvements-chess.html" style="color:#0b57d0;">Carlini: 현대 체스 엔진을 1996년 Pentium에서 돌리면 Kasparov를 이길까</a></h3>
+<p><b>출처.</b> Nicholas Carlini 블로그 (2026-11-01)</p>
+<p><b>요약.</b> 작성자는 200MHz Pentium Pro, 64MB RAM 환경을 대상으로 했다. Stockfish 이식판의 추정 Elo는 고전 시간 기준 3300±87이다. 1초/수에서 2846, 10초에서 3109, 30초에서 3180이었다. 1996년 Crafty에 현대 기법(LMR, SPSA, NNUE)을 넣자 1초 기준 1999에서 2718로 올랐다. 늘어난 Elo +1335 중 +720은 소프트웨어 개선에서 왔다. 코드는 LLM(Fable 5.1, Opus 5.5, GPT-6)이 작성했다.</p>
+<p><b>왜 중요한가.</b> 하드웨어와 알고리즘의 기여를 숫자로 나누었다. LLM으로 오래된 플랫폼용 고성능 코드를 만든 사례이기도 하다.</p>
+<p><b>반응.</b> HN 421점, 댓글 192개.</p>
+<p><b>링크.</b> <a href="https://nicholas.carlini.com/writing/2026/algorithmic-improvements-chess.html">원문</a> · <a href="https://news.ycombinator.com/item?id=50349276">HN 토론</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">6. <a href="https://github.com/NVIDIA/auto-ontology" style="color:#0b57d0;">NVIDIA auto-ontology: 기업 메타데이터로 에이전트용 지식 그래프 생성</a></h3>
+<p><b>출처.</b> GitHub NVIDIA/auto-ontology</p>
+<p><b>요약.</b> 이 Python 프레임워크는 기업 DB 메타데이터에서 의미 온톨로지와 지식 그래프를 만든다. 결과는 MCP, CLI, API로 에이전트에 제공한다. NL-to-SQL 평가(BIRD)도 있다. 스택은 Next.js 16, FastAPI, Postgres+pgvector다. 기본 모델은 NIM(nemotron-3-nano-30b-a3b 등)이다. Helm 또는 Docker Compose로 배포한다.</p>
+<p><b>왜 중요한가.</b> 에이전트가 기업 데이터를 정확히 조회하려면 스키마 의미 정보가 필요하다. 이 작업을 자동화한다. MCP로 바로 연결할 수 있다.</p>
+<p><b>지표.</b> 2,786 stars, Apache-2.0, 마지막 push 2026-11-04 07:16 KST. 외부 기여는 받지 않는다. HN 259점, 댓글 119개.</p>
+<p><b>판정.</b> 지켜볼 만함. 이유: 기능은 유용하다. 하지만 NIM 기본값에 의존하고 외부 기여를 받지 않는다.</p>
+<p><b>링크.</b> <a href="https://github.com/NVIDIA/auto-ontology">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50348962">HN 토론</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">7. <a href="https://huggingface.co/papers/date/2026-11-03" style="color:#0b57d0;">HF Daily Papers 상위: 컴퓨터 사용 에이전트와 하네스</a></h3>
+<p><b>출처.</b> Hugging Face Daily Papers (2026-11-03)</p>
+<p><b>요약.</b> 1위는 "Advances in Agentic Computer Graphics"(104 upvotes) 서베이다. 2위 Wave Forcing(101)은 스트리밍 비디오 생성 방법이다. 출력 청크 하나를 동시 forward 한 번에 만든다. CUA-Master(91)는 교육 영상에서 실제 작업 흐름을 모아 컴퓨터 사용 에이전트 학습 데이터를 만든다. CoworkOS(87, MIT)는 장기 작업용 하네스다. 모델이 결정하고, 런타임이 상태를 관리한다. Order-Only On-Policy Distillation(25)은 교사 확률 대신 순서만 학습한다. AIME25에서 최대 5.6점 올랐다.</p>
+<p><b>왜 중요한가.</b> 상위 논문 다수가 에이전트 하네스와 컴퓨터 사용을 다룬다. 연구 초점이 모델에서 실행 환경으로 옮겨가고 있다.</p>
+<p><b>지표.</b> GitHub: WaveForcing 96 stars, CUA-Master 86 stars, CoworkOS 80 stars.</p>
+<p><b>링크.</b> <a href="https://huggingface.co/papers/2611.01860">Agentic Graphics</a> · <a href="https://huggingface.co/papers/2611.00859">Wave Forcing</a> · <a href="https://huggingface.co/papers/2611.03126">CUA-Master</a> · <a href="https://huggingface.co/papers/2611.03178">CoworkOS</a> · <a href="https://huggingface.co/papers/2611.02112">O³PD</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">8. <a href="https://news.ycombinator.com/item?id=50340088" style="color:#0b57d0;">Show HN Subvocal: 소리 없이 말한 내용을 읽는 RF 안경</a></h3>
+<p><b>출처.</b> Show HN (YC F26)</p>
+<p><b>요약.</b> 창업자 두 명은 Georgia Tech 출신이다. 처음에는 TreeHacks에서 EMG 시제품을 만들었다. 지금은 RF 센서를 단 안경으로 혀, 입술, 입천장 움직임을 감지한다. 이 신호를 텍스트로 바꾼다. 입을 다문 상태에서도 동작한다고 한다. 정확도, 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 공공장소에서 AI 비서에 소리 없이 입력하는 방법이다.</p>
+<p><b>반응.</b> HN 808점, 댓글 379개.</p>
+<p><b>링크.</b> <a href="https://news.ycombinator.com/item?id=50340088">HN 토론</a> · <a href="https://subvocal.company/">홈페이지</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">9. <a href="https://github.com/aaitor/skill-video-studio" style="color:#0b57d0;">skill-video-studio: Claude Code로 제품 데모 영상 제작</a></h3>
+<p><b>출처.</b> GitHub aaitor/skill-video-studio</p>
+<p><b>요약.</b> Claude Code의 <code>/devrel-video</code> 스킬이다. Playwright CLI로 화면을 캡처한다. HyperFrames로 장면을 구성한다. FFmpeg로 최종 영상을 만든다. Node 22 이상, FFmpeg, Chromium이 필요하다.</p>
+<p><b>지표.</b> 332 stars, MIT, 마지막 push 2026-11-03 03:11 KST, v1.0.1. HN 114점, 댓글 36개.</p>
+<p><b>판정.</b> 써볼 만함. 이유: 설치가 단순하고, 반복적인 데모 영상 작업을 줄인다.</p>
+<p><b>링크.</b> <a href="https://github.com/aaitor/skill-video-studio">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50340992">HN 토론</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">10. <a href="https://momentic.ai/" style="color:#0b57d0;">Launch HN Momentic: 앱을 직접 써 보며 버그를 찾는 QA 에이전트</a></h3>
+<p><b>출처.</b> Launch HN (YC W24)</p>
+<p><b>요약.</b> Momentic 에이전트는 웹, iOS, Android 앱을 탐색하며 버그를 찾는다. 고정 XPath나 텍스트 선택자를 쓰지 않는다. 창업자는 DeepSWE v1.1에서 Sonnet 5.5가 테스트 작성 금지 시 66.2%, 허용 시 65.3%였다고 인용했다. 댓글에 따르면 Mo는 버그당 $2.67, Codex는 $0.80이다. 정밀도는 Codex 86%, Mo 84%다.</p>
+<p><b>왜 중요한가.</b> 코딩 에이전트가 늘면서 테스트 자동화 수요도 커진다. 댓글은 비용과 차별성을 주로 따졌다.</p>
+<p><b>반응.</b> HN 158점, 댓글 124개.</p>
+<p><b>링크.</b> <a href="https://momentic.ai/">홈페이지</a> · <a href="https://news.ycombinator.com/item?id=50339913">HN 토론</a></p>
+
+<h3 style="font-size:17px;margin-bottom:4px;">11. <a href="https://stephenjgallagher.substack.com/p/ai-can-draw-blueprints-now" style="color:#0b57d0;">Claude Opus 5.5가 인허가 수준 건축 도면을 그린다는 주장</a></h3>
+<p><b>출처.</b> Stephen Gallagher Substack</p>
+<p><b>요약.</b> 작성자는 여러 모델로 건축 도면을 그리게 했다. Opus 5.5의 첫 초안이 가장 좋았다고 했다. 그래서 가장 많은 피드백을 주었다. 한 구조 엔지니어(PE) 댓글은 Opus 5.5로 AutoCAD를 헤드리스로 조작한다고 썼다. 다른 댓글은 건물 유형별 벤치마크가 없다고 지적했다.</p>
+<p><b>왜 중요한가.</b> 전문가 검토가 있으면 실무 도면 작업에 쓸 수 있다는 현장 보고다. 정량 평가는 아직 없다.</p>
+<p><b>반응.</b> HN 105점, 댓글 37개.</p>
+<p><b>링크.</b> <a href="https://stephenjgallagher.substack.com/p/ai-can-draw-blueprints-now">원문</a> · <a href="https://news.ycombinator.com/item?id=50339224">HN 토론</a></p>
+
+<h2 style="font-size:19px;border-bottom:2px solid #ddd;padding-bottom:4px;">기업·정책·사회</h2>
+
+<h3 style="font-size:16px;margin-bottom:4px;">12. <a href="https://news.ycombinator.com/item?id=50352757" style="color:#0b57d0;">OpenAI가 Codex 대화 학습 설정을 조용히 다시 켰다는 보고</a></h3>
+<p>사용자가 "Improve the model for everyone" 설정이 다시 켜진 것을 발견했다고 썼다. HN 412점, 댓글 131개. <a href="https://news.ycombinator.com/item?id=50352757">HN</a></p>
+
+<h3 style="font-size:16px;margin-bottom:4px;">13. <a href="https://twitter.com/guilleflorvs/status/2117379073785696395" style="color:#0b57d0;">Revolut, 엔지니어 약 2,000명을 자체 호스팅 GLM으로 전환</a></h3>
+<p>게시글에 따르면 Nvidia B200 56대를 쓴다. 토큰 백만 개당 혼합 비용은 30센트다. 이는 Anthropic, OpenAI 비용의 약 1/10이다. 리드 타임은 70% 개선되었다고 한다. 이 숫자는 2차 인용(트윗)이다. HN 182점, 댓글 155개. <a href="https://news.ycombinator.com/item?id=50350004">HN</a></p>
+
+<h3 style="font-size:16px;margin-bottom:4px;">14. <a href="https://www.techpolicy.press/the-sec-should-block-anthropics-ipo-to-protect-the-public/" style="color:#0b57d0;">"SEC는 Anthropic IPO를 막아야 한다" 칼럼</a></h3>
+<p>Tech Policy Press 칼럼이 Anthropic 상장에 반대했다. HN 395점, 댓글 312개. 같은 날 Anthropic 내부 AI 사용 비용이 직원 급여보다 많다는 보도(348점·267개)도 나왔다. <a href="https://news.ycombinator.com/item?id=50344919">HN</a> · <a href="https://www.businessinsider.com/anthropic-claude-internal-ai-use-exceeds-employee-pay-tokens-2026-11">BI 기사</a> · <a href="https://news.ycombinator.com/item?id=50339494">내부 AI 비용 HN</a></p>
+
+<h3 style="font-size:16px;margin-bottom:4px;">15. <a href="https://news.ycombinator.com/item?id=50345712" style="color:#0b57d0;">WorkOS 침해: AI 자율 침투 도구가 쓰였을 가능성</a></h3>
+<p>WorkOS는 10-31 01:39 KST에 침해를 탐지했다. 회사는 공격에 AI 기반 자율 침투 프레임워크 ARTEX가 쓰였을 가능성이 높다고 밝혔다. Salesforce, Snowflake의 업무 데이터에 접근이 있었다. HN 77점, 댓글 11개. <a href="https://news.ycombinator.com/item?id=50345712">HN</a></p>
+
+<h3 style="font-size:16px;margin-bottom:4px;">16. <a href="https://www.cnbc.com/2026/11/02/oracle-files-to-sell-20-billion-in-new-stock-bonds-to-finance-ai-buildout.html" style="color:#0b57d0;">Oracle, AI 인프라용으로 $20B 주식·채권 발행</a></h3>
+<p>CNBC 보도다. HN 197점, 댓글 173개. 같은 날 반도체 주식 급락 기사(226점·220개)도 있었다. <a href="https://news.ycombinator.com/item?id=50342284">HN</a> · <a href="https://news.ycombinator.com/item?id=50346153">반도체 급락 HN</a></p>
+
+<h2 style="font-size:17px;border-bottom:1px solid #ddd;padding-bottom:4px;">각주 (이전 다이제스트 항목의 후속)</h2>
+<ul style="font-size:14px;">
+<li>Anthropic S-1(11-02 주요 항목) 후속: $900B 지출 약정 FT 기사 HN 74점·44개, 분기 급여 $1.7B 78점·96개, "성장이 멈췄다" 분석 227점·265개. <a href="https://news.ycombinator.com/item?id=50342424">FT HN</a> · <a href="https://news.ycombinator.com/item?id=50344958">성장 HN</a></li>
+<li>LongCat-2.5(11-02 주요 항목): HN에 다시 올라 85점·26개. <a href="https://news.ycombinator.com/item?id=50337716">HN</a></li>
+<li>Terence Tao "Egoless Mathematics in the AI Era"(11-01 AFTER 항목): HN 181점·152개. <a href="https://news.ycombinator.com/item?id=50341736">HN</a></li>
+</ul>
+
+<h2 style="font-size:17px;border-bottom:1px solid #ddd;padding-bottom:4px;">AFTER (기간 뒤 게시, 11-04 KST)</h2>
+<ul style="font-size:14px;">
+<li>Postman이 AI 플러그인을 몰래 설치하고 API 데이터를 공유하려 한다는 이슈. HN 903점·295개. <a href="https://news.ycombinator.com/item?id=50354960">HN</a></li>
+<li>Simon Willison: 노트북의 Qwen 3.8 27B도 모델 가중치를 해석한다(1번 후속). HN 416점·137개. <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">원문</a> · <a href="https://news.ycombinator.com/item?id=50355251">HN</a></li>
+<li>Google이 AI를 거부한 학교에 검색을 끈다는 NYT 보도. HN 512점·373개. <a href="https://news.ycombinator.com/item?id=50353192">HN</a></li>
+<li>Stringman: $800 오픈소스 방 크기 그리퍼 로봇. HN 278점·114개. <a href="https://news.ycombinator.com/item?id=50354358">HN</a></li>
+</ul>
+
+<p style="font-size:13px;color:#666;margin-top:18px;"><b>출처 실패.</b> Reddit(r/LocalLLaMA, r/MachineLearning)은 403으로 열리지 않았다. Reddit 반응은 이 다이제스트에 없다. AFTER 항목은 제목과 HN 수치만 확인했다.</p>
+</div>
+</body>
+</html>
