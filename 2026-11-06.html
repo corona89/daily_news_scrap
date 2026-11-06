@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-06</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-06</h1>
+<p class="m">대상 기간: 2026-11-06 00:00–24:00 KST. HN 수치는 2026-11-07 08:00 KST 전후에 HN API에서 확인했다. GitHub·Hugging Face 수치도 같은 시각에 확인했다. 벤치마크는 각 회사 발표이며, 독립 측정은 표시했다.</p>
+<h2>요약</h2><ul>
+<li>Claude Code가 웹 요청 User-Agent에 계정 이메일을 넣는다는 이슈가 HN에서 크게 올랐다. 점수는 1544점이다.</li>
+<li>Thinking Machines는 Inkling 2 Small을 공개했다. MoE 총 594B, 활성 17B이다. 가중치는 아직 닫혀 있다. Apache 2.0은 다음 주 예고다.</li>
+<li>Google Gemini Omni 1.2 Flash가 GA다. 영상은 최대 15초다. 720p는 초당 $0.07이다.</li>
+<li>OpenAI는 GPT-6 Cyber를 발표했다. ExploitGym은 48.5%다. Daybreak Red로 제공한다.</li>
+<li>대학 도서관 사이트가 AI 스크래핑 봇에 막힌다는 보도가 나왔다. Reddit은 403이다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://github.com/anthropics/claude-code/issues/107757" style="color:#0b3d91">Claude Code: User-Agent에 계정 이메일을 실어 보낸다</a></h3>
+<p class="m">출처. GitHub 이슈 #107757 (anthropics/claude-code)</p>
+<p><b>요약.</b> 신고자는 Claude Code가 웹 요청의 User-Agent 헤더에 계정 이메일을 넣는다고 적었다. 제3자 사이트가 이메일을 받을 수 있다. 이슈 제목은 Privacy violation in User-Agent header이다. 라벨은 area:security, bug이다. 11-05 AFTER에서 94점이었던 글이 이날 창에서 1544점으로 올랐다. Anthropic의 공식 패치 발표는 이 이슈 본문에 없다.</p>
+<p><b>왜 중요한가.</b> 코딩 에이전트가 도구로 웹을 호출할 때 신원 유출 위험이 드러났다. 에이전트 기본 헤더 설계가 보안 이슈가 된다.</p>
+<p class="m">반응. HN 1544점·487개. 링크: <a href="https://github.com/anthropics/claude-code/issues/107757" style="color:#0b3d91">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50385272" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>2. <a href="https://thinkingmachines.ai/news/inkling-2-small/" style="color:#0b3d91">Inkling 2 Small: MoE 594B / 활성 17B, Tinker 공개·가중치는 다음 주 Apache 2.0 예고</a></h3>
+<p class="m">출처. Thinking Machines Lab</p>
+<p><b>요약.</b> Thinking Machines Lab은 Inkling 2 Small을 공개했다. 구조는 MoE이다. 총 파라미터는 594B이다. 활성 파라미터는 17B이다. 이미지 입력을 지원한다. 가변 effort를 지원한다. 비전 인코더는 292M이다. 문맥은 평가 기준 최대 1M 토큰이다. 본문은 Artificial Analysis Intelligence Index를 31이라고 적는다. 상세 표의 AA Index (v5.0)는 30.6이다. 회사 표 FrontierCode v2.0은 25.4%이다. DeepSWE v1.1은 72.1%이다. SWEBench Pro v2 (Hard)는 86.3%이다. AA-Briefcase v1.1 Elo는 1527이다. 사전학습 H1은 8.4T 토큰이다. H1은 GB300 NVL72에서 68시간이다. 학습은 NVFP4 네이티브이다. 통합 RL은 GPU 2,048개, 9일, 롤아웃 1,700만 이상이다. 지금은 Tinker에서만 쓸 수 있다. 가중치는 닫혀 있다. 회사는 외부 안전 테스트 뒤 다음 주에 Apache 2.0으로 가중치를 공개할 계획이라고 한다. API 단가($/100만 토큰)는 발표 페이지에 없다. 로컬 실행 하드웨어 목록은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 미국 랩의 대형 오픈웨이트 후보가 나왔다. 당장은 API(Tinker)만 된다. 판정: 지켜볼 만함.</p>
+<p class="m">반응. HN 280점·90개. 링크: <a href="https://thinkingmachines.ai/news/inkling-2-small/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50386338" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>3. <a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/" style="color:#0b3d91">Gemini Omni 1.2 Flash: 15초 영상·720p 초당 $0.07·GA</a></h3>
+<p class="m">출처. Google DeepMind / Google Blog</p>
+<p><b>요약.</b> Google는 Gemini Omni 1.2 Flash를 출시했다. Gemini API와 Google Cloud에서 GA이다. 생성·편집 영상 길이는 최대 15초이다. Omni 1.1은 최대 10초였다. 길이는 3–15초를 1초 단위로 고를 수 있다. 720p 가격은 초당 $0.07이다. Omni 1.1 대비 30% 낮다. 초안은 360p 또는 720p로 만들고, 결과는 1080p 또는 4K로 업스케일할 수 있다. 다중 턴 대화형 편집을 지원한다. 출력에는 SynthID 워터마크가 있다. 파라미터 수·라이선스는 이 발표 페이지에 없다.</p>
+<p><b>왜 중요한가.</b> 짧은 광고·제품 영상을 API로 싸게 만드는 경로가 넓어졌다.</p>
+<p class="m">반응. HN 278점·211개. 링크: <a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50392118" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>4. <a href="https://www.cbc.ca/news/world/university-libraries-ai-data-scraping-bots-9.7408287" style="color:#0b3d91">대학 도서관이 AI 스크래핑 봇에 막힌다</a></h3>
+<p class="m">출처. CBC News</p>
+<p><b>요약.</b> CBC는 대학·공공 도서관 사이트가 AI·제3자 스크래핑 봇에 과부하를 받는다고 보도했다. 사이트가 느려지거나 잠시 내려간다. UNC Chapel Hill은 하루에 핀란드 음악 검색이 11,000건을 넘었다고 했다. 봇은 robots.txt를 무시하는 경우가 있다고 한다. Anthropic·OpenAI·Google·Microsoft는 robots.txt 단일 옵트아웃 신호를 존중하겠다고 최근 뜻을 밝혔다. 준수는 자발적이다.</p>
+<p><b>왜 중요한가.</b> 공개 자료를 지키는 기관과 LLM 학습 수요가 충돌한다. 오픈 액세스 비용이 커진다.</p>
+<p class="m">반응. HN 122점·53개. 링크: <a href="https://www.cbc.ca/news/world/university-libraries-ai-data-scraping-bots-9.7408287" style="color:#0b3d91">CBC</a> · <a href="https://news.ycombinator.com/item?id=50392499" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>5. <a href="https://github.com/dsx-ai-factory/nvke" style="color:#0b3d91">NVIDIA Kubernetes Engine (NVKE): 베어메탈 GPU용 관리 플레인 (Preview)</a></h3>
+<p class="m">출처. GitHub dsx-ai-factory/nvke</p>
+<p><b>요약.</b> NVKE는 자체 NVIDIA GPU 인프라 위에 관리형 Kubernetes를 돌리는 관리 플레인이다. 워크로드 클러스터마다 컨트롤 플레인·etcd·노드 풀을 둔다. 라이선스는 Apache-2.0이다. GitHub 스타는 280이다. 푸시 시각은 2026-11-06 22:40 UTC이다. README는 Preview라고 적는다. 프로덕션에는 권장하지 않는다. 로컬 퀵스타트는 시뮬 머신으로 평가할 수 있다.</p>
+<p><b>왜 중요한가.</b> GPU 클러스터를 플랫폼 팀이 직접 운영할 때 쓰는 오픈소스 선택지이다. 판정: 지켜볼 만함.</p>
+<p class="m">반응. HN 119점·26개. 스타 280·Apache-2.0. 링크: <a href="https://github.com/dsx-ai-factory/nvke" style="color:#0b3d91">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50387738" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>6. <a href="https://github.com/rivet-dev/rivet" style="color:#0b3d91">Launch HN: Rivet — S3 위 에이전트 오케스트레이션</a></h3>
+<p class="m">출처. GitHub rivet-dev/rivet, Launch HN</p>
+<p><b>요약.</b> Rivet Actors는 장기 프로세스이다. 인메모리 상태, SQLite, WebSocket, 스케줄링을 제공한다. 데이터는 S3에 둔다. README는 p99 콜드 스타트 4.99 ms를 적는다. Actor당 RAM은 72 KB이다. 유휴 시 하이버네이트한다. 라이선스는 Apache-2.0이다. GitHub 스타는 6,757이다. 푸시 시각은 2026-11-06 22:44 UTC이다. 11-05 AFTER(66점)에서 이날 메인(118점)으로 올렸다.</p>
+<p><b>왜 중요한가.</b> 에이전트·세션마다 Actor를 두는 고밀도 런타임이다. 판정: 써볼 만함.</p>
+<p class="m">반응. HN 118점·58개. 스타 6,757·Apache-2.0. 링크: <a href="https://github.com/rivet-dev/rivet" style="color:#0b3d91">GitHub</a> · <a href="https://www.rivet.dev" style="color:#0b3d91">사이트</a> · <a href="https://news.ycombinator.com/item?id=50381687" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>7. <a href="https://axiommath.ai/research/the-stacks-project-formalized/" style="color:#0b3d91">Axiom: Stacks Project 전체를 Lean으로 형식화</a></h3>
+<p class="m">출처. Axiom</p>
+<p><b>요약.</b> Axiom은 Stacks Project의 Lean 형식화를 공개했다. Stacks Project는 약 7,500페이지의 대수기하 기초 참고서이다. Lean 선언은 원문과 연결된다. 회사는 수학자·Lean 개발자·AI 에이전트의 검토를 요청한다. 별도 벤치마크 점수는 이 글에 없다.</p>
+<p><b>왜 중요한가.</b> 대형 수학 코퍼스가 기계 검증 형태로 열린다. 형식 증명·에이전트 연구에 쓰일 수 있다.</p>
+<p class="m">반응. HN 95점·26개. 링크: <a href="https://axiommath.ai/research/the-stacks-project-formalized/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50380979" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>8. <a href="https://github.com/AGGIB/Stroq" style="color:#0b3d91">Show HN: Stroq — 코딩 에이전트 세션 로컬 감사</a></h3>
+<p class="m">출처. GitHub AGGIB/Stroq</p>
+<p><b>요약.</b> Stroq는 Claude Code·Codex 세션을 로컬에서 읽는다. 명령이 어떤 텍스트에서 나왔는지 보여 준다. 알려진 시크릿 유출을 찾는다. 다음 세션을 막는 로컬 훅을 둔다. 텔레메트리는 없다고 README에 적혀 있다. 라이선스는 Apache-2.0이다. GitHub 스타는 180이다. 푸시 시각은 2026-11-06 07:14 UTC이다. 11-05 AFTER(56점)에서 이날 메인(89점)으로 올렸다.</p>
+<p><b>왜 중요한가.</b> 에이전트 행동의 출처를 로컬에서 추적하는 도구이다. 판정: 써볼 만함.</p>
+<p class="m">반응. HN 89점·34개. 스타 180·Apache-2.0. 링크: <a href="https://github.com/AGGIB/Stroq" style="color:#0b3d91">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50380704" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>9. <a href="https://www.anthropic.com/research/how-researchers-use-claude" style="color:#0b3d91">Anthropic: 과학자가 Claude를 어떻게 쓰는지</a></h3>
+<p class="m">출처. Anthropic</p>
+<p><b>요약.</b> Anthropic은 연구 세션 207,000건을 분석했다. 기간은 2026-08-02부터 2026-09-30이다. 소비자 요금제 세션이다. 분야별로는 형식 과학(CS·수학·통계) 사용이 연구자 수 대비 높다. 데이터 분석은 Claude 세션의 약 1/3이다. Claude Code에서는 거의 절반이다. 동반 설문에서 AI를 쓰는 연구자 약 40%는 AI가 전체 연구 프로젝트를 수행할 것으로 기대한다.</p>
+<p><b>왜 중요한가.</b> 과학 워크플로에서 AI가 이미 데이터 분석·글쓰기에 몰려 있음을 수치로 보여 준다.</p>
+<p class="m">반응. HN 84점·34개. 링크: <a href="https://www.anthropic.com/research/how-researchers-use-claude" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50389990" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>10. <a href="https://village.dev/blog/closed-ai-models-now-dominate-the-price-performance-frontier/" style="color:#0b3d91">Village: 닫힌 모델이 가격·성능 프론티어를 거의 차지한다</a></h3>
+<p class="m">출처. Village (2026-10-30 게시, HN은 창 안)</p>
+<p><b>요약.</b> Village LLM Atlas는 가격대별 최고 모델을 본다. 글은 오픈웨이트가 최선인 가격대가 3%라고 적는다. 2026년 6월에는 41%였다. 싼 구간은 Gemma 4 E4B와 MiMo-V2.6-Flash가 잡는다고 한다. GPT-6 Luna(9월)·GPT-6.1 Terra(10월)·Claude Haiku 5.5가 예전 오픈 구간을 가져갔다고 한다.</p>
+<p><b>왜 중요한가.</b> 가성비 지도에서 오픈웨이트 비중이 줄었다는 측정이다. 벤치 정의는 Village 기준이다.</p>
+<p class="m">반응. HN 76점·72개. 링크: <a href="https://village.dev/blog/closed-ai-models-now-dominate-the-price-performance-frontier/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50387546" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>11. <a href="https://openai.com/index/introducing-gpt-6-cyber/" style="color:#0b3d91">OpenAI GPT-6 Cyber: ExploitGym 48.5%, Daybreak Red</a></h3>
+<p class="m">출처. OpenAI</p>
+<p><b>요약.</b> OpenAI는 GPT-6 Cyber를 발표했다. ExploitGym은 48.5%이다. GPT-5.6 Cyber는 32.1%이다. 상대 개선은 약 51%라고 적는다. 범위 밖 서비스 공격 회피는 배포 프롬프트 없이 99.93%, 있으면 100%이다. Firefox에서 고심각도 신규 취약점 81건을 찾았다고 한다. Linux LPE 익스플로잇 948건은 같은 계열 파이프라인이다(11-05 메인 글과 연결). Preparedness Framework에서 사이버는 Critical이다. GPT-5.6 Cyber는 High였다. 초기 제공은 Daybreak Red 승인 고객의 API·Codex이다. 일반 API 단가는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 방어용 사이버 전문 모델이 정식 라인으로 나왔다. 11-05 LPE 948건 글의 모델 이름이 공개됐다.</p>
+<p class="m">반응. HN 60점·7개. 링크: <a href="https://openai.com/index/introducing-gpt-6-cyber/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50381590" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>12. <a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/" style="color:#0b3d91">METR: Anthropic AI R&D 가속은 AECI 기준 약 1.9배</a></h3>
+<p class="m">출처. METR</p>
+<p><b>요약.</b> METR는 Anthropic 내부 AI R&D 가속을 독립 평가했다. AECI(Anthropic식 Epoch Capabilities Index) 성장률은 2025-10 이후 과거 대비 약 1.9배이다. 95% 구간은 1.5–2.8배이다. 학습 컴퓨트 스케일 가속 때문은 아니라고 자신한다. 2026-10 가속의 다수(대략 80% 추정)는 AI 사용 때문이라고 주관 추정한다. 불확실성이 크다고 적는다. 병목은 뚜렷하지 않다고 본다.</p>
+<p><b>왜 중요한가.</b> 프론티어 랩의 AI→AI R&D 피드백을 외부 평가가 수치로 제시했다.</p>
+<p class="m">반응. HN 44점·6개. 링크: <a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50383902" style="color:#0b3d91">HN 토론</a></p>
+
+<h3>13. <a href="https://huggingface.co/papers?date=2026-11-06" style="color:#0b3d91">HF Daily Papers 상위 (2026-11-06)</a></h3>
+<p class="m">출처. Hugging Face Daily Papers API</p>
+<p><b>요약.</b> 상위는 VFlash: Fast, Accurate Visual Planning via Flash Primitive Decoding(88표), Harness-S: Learning from Sibling Harnesses for Generalizable Agent Training(54표), Random Is Almost Enough? Stable and Low-Cost Benchmark Compression via BestRand(50표), SLA: Scaling Spatial-Language-Action Model via Continual Pre-training(48표), WeLM-Image: A Unified Image Generation Model towards Visual Intelligence(37표)이다. 본문은 열지 않았다.</p>
+<p><b>왜 중요한가.</b> 관심 제목은 링크에서 확인하면 된다.</p>
+<p class="m">링크: <a href="https://huggingface.co/papers?date=2026-11-06" style="color:#0b3d91">HF Papers</a></p>
+<h2>기업·정책·사회</h2>
+<h3>14. <a href="https://finance.yahoo.com/technology/ai/articles/mark-cuban-says-facebook-knowingly-213000020.html" style="color:#0b3d91">Mark Cuban: Facebook이 AI 딥페이크 사기 광고를 돌린다</a></h3>
+<p>Yahoo Finance 기사는 Cuban이 AI로 만든 본인 얼굴·음성 사기 광고를 비판했다고 전한다. 기사는 Reuters가 보도한 Meta 내부 문서도 인용한다. 문서상 사기·금지 상품 광고 관련 매출 추정은 약 $16B이다(2024 매출의 약 10%). Meta 대변인은 문서가 왜곡이라고 반박했다고 기사는 적는다. HN 491점·222개. <a href="https://finance.yahoo.com/technology/ai/articles/mark-cuban-says-facebook-knowingly-213000020.html" style="color:#0b3d91">Yahoo</a> · <a href="https://news.ycombinator.com/item?id=50385870" style="color:#0b3d91">HN</a></p>
+<h3>15. <a href="https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-11-05-2026" style="color:#0b3d91">Nasdaq, 선거 뒤 AI 매매 후퇴로 약 5% 하락</a></h3>
+<p>WSJ 라이브는 Nasdaq이 약 5% 하락했다고 전한다. 투자자가 AI 관련 매매에서 물러났다고 한다. 11-05 AFTER에서 이날 메인으로 올렸다. HN 162점·191개. <a href="https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-11-05-2026" style="color:#0b3d91">WSJ</a> · <a href="https://news.ycombinator.com/item?id=50382179" style="color:#0b3d91">HN</a></p>
+<h3>16. <a href="https://www.wsj.com/finance/major-investors-are-skeptical-anthropic-ipo-can-achieve-1-5-trillion-valuation-ca965d8b" style="color:#0b3d91">Anthropic IPO $1.5T 가치에 대형 투자자 회의</a></h3>
+<p>보도에 따르면 일부 대형 투자자는 Anthropic IPO의 $1.5T 가치가 어렵다고 본다. 일부는 $1T 근처를 말한다. AI 주식 급락이 배경이다. HN 89점·105개. <a href="https://news.ycombinator.com/item?id=50386597" style="color:#0b3d91">HN</a></p>
+<h2>각주</h2><ul>
+<li>Kimi K3.1 Pro, OpenAI LPE 948, Images 2.6, Ripple-65B, Astra 숨은 저성과, FlashProve, MCP Explained, Qualcomm AI 100 Ultra, ERNIE 5.5 Flash Base, Linum P-JiT, Kino, Pierre, Conductor→Meta, Garry Tan $200K는 11-05 메인이다. 재메인하지 않는다.</li>
+<li>GPT-6 Cyber는 11-05 AFTER였다. 이날 창에 들어와 메인으로 올렸다. Linux LPE 948건 서사는 11-05 메인을 참고한다.</li>
+<li>Tencent Hy4 등은 11-04 메인이다. 재메인하지 않는다.</li>
+<li>The Hackintosh Reborn(HN 398점)은 macOS DIY 중심이라 본문에서 제외했다. <a href="https://www.naut.ca/blog/2026/11/05/the-hackintosh-reborn-with-ai/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50383057" style="color:#0b3d91">HN</a></li>
+<li>«I struggle to believe that AI R&D is ingenious»(HN 174점)는 의견 글이라 본문에서 제외했다. <a href="https://news.ycombinator.com/item?id=50388513" style="color:#0b3d91">HN</a></li>
+<li>출처 실패. Reddit(r/LocalLLaMA, r/MachineLearning)은 403으로 열리지 않았다.</li>
+</ul>
+<h2>AFTER (기간 뒤 게시)</h2><ul>
+<li>A Jev that can ask Opus for help gives Opus accuracy at 4x lower cost HN 229점·50개. <a href="https://hightouch.com/blog/llm-judges-identity-resolution" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50397429" style="color:#0b3d91">HN</a></li>
+<li>Anthropic IPO buyers see valuation as low as $1.1T HN 177점·409개. <a href="https://www.bloomberg.com/news/articles/2026-11-06/anthropic-ipo-valuation-expectations-pressured-after-ai-rout" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50394906" style="color:#0b3d91">HN</a></li>
+<li>AI is dramatically accelerating AI research HN 114점·67개. <a href="https://www.planned-obsolescence.org/p/ai-is-dramatically-accelerating-ai-research" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50397994" style="color:#0b3d91">HN</a></li>
+<li>Democrats launching congressional investigations into SpaceXAI, META and Apple HN 113점·107개. <a href="https://www.washingtonpost.com/technology/2026/11/06/after-courting-trump-corporate-america-faces-democratic-reckoning/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50397102" style="color:#0b3d91">HN</a></li>
+<li>Microsoft is winding down Oracle deal to rent AI cloud capacity HN 75점·13개. <a href="https://www.reuters.com/business/microsoft-is-winding-down-oracle-deal-rent-ai-cloud-capacity-bloomberg-news-2026-11-06/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50395933" style="color:#0b3d91">HN</a></li>
+<li>Memorilla: Latent Semantic Memory for LLMs HN 69점·5개. <a href="https://arxiv.org/abs/2610.21375" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50395919" style="color:#0b3d91">HN</a></li>
+<li>Perplexity launches AI agents for work HN 58점·49개. <a href="https://www.perplexity.ai/en-GB/hub/blog/teammates-are-agents" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50395866" style="color:#0b3d91">HN</a></li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
