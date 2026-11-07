@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-07</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-07</h1>
+<p class="m">대상 기간: 2026-11-07 00:00–24:00 KST. HN 수치는 2026-11-08 08:00 KST 전후에 HN API에서 확인했다. GitHub·Hugging Face 수치도 같은 시각에 확인했다. 벤치마크는 각 회사 발표이다.</p>
+<h2>요약</h2><ul>
+<li>Nous Research는 Arete-27B를 공개했다. 시작 모델은 Qwen3.8-27B이고 라이선스는 Apache 2.0이다. 선전 문구 비율은 22%에서 0.9%로 줄었다.</li>
+<li>Meta는 Muse·Meta AI에 특화 모델을 넣었다. 자체 지표는 38%에서 47%이다.</li>
+<li>Hightouch 실험에서 Jev+Opus 하이브리드는 Opus 단독과 비슷한 정확도를 더 싸게 냈다. HN 568점이다.</li>
+<li>Anthropic은 에이전트 메모리 글을 냈다. dreaming으로 점수가 13%에서 48%로 올랐다.</li>
+<li>OpenAI BioBasicsBench에서 GPT-6 Astra는 66.7%이다.</li>
+<li>Hugging Face Papers는 11-07 목록이 비어 있다. Reddit은 403으로 막혔다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://huggingface.co/NousResearch/Arete-27B" style="color:#0b3d91">Arete-27B: Qwen3.8-27B를 SFT로 다시 학습한 오픈웨이트 모델</a></h3>
+<p class="m">출처. Nous Research (Hugging Face 모델 카드·블로그)</p>
+<p><b>요약.</b> Nous Research는 Arete-27B를 공개했다. 시작 모델은 Qwen3.8-27B이다. 파라미터는 27B이다. 라이선스는 Apache 2.0이다. 학습은 SFT만 썼다. 교사 모델은 Inkling이다. 토큰은 약 5,280만 개, 학습 문맥은 64k이다. 회사 평가(803개 프롬프트)에서 사실 점수는 2.32에서 2.98(5점 만점)로 올랐다. 선전 문구가 든 답은 22%에서 0.9%로 줄었다. Hermes Bench는 65.77%에서 65.60%이다. Terminal-Bench-2.1은 67%에서 70%이다. 회사는 이 차이를 자기 공으로 보지 않는다고 적었다. API 가격은 출처에 없음. 로컬 실행 하드웨어는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 중국 오픈웨이트 모델의 정치 편향을 소량 SFT로 바꿀 수 있다는 실험이다. 평가 데이터도 공개했다. 일반 성능 향상 모델은 아니다. 판정: 지켜볼 만함.</p>
+<p class="m">반응. HF 좋아요 199·다운로드 989. HN 9점·15개. 링크: <a href="https://huggingface.co/NousResearch/Arete-27B" style="color:#0b3d91">원문</a> · <a href="https://nousresearch.com/arete" style="color:#0b3d91">블로그</a> · <a href="https://huggingface.co/datasets/NousResearch/Propaganda_Eval" style="color:#0b3d91">평가 데이터</a> · <a href="https://news.ycombinator.com/item?id=50402369" style="color:#0b3d91">HN 토론</a></p>
+<h3>2. <a href="https://research.meta.ai/blog/specialized-models-for-muse-and-metaai" style="color:#0b3d91">Meta: Muse Wonder로 학습한 특화 모델을 Muse·Meta AI에 배포</a></h3>
+<p class="m">출처. Meta AI Research 블로그 (2026-11-06 미국 시간)</p>
+<p><b>요약.</b> Meta는 Muse Wonder로 학습한 특화 모델을 Muse와 Meta AI에 넣었다. Personal Superintelligence Index는 47%이다. 이전 Muse 모델은 38%이다. 회사는 핵심 정보를 잊는 일이 2.4배 줄었다고 적었다. Active Memory와 Active Focus를 넣었다. 파라미터, 문맥 길이, 라이선스, 가격은 출처에 없음. 가중치는 공개하지 않는다.</p>
+<p><b>왜 중요한가.</b> 상용 비서 모델의 메모리 기능이 경쟁 축이 된다. 수치는 회사 자체 지표이다.</p>
+<p class="m">반응. HN 2점·0개. 링크: <a href="https://research.meta.ai/blog/specialized-models-for-muse-and-metaai" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50396565" style="color:#0b3d91">HN</a></p>
+<h3>3. <a href="https://hightouch.com/blog/llm-judges-identity-resolution" style="color:#0b3d91">Hightouch: Jev가 어려운 건만 Opus에 넘기면 Opus 정확도를 4배 싸게 낸다</a></h3>
+<p class="m">출처. Hightouch 엔지니어링 블로그</p>
+<p><b>요약.</b> Hightouch는 신원 매칭 결과 채점에 LLM을 시험했다. 데이터는 가상 인구 1,000개 신원이다. Claude Opus 5.5 단독은 정확도 99.0%, 1,000건당 $3.86이다. Jev 단독은 95.7%, $0.05이다. GPT-6 Luna(Decisions API) 단독은 97.3%, $0.10이다. Jev가 확신 30–90% 구간만 Opus에 넘기면 98.8%, $0.88이다. 어려운 테스트에서 하이브리드 Jev는 95.3%, $2.94이다. 같은 테스트에서 Opus 단독은 95.1%, $5.39이다. 하이브리드 Luna는 91.6%이다. 저자는 Jev의 확신도 보정이 Luna보다 낫다고 적었다.</p>
+<p><b>왜 중요한가.</b> 싸고 빠른 판단 모델과 프런티어 모델을 묶는 설계 근거이다. 확신도 보정이 비용을 정한다.</p>
+<p class="m">반응. HN 568점·144개. 링크: <a href="https://hightouch.com/blog/llm-judges-identity-resolution" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50397429" style="color:#0b3d91">HN 토론</a></p>
+<h3>4. <a href="https://www.anthropic.com/research/components-of-agent-memory" style="color:#0b3d91">Anthropic: 에이전트 메모리의 구성 요소와 dreaming 실험</a></h3>
+<p class="m">출처. Anthropic Research</p>
+<p><b>요약.</b> Anthropic은 에이전트 메모리 설계 글을 냈다. 핵심은 dreaming이다. 에이전트가 쉬는 시간에 로그를 다시 읽고 메모를 정리한다. 세션을 2개에서 128개로 늘리자 25개 질문 점수가 13%에서 48%로 올랐다. 검색 도구와 위키를 같이 쓰면 점수는 54%에서 61%로 올랐다. 검색만 쓰면 53%이다. 글은 Claude Opus 5가 학습 루프를 처음 닫았다고 적었다.</p>
+<p><b>왜 중요한가.</b> 장기 실행 에이전트의 메모리 설계에 바로 쓸 수 있는 실험 결과이다.</p>
+<p class="m">반응. HN 145점·73개. 링크: <a href="https://www.anthropic.com/research/components-of-agent-memory" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50402212" style="color:#0b3d91">HN 토론</a></p>
+<h3>5. <a href="https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science/" style="color:#0b3d91">OpenAI BioBasicsBench: 일상 실험실 분석 100개 과제</a></h3>
+<p class="m">출처. OpenAI (2026-11-06 미국 시간)</p>
+<p><b>요약.</b> OpenAI는 Ligo와 BioBasicsBench를 만들었다. 과제는 100개이다. 입력은 젤 사진, 현미경 영상, 시퀀싱 파일 같은 원자료이다. xhigh 설정에서 GPT-6 Astra는 66.7%이다. GPT-6.1 Sol은 62.0%이다. GPT-5.6 Sol은 43.8%이다. GPT-6 Luna는 38.3%이다. Astra는 과제당 출력 토큰이 4,704개로 가장 적다. 글은 Astra의 실패 사례도 보여 준다. 콜로니 수를 약 12% 많이 셌다.</p>
+<p><b>왜 중요한가.</b> 멀티모달 실험 데이터 해석을 재는 새 벤치마크이다. OpenAI 모델만 비교했다.</p>
+<p class="m">반응. HN 반응 확인 안 됨. 링크: <a href="https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science/" style="color:#0b3d91">원문</a></p>
+<h3>6. <a href="https://arxiv.org/abs/2610.21375" style="color:#0b3d91">Memorilla: 메모리 토큰 16개로 문서 모음을 LLM에 넣는 방법</a></h3>
+<p class="m">출처. arXiv 2610.21375 (Leskovec 외)</p>
+<p><b>요약.</b> Memorilla는 고정 LLM용 메모리 시스템이다. 문서를 한 번 임베딩한다. 질문마다 메모리 토큰 16개를 만든다. 8개 벤치마크 중 5개에서 Mem0, MemoRAG보다 높다. FactKG에서 84.33%이다. 전체 문맥 추론은 80.43%이다. 문서 표현 토큰은 108배 적다.</p>
+<p><b>왜 중요한가.</b> 긴 문맥 대신 짧은 잠재 메모리로 비용을 줄이는 방향이다. 코드 공개 여부는 출처에 없음.</p>
+<p class="m">반응. HN 115점·13개. 링크: <a href="https://arxiv.org/abs/2610.21375" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50395919" style="color:#0b3d91">HN 토론</a></p>
+<h3>7. <a href="https://frontier.replit.com/sandbox-engine-microvms-part-1/" style="color:#0b3d91">Replit: 샌드박스 엔진을 microVM으로 다시 만듦</a></h3>
+<p class="m">출처. Replit 엔지니어링 블로그</p>
+<p><b>요약.</b> Replit은 에이전트용 샌드박스 엔진을 microVM 기반으로 바꿨다. 수억 개 프로젝트를 옮겼다. 샌드박스 획득은 약 500ms이다. 2026-06-01부터 11-04까지 Linux CVE 6,211개를 점검했다. 그중 5,969개(96.1%)를 피했다고 적었다.</p>
+<p><b>왜 중요한가.</b> 에이전트 격리는 이제 기본 인프라이다. 같은 날 Firecracker VM 탈출 글(HN 277점)도 올랐다.</p>
+<p class="m">반응. HN 94점·35개. 링크: <a href="https://frontier.replit.com/sandbox-engine-microvms-part-1/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50396834" style="color:#0b3d91">HN 토론</a> · <a href="https://pwn.ai/blog/firecracker-escape" style="color:#0b3d91">Firecracker 탈출 글</a> · <a href="https://news.ycombinator.com/item?id=50397219" style="color:#0b3d91">HN(탈출)</a></p>
+<h3>8. <a href="https://community.openai.com/t/security-follow-up-tool-call-silently-routed-to-a-different-connector" style="color:#0b3d91">ChatGPT: 후속 도구 호출이 다른 커넥터로 조용히 넘어감</a></h3>
+<p class="m">출처. OpenAI 개발자 포럼</p>
+<p><b>요약.</b> 신고자는 같은 MCP 서버를 가리키는 커넥터 2개를 켰다. 커넥터 A 위젯에서 확인 코드를 만들었다. 모델은 그 코드를 커넥터 B로 보냈다. 사용자에게 알림은 없었다. 서버는 OAuth 클라이언트가 달라 호출을 거부했다.</p>
+<p><b>왜 중요한가.</b> MCP 앱 사이 데이터 경계가 모델 판단에 달려 있다는 사례이다. MCP 서버 개발자는 토큰을 클라이언트에 묶어야 한다.</p>
+<p class="m">반응. HN 92점·39개. 링크: <a href="https://community.openai.com/t/security-follow-up-tool-call-silently-routed-to-a-different-connector" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50399569" style="color:#0b3d91">HN 토론</a></p>
+<h3>9. <a href="https://8rank.ai/game/apple-intelligence-personal-knowledge-graph" style="color:#0b3d91">Apple Personal Knowledge Graph: Mac이 가족 관계를 추정한다</a></h3>
+<p class="m">출처. 8rank.ai (Dario Pasquini, Michał Bazyli)</p>
+<p><b>요약.</b> 저자들은 macOS 13부터 데몬 두 개가 개인 지식 그래프를 만든다고 적었다. 입력은 연락처, 캘린더, 사진, 메시지, 메일, 위치 등이다. 데이터는 ~/Library/IntelligencePlatform의 SQLite DB 51개에 평문으로 있다. 일부 필드는 로컬 LLM이 사진과 메시지로 관계를 추정한다. 그래프를 보는 도구도 공개했다.</p>
+<p><b>왜 중요한가.</b> 온디바이스 AI도 민감 데이터를 한곳에 모은다. 유출 시 피해 범위가 커진다.</p>
+<p class="m">반응. HN 548점·323개. 링크: <a href="https://8rank.ai/game/apple-intelligence-personal-knowledge-graph" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50403097" style="color:#0b3d91">HN 토론</a></p>
+<h3>10. <a href="https://developers.openai.com/api/docs/guides/voice-sip" style="color:#0b3d91">OpenAI: GPT-Live SIP 발신 통화를 모든 조직에 공개</a></h3>
+<p class="m">출처. OpenAI API 문서</p>
+<p><b>요약.</b> GPT-Live는 SIP 트렁크로 전화 수신과 발신을 한다. 발신은 세션을 만들어 번호를 건다. SIP 신호는 TLS이다. 음성은 SRTP를 쓴다. 유럽 데이터 거주용 주소도 있다. 가격은 이 문서에 없음.</p>
+<p><b>왜 중요한가.</b> 음성 에이전트를 기존 전화망에 바로 붙일 수 있다.</p>
+<p class="m">반응. HN 72점·58개. 링크: <a href="https://developers.openai.com/api/docs/guides/voice-sip" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50399695" style="color:#0b3d91">HN 토론</a></p>
+<h3>11. <a href="https://github.com/milind-soni/OpenMausBot" style="color:#0b3d91">OpenMausBot: 로컬 에이전트 팀을 채팅 앱으로 쓰는 오픈소스</a></h3>
+<p class="m">출처. GitHub (트렌딩)</p>
+<p><b>요약.</b> OpenMausBot은 Electron 데스크톱 앱이다. 각 봇은 로컬에서 도는 Claude 또는 Codex 에이전트이다. 봇마다 모델, 클라우드 컴퓨터, 연결 앱을 따로 둔다. 스타는 16,903개이다. 오늘 트렌딩 증가는 1,986개이다. 마지막 푸시는 2026-11-07이다. 라이선스는 Apache-2.0이다.</p>
+<p><b>왜 중요한가.</b> 여러 에이전트를 한 화면에서 관리하는 오픈소스 선택지이다. 판정: 지켜볼 만함. 에이전트 자체는 외부 CLI에 의존한다.</p>
+<p class="m">반응. GitHub 스타 16,903 (오늘 +1,986). 링크: <a href="https://github.com/milind-soni/OpenMausBot" style="color:#0b3d91">원문</a></p>
+<h3>12. <a href="https://github.com/tharun208/cloneguard" style="color:#0b3d91">작은 오픈소스 3건: CloneGuard · Agentic Identity Broker · Flawless UI-UX Skill</a></h3>
+<p class="m">출처. GitHub · Show HN</p>
+<p><b>요약.</b> CloneGuard는 저장소를 실행 전에 검사한다. 자격 증명 탈취, 숨은 네트워크 호출, 자동 실행 훅을 찾는다. 의존성이 없다. 스타 23, MIT, 마지막 푸시 11-07이다. Zalando의 Agentic Identity Broker는 AI 에이전트용 OAuth2 위임과 동의 관리를 한다. 스타 62, MIT, 마지막 푸시 11-07이다. Flawless UI-UX Skill 1.0.0은 코딩 에이전트용 UI 스킬이다. 스타 91, MIT, 마지막 푸시 11-06이다.</p>
+<p><b>왜 중요한가.</b> CloneGuard는 에이전트가 낯선 저장소를 받기 전에 쓸 수 있다. 판정: CloneGuard 써볼 만함, Identity Broker 지켜볼 만함, UI-UX Skill 지켜볼 만함.</p>
+<p class="m">반응. HN 31점·7개 / 23점·3개 / 30점·32개. 링크: <a href="https://github.com/tharun208/cloneguard" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50397435" style="color:#0b3d91">HN(CloneGuard)</a> · <a href="https://github.com/zalando-incubator/agentic-identity-broker" style="color:#0b3d91">Identity Broker</a> · <a href="https://news.ycombinator.com/item?id=50393235" style="color:#0b3d91">HN(Broker)</a> · <a href="https://github.com/smokeeaasd/flawless-ui-ux/releases/tag/v1.0.0" style="color:#0b3d91">UI-UX Skill</a> · <a href="https://news.ycombinator.com/item?id=50395747" style="color:#0b3d91">HN(Skill)</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.bloomberg.com/news/articles/2026-11-06/anthropic-ipo-valuation-expectations-pressured-after-ai-selloff" style="color:#0b3d91">Anthropic IPO 매수자, 가치를 최저 $1.1T로 본다</a> — Bloomberg 보도이다. 기대 가치가 낮아졌다. HN 307점·611개. <a href="https://news.ycombinator.com/item?id=50394906" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.planned-obsolescence.org/p/ai-is-dramatically-accelerating-ai" style="color:#0b3d91">AI가 AI 연구를 크게 가속한다 (Ajeya Cotra)</a> — METR 보고서 해석 글이다. Anthropic 진척 속도가 약 2배라고 본다. HN 359점·335개. <a href="https://news.ycombinator.com/item?id=50397994" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.washingtonpost.com/technology/2026/11/06/after-courting-trump-corporate-america-faces-democratic-reckoning/" style="color:#0b3d91">민주당, SpaceXAI·Meta·Apple 의회 조사 착수</a> — Washington Post 보도이다. HN 142점·149개. <a href="https://news.ycombinator.com/item?id=50397102" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.reuters.com/business/microsoft-is-winding-down-oracle-deal-rent-ai-cloud-capacity-bloomberg-news-2026-11-06/" style="color:#0b3d91">Microsoft, Oracle AI 클라우드 임차 계약 축소</a> — Reuters 보도이다. HN 105점·19개. <a href="https://news.ycombinator.com/item?id=50395933" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.crusoe.ai/resources/newsroom/crusoe-wyoming-data-center-campus-update" style="color:#0b3d91">Google, 와이오밍 Crusoe 데이터센터 부지 인수</a> — Crusoe 발표이다. HN 101점·84개. <a href="https://news.ycombinator.com/item?id=50397711" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning)은 403으로 막혔다. Reddit 반응은 넣지 못했다.</li>
+<li>Hugging Face Daily Papers API는 11-07 목록을 0건으로 돌려줬다.</li>
+<li>Inkling 2 Small, GPT-6 Cyber, Gemini Omni 1.2 Flash, Ripple-65B, ERNIE 5.5 Flash Base는 이전 메인이라 다시 싣지 않았다.</li>
+<li>Qwen3.8-Flash-Next 저장소는 11-07에 갱신됐다. 새 공개가 아니라서 뺐다.</li>
+<li>Jev, Cotra 글, Anthropic IPO, Memorilla 등은 11-06 다이제스트에 AFTER로 있었다. HN 게시 시각이 11-07 KST이므로 이번에 넣었다.</li>
+</ul><h2>AFTER (11-08 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50406563" style="color:#0b3d91">The end of Microsoft Research&#x27;s AI Frontiers group</a> HN 294점·162개</li>
+<li><a href="https://news.ycombinator.com/item?id=50406222" style="color:#0b3d91">MaxxBench – &quot;Nice DeepSWE score. But is it true?&quot;</a> HN 150점·40개</li>
+<li><a href="https://news.ycombinator.com/item?id=50407882" style="color:#0b3d91">Claude Code&#x27;s &quot;Don&#x27;t Ask Again&quot; exposes passwords in 1,122 public GitHub files</a> HN 60점·50개</li>
+<li><a href="https://news.ycombinator.com/item?id=50405263" style="color:#0b3d91">Show HN: 31B video+audio diffusion model to 14B, 6 steps, INT8</a> HN 49점·10개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
