@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-08</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-08</h1>
+<p class="m">대상 기간: 2026-11-08 00:00–24:00 KST. HN 수치는 2026-11-09 07:55 KST 전후에 HN API에서 확인했다. GitHub·Hugging Face 수치도 같은 시각에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>webAI는 TwIL-8B를 공개했다. MATH-500은 98.2, LiveCodeBench는 81.6이다. 라이선스는 비상업이다.</li>
+<li>Video Rebirth는 영상+음성 모델 HyperFlow H3 Flash(13.7B)를 공개했다. Q4_K_M은 9.1 GB이다.</li>
+<li>llama-modchip은 284B DeepSeek-V4-Flash를 64GB RAM CPU에서 돌린다. HN 328점이다.</li>
+<li>MaxxBench에서 Gemini 3.8 Flash는 73.8%에서 53.4%로 떨어졌다. Claude Opus 5.5는 76.4%이다.</li>
+<li>Apiiro는 Claude Code 승인 파일 1,122개에서 비밀 1,379개를 찾았다. HN 570점이다.</li>
+<li>Reddit은 403으로 막혔다. Hugging Face Daily Papers는 11-08 목록이 0건이다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://huggingface.co/webAI-Official/TwIL-8B" style="color:#0b3d91">TwIL-8B: Granite 4.2 8B 기반 수학·코드 추론 모델 공개</a></h3>
+<p class="m">출처. webAI (Hugging Face 모델 카드, 11-08 18:57 KST 게시)</p>
+<p><b>요약.</b> webAI는 TwIL-8B를 공개했다. 시작 모델은 ibm-granite/granite-4.2-8b이다. 파라미터는 8.79B이다. 문맥은 131,072 토큰이다. 학습은 전체 SFT 다음 GRPO/DAPO 강화학습이다. MATH-500은 98.2이다. Qwen3.5-9B는 96.6, Gemma 4 31B는 87.9이다. LiveCodeBench는 81.6이다(verbose 변형 기준). Gemma 4 31B는 80.0, Qwen3.5-9B는 65.6이다. IFBench는 74.4로 Qwen3.5-9B보다 9.9점 높다. GPQA Diamond는 70.2로 Qwen3.5-9B보다 11.5점 낮다. AIME 2026 문제당 출력 토큰은 약 19.5k이다. Qwen3.5-9B는 31.2k이다. bf16은 16.38 GiB, Q4_K_M GGUF는 4.98 GiB이다. 라이선스는 webAI Non-Commercial License 1.0이다. 상용 사용은 막힌다. API 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 8B 크기로 수학·코드 점수가 Gemma 4 31B보다 높다. 경쟁 수치는 회사가 다시 측정하지 않은 공개 수치이다. 지식 과제는 약하다. 판정: 지켜볼 만함. 비상업 라이선스라서 업무 사용은 어렵다.</p>
+<p class="m">반응. HF 좋아요 231. HN 토론 없음. 링크: <a href="https://huggingface.co/webAI-Official/TwIL-8B" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/ibm-granite/granite-4.2-8b" style="color:#0b3d91">기본 모델</a></p>
+<h3>2. <a href="https://github.com/Video-Rebirth/hyperflow-h3-flash" style="color:#0b3d91">HyperFlow H3 Flash: MiniMax-H3 영상+음성 모델을 13.7B, 4–8단계로 압축</a></h3>
+<p class="m">출처. Video Rebirth (GitHub·Hugging Face, Show HN)</p>
+<p><b>요약.</b> Video Rebirth는 MiniMax-H3의 압축판을 공개했다. 영상과 스테레오 음성을 함께 만든다. 파라미터는 13.7B이다. 샘플링은 4, 6, 8단계이다. CFG를 쓰지 않는다. 5.2초 클립 6단계 생성은 RTX 5090 1장에서 92초이다. H200 1장에서는 36초이다. Q4_K_M GGUF는 9.1 GB이다. 24 GB와 32 GB GPU에서 측정했다. 라이선스는 Apache-2.0이다. 스타는 136개이다. 저장소는 11-06에 만들었다. 품질 벤치마크 수치는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 소비자 GPU에서 영상과 음성을 함께 만드는 오픈웨이트 선택지이다. 판정: 지켜볼 만함. 첫 실행 내려받기가 약 90 GB이다.</p>
+<p class="m">반응. HN 75점·14개. GitHub 스타 136. 링크: <a href="https://github.com/Video-Rebirth/hyperflow-h3-flash" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/VideoRebirthAI/hyperflow-h3-flash" style="color:#0b3d91">가중치</a> · <a href="https://news.ycombinator.com/item?id=50405263" style="color:#0b3d91">HN 토론</a></p>
+<h3>3. <a href="https://github.com/synchopate/llama-modchip" style="color:#0b3d91">llama-modchip: 284B DeepSeek-V4-Flash를 64GB RAM CPU에서 실행</a></h3>
+<p class="m">출처. GitHub (synchopate)</p>
+<p><b>요약.</b> llama-modchip은 llama.cpp용 커널 패치와 양자화 도구 모음이다. DeepSeek-V4-Flash(284.33B, 활성 13.17B)를 1.71 bpw로 줄인다. 파일 크기는 56.56 GiB이다. 기존 UD-IQ1_S는 76.87 GiB이다. 256K 문맥에서 최대 메모리는 57.61 GiB이다. 16코어 Zen 5에서 프리필은 44.36 tok/s이다. 패치 전은 25.0 tok/s이다. 생성 속도는 9.1–14.7 tok/s이다. GPU는 쓰지 않는다. 30B MoE는 25.0–111.6 tok/s이다. 라이선스는 Apache-2.0이다. 스타는 459개이다. 최신 릴리스는 v2.4.0(11-04)이고 마지막 푸시는 11-08이다.</p>
+<p><b>왜 중요한가.</b> GPU 없이 대형 MoE를 돌리는 길을 보여 준다. 수치는 저자 측정이다. 전용 텐서 형식이라 일반 llama.cpp, Ollama, LM Studio는 파일을 읽지 못한다. 판정: 지켜볼 만함.</p>
+<p class="m">반응. HN 328점·129개. 링크: <a href="https://github.com/synchopate/llama-modchip" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50411961" style="color:#0b3d91">HN 토론</a></p>
+<h3>4. <a href="https://maxxbench.unlap.ai/research/why-maxxbench/" style="color:#0b3d91">MaxxBench: DeepSWE 과제를 조금 바꾸자 점수 차가 크게 벌어짐</a></h3>
+<p class="m">출처. MaxxBench (unlap.ai)</p>
+<p><b>요약.</b> MaxxBench는 DeepSWE 과제 89개의 요구 사항이나 시작 코드를 바꿨다. 정답 패치 증가는 중앙값 17줄(3.5%)이다. Claude Opus 5.5는 74.2%에서 76.4%로 올랐다. GPT-6 Astra는 74.1%에서 71.9%이다. Gemini 3.8 Flash는 73.8%에서 53.4%로 떨어졌다. DeepSeek V4.1 Flash는 74.2%에서 55.6%이다. 15개 설정의 점수 폭은 20.9점에서 48.3점으로 넓어졌다. Opus 5, GLM 5.3, GLM 5.3 Flash 실패의 약 4분의 1은 새 요구를 이해한 뒤 원래 동작으로 되돌린 경우이다.</p>
+<p><b>왜 중요한가.</b> 공개 벤치마크 점수가 비슷해도 요구 변경 대응력은 크게 다르다. 모델을 고를 때 변형 과제 점수를 같이 봐야 한다.</p>
+<p class="m">반응. HN 383점·102개. 링크: <a href="https://maxxbench.unlap.ai/research/why-maxxbench/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50406222" style="color:#0b3d91">HN 토론</a></p>
+<h3>5. <a href="https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again" style="color:#0b3d91">Claude Code "Don't ask again" 규칙이 공개 GitHub 파일 1,122개에 비밀번호를 남김</a></h3>
+<p class="m">출처. Apiiro 보고서 (11-05 게시, 11-08 갱신). 수치는 The Hacker News·LATENT 기사로 확인</p>
+<p><b>요약.</b> Claude Code에서 "Yes, and don't ask again"을 고르면 명령을 .claude/settings.local.json에 저장한다. 명령에 넣은 비밀번호도 평문으로 저장된다. Apiiro는 공개 GitHub에서 이 파일 104,185개를 모았다. 그중 1,122개(약 1.1%)에 비밀이 있었다. 서로 다른 비밀은 1,379개이다. AWS 키 23개, SSH 로그인 43개가 있었다. LATENT 계산으로 gitleaks와 TruffleHog를 함께 써도 215개 파일(19.2%)을 놓쳤다. Apiiro는 비밀이 아직 유효한지 시험하지 않았다.</p>
+<p><b>왜 중요한가.</b> 에이전트 권한 승인 기록도 비밀 저장소가 된다. 먼저 키를 교체하고 파일을 git 추적에서 빼야 한다. 명령에는 환경 변수를 쓴다.</p>
+<p class="m">반응. HN 570점·387개. 링크: <a href="https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again" style="color:#0b3d91">원문</a> · <a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html" style="color:#0b3d91">The Hacker News</a> · <a href="https://latent.tokyo/en/articles/2026-11-08-claude-code-dont-ask-again-secrets" style="color:#0b3d91">LATENT 분석</a> · <a href="https://news.ycombinator.com/item?id=50407882" style="color:#0b3d91">HN 토론</a></p>
+<h3>6. <a href="https://github.com/AmSach/maple" style="color:#0b3d91">MAPLE: Gemma 4 26B-A4B 전문가 80개를 잘라 6GB GPU에서 45.4 tok/s</a></h3>
+<p class="m">출처. GitHub (Show HN)</p>
+<p><b>요약.</b> MAPLE은 MoE 전문가 가지치기 방법이다. Gemma 4 26B-A4B의 전문가 128개 중 48개만 남긴다. 기준은 코드·논리 토큰의 활성 분포이다. 파일은 9.92 GB에서 4.75 GB로 줄었다. RTX 4050 6GB에서 45.4 tok/s이다. 자르지 않으면 PCIe를 거쳐 6.9 tok/s이다. 대상 밖 다국어 성능은 떨어진다. 스타는 31개이다. GitHub API는 라이선스를 표시하지 않는다. README 메타데이터는 Apache-2.0이다.</p>
+<p><b>왜 중요한가.</b> 작은 GPU에서 용도 특화 MoE를 돌리는 실험이다. 판정: 아직 이름. 평가는 저자 단위 테스트뿐이다.</p>
+<p class="m">반응. HN 20점·5개. 링크: <a href="https://github.com/AmSach/maple" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/AmSach/Gemma-4-26B-A4B-MAPLE-Sub5GB-GGUF" style="color:#0b3d91">GGUF</a> · <a href="https://news.ycombinator.com/item?id=50410253" style="color:#0b3d91">HN 토론</a></p>
+<h3>7. <a href="https://www.lorekit.io/blog/open-agent-memory-format" style="color:#0b3d91">LoreKit: 에이전트 메모리 공통 형식을 제안</a></h3>
+<p class="m">출처. LoreKit 블로그</p>
+<p><b>요약.</b> 저자는 AGENTS.md, Anthropic 메모리 도구, Copilot Memory, MCP 메모리 서버가 서로를 읽지 못한다고 적었다. OpenTelemetry처럼 데이터 모델, 이름 규칙, 계약, 적합성 테스트를 합의하자고 제안한다. 기록마다 주소, 키, 작성자, 만료를 둔다. 작업은 write, read, list, search, archive이며 MCP로 노출한다. 저장, 순위, 임베딩은 표준 밖에 둔다. LoreKit 저장소는 스타 22개, MIT이다.</p>
+<p><b>왜 중요한가.</b> 여러 코딩 에이전트가 같은 저장소 기억을 공유하려면 공통 형식이 필요하다. 아직 제안 단계이다.</p>
+<p class="m">반응. HN 159점·102개. 링크: <a href="https://www.lorekit.io/blog/open-agent-memory-format" style="color:#0b3d91">원문</a> · <a href="https://github.com/mthines/lorekit" style="color:#0b3d91">LoreKit 저장소</a> · <a href="https://news.ycombinator.com/item?id=50411467" style="color:#0b3d91">HN 토론</a></p>
+<h3>8. <a href="https://github.com/vercel-labs/agent-browser" style="color:#0b3d91">GitHub 트렌딩: agent-browser · Astryx · billion-context</a></h3>
+<p class="m">출처. GitHub 트렌딩 (11-09 07:53 KST 확인)</p>
+<p><b>요약.</b> agent-browser는 Vercel Labs의 Rust CLI이다. 에이전트가 셸 명령으로 브라우저를 조작한다. 페이지를 접근성 트리와 요소 참조(@e1)로 돌려준다. 스타는 47,538개이고 오늘 812개 늘었다. 라이선스는 Apache-2.0이다. 최신 릴리스는 v0.41.2(11-04 KST)이다. Meta Astryx는 에이전트용 디자인 시스템이다. 스타 16,528개(오늘 +863), MIT이다. billion-context는 긴 세션용 문맥 압축 플러그인이다. 스타 5,096개(오늘 +460)이다. 라이선스 표시는 없다.</p>
+<p><b>왜 중요한가.</b> agent-browser는 MCP 없이 셸만으로 브라우저 작업을 붙인다. 판정: agent-browser 써볼 만함, Astryx 지켜볼 만함, billion-context 지켜볼 만함(라이선스 불명).</p>
+<p class="m">반응. GitHub 오늘 증가 812 / 863 / 460. 링크: <a href="https://github.com/vercel-labs/agent-browser" style="color:#0b3d91">원문</a> · <a href="https://github.com/meta/astryx" style="color:#0b3d91">Astryx</a> · <a href="https://github.com/ranxianglei/billion-context" style="color:#0b3d91">billion-context</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://hunch.net/?p=13764006" style="color:#0b3d91">Microsoft Research AI Frontiers 그룹 종료 (John Langford)</a> — 약 50명 조직이다. 9월 초 Microsoft AI로 재편됐다. 저자는 규모 확장만 하는 방향과 맞지 않아 떠났다고 적었다. HN 487점·302개. <a href="https://news.ycombinator.com/item?id=50406563" style="color:#0b3d91">HN</a></li>
+<li><a href="https://247wallst.com/investing/2026/11/07/openai-just-raised-11-billion-at-a-1-25-trillion-valuation-below-the-1-4-trillion-it-first-sought/" style="color:#0b3d91">OpenAI, $1.25T 가치로 $11B 1차 마감</a> — 24/7 Wall St. 보도이다. 보도된 목표는 $1.4T이다. HN 177점·196개. <a href="https://news.ycombinator.com/item?id=50413822" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.polso.info/why-i-will-not-be-using-llms-coding" style="color:#0b3d91">LLM을 코딩에 쓰지 않겠다는 글</a> — 개인 의견 글이다. 댓글 토론이 많다. HN 103점·215개. <a href="https://news.ycombinator.com/item?id=50412591" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.ft.com/content/41bf5c6a-9735-4f1a-a8e3-2bcccad58ba0" style="color:#0b3d91">Anthropic, 데이터센터용 가스 발전 $3.4B 계약 (FT)</a> — FT 기사 제목 기준이다. 본문은 유료라 열지 못했다. HN 39점·25개. <a href="https://news.ycombinator.com/item?id=50412760" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning, r/LLM)은 403으로 막혔다. Reddit 반응은 넣지 못했다.</li>
+<li>Hugging Face Daily Papers API는 11-08 목록을 0건으로 돌려줬다. 주말이라 논문 항목은 없다.</li>
+<li>"Goodbye Claude, hello Pi"(HN 662점·418개)는 2026-09-21에 쓴 글이라 뺐다. <a href="https://news.ycombinator.com/item?id=50410107" style="color:#0b3d91">HN</a></li>
+<li>Ripple-65B, ERNIE 5.5 Flash Base, Kimi K3.1 Pro, Arete-27B는 HF 트렌딩에 있지만 이전 메인이라 다시 싣지 않았다.</li>
+<li>Darwin-180B-RSI-R3 소개 글이 11-08에 나왔다. HF 저장소는 10-01에 만들어졌으므로 새 공개가 아니다.</li>
+<li>MaxxBench, MSR AI Frontiers, Claude Code 비밀 노출, HyperFlow는 11-07 다이제스트에 AFTER로 있었다. HN 게시 시각이 11-08 KST이므로 이번에 넣었다.</li>
+</ul><h2>AFTER (11-09 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50415628" style="color:#0b3d91">Goldman Sachs is pulling Claude Code from its bankers and traders</a> HN 505점·309개</li>
+<li><a href="https://news.ycombinator.com/item?id=50416801" style="color:#0b3d91">Nvidia Board of Directors Is Investigating Jensen Huang</a> HN 292점·227개</li>
+<li><a href="https://news.ycombinator.com/item?id=50416363" style="color:#0b3d91">How I Fight AI Brain Fry</a> HN 113점·101개</li>
+<li><a href="https://news.ycombinator.com/item?id=50415817" style="color:#0b3d91">Silicon Valley Promises AI Will Cure Disease. Drugmaker CEOs Aren&#x27;t Buying It</a> HN 83점·97개</li>
+<li><a href="https://news.ycombinator.com/item?id=50414021" style="color:#0b3d91">Apple CEO Presses Software Chief to Pursue More Ambitious AI Strategy</a> HN 34점·56개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
