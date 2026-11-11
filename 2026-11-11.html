@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-11</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-11</h1>
+<p class="m">대상 기간: 2026-11-11 00:00–24:00 KST. HN 수치는 2026-11-12 08:00 KST 전후에 HN API에서 확인했다. GitHub·Hugging Face 수치도 같은 시각에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>Google은 Gemini 4 Carbon을 일반 공개했다. 도입 가격은 입력 $2, 출력 $10이다.</li>
+<li>Runway Praxis-1(27B, Apache 2.0)은 RoboLab-120에서 46.2%로 공개 로봇 모델 중 가장 높다.</li>
+<li>MBZUAI PAN 2(29B)는 가중치와 학습 코드를 Apache 2.0으로 냈다.</li>
+<li>Baidu ERNIE 5.5 Flash Preview(280B, 활성 14B)와 Qwen4-Max Preview가 나왔다. 두 모델 모두 공식 벤치마크 수치를 텍스트로 확인하지 못했다.</li>
+<li>VulnCheck는 Anthropic 귀속 CVE 442개 중 실제 악용이 2개라고 밝혔다.</li>
+<li>Reddit은 403으로 막혔다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/" style="color:#0b3d91">Gemini 4 Carbon 일반 공개: 입력 $2·출력 $10 도입 가격, CursorBench 4.0 1위 주장</a></h3>
+<p class="m">출처. Google 블로그 (11-10 미국 날짜, HN 11-11 01:07 KST)</p>
+<p><b>요약.</b> Google은 Gemini 4 Carbon을 유료 API, Gemini for business, Google AI Ultra 구독자에게 열었다. 2주 전에는 Fairwind 프로그램의 보안 방어 팀만 썼다. 도입 가격은 100만 토큰당 입력 $2, 출력 $10이다. 이 가격은 Gemini 4 Argon과 같다. 2026-11-30 뒤에는 입력 $4, 출력 $20이 된다. Google은 Carbon이 CursorBench 4.0, Perplexity WANDR, Zapier AutomationBench에서 1위라고 말한다. 다음 외부 모델보다 과제당 비용이 2배 이상 낮다고 말한다. Artificial Analysis와 만든 MKA 벤치마크에서는 2위이다. 1위 모델보다 과제당 평균 비용이 6배 이상 낮다. 375개 에이전트 정직성 과제에서 92%를 통과했다. Argon은 70%이다. 자동 사이버 공격 질의 성공률은 2.17%이다. Argon은 9.86%이다. Antigravity에 /swarm 기능 미리보기도 나왔다. 파라미터 수와 문맥 길이는 발표문에 없음. 로컬 실행은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> Fable 5.2와 같은 주에 나온 경쟁 최상위 모델이다. 가격은 Fable 5.2(입력 $8, 출력 $40)의 1/4이다. 벤치마크 점수표는 발표문 본문에 없다. 비용 비교는 Google 자체 주장이다.</p>
+<p class="m">반응. HN 291점·164개. 링크: <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50442303" style="color:#0b3d91">HN 토론</a></p>
+<h3>2. <a href="https://ernie.baidu.com/release/ernie-5-5-flash-preview/" style="color:#0b3d91">Baidu ERNIE 5.5 Flash Preview: 280B(활성 14B), 1M 문맥, Apache 2.0 가중치 예정</a></h3>
+<p class="m">출처. ERNIE 발표 (11-11)</p>
+<p><b>요약.</b> Baidu는 ERNIE 5.5 Flash Base 위에 사후학습한 첫 모델을 냈다. 전체 파라미터는 280B이고 활성 파라미터는 14B이다. 문맥은 1M 토큰이다. API는 Qianfan 플랫폼에서 쓸 수 있다. 가중치는 곧 Apache 2.0으로 공개한다. 강점 분야는 코딩, 3D 모델링, 지식 작업, 콘텐츠 제작이다. 데모에서 모델은 11시간 한 번의 작업으로 Unreal Engine 5.8 게임을 C++로 썼다. 설계 문서로 모바일 미니 게임 약 100개도 만들었다. 이 모델은 사후학습 중간 체크포인트이다. 벤치마크 표는 페이지 텍스트에서 확인하지 못했다(출처에 없음). 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 가중치가 Apache 2.0으로 나오면 활성 14B로 1M 문맥을 쓰는 상용 가능 모델이 된다. 판정: 지켜볼 만함. 가중치가 아직 없다. Base 모델은 11-05 다이제스트에서 다뤘다.</p>
+<p class="m">반응. HN 토론 없음. 링크: <a href="https://ernie.baidu.com/release/ernie-5-5-flash-preview/" style="color:#0b3d91">원문</a></p>
+<h3>3. <a href="https://runway.com/news/company-news/praxis-1-is-now-available" style="color:#0b3d91">Runway Praxis-1 오픈웨이트: 27B MoE 로봇 월드 액션 모델, RoboLab-120 46.2%</a></h3>
+<p class="m">출처. Runway 발표 (11-11)</p>
+<p><b>요약.</b> Praxis-1은 영상과 행동을 함께 예측하는 27B MoE 확산 트랜스포머이다. 라이선스는 Apache 2.0이고 상업 사용을 허용한다. 가중치, 추론 코드, 전체·LoRA 파인튜닝 코드를 공개했다. NVIDIA RoboLab-120 1,200 에피소드에서 성공률 46.2%이다. FLUX 3 Action은 42.9%, Cosmos3 Nano는 36.8%, π0.5는 28.0%이다. 학습에 없던 Google RT-1 로봇에 파인튜닝하면 SimplerEnv 80.0%이다. 원래 RT-1 정책은 52.4%이다. H100, B200, RTX 5090, RTX PRO 6000, Jetson Thor에서 돌아간다고 Runway는 말한다. Hugging Face(LeRobot)와 vLLM-Omni를 지원한다.</p>
+<p><b>왜 중요한가.</b> 공개 VLA보다 높은 수치를 내는 상용 가능 로봇 모델이다. RTX 5090에서도 돌아간다. 판정: 써볼 만함(로봇 연구팀). 수치는 Runway 발표 기준이다.</p>
+<p class="m">반응. GitHub runwayml/praxis-1-oss 스타 62개, 마지막 푸시 11-12 07:25 KST, Apache-2.0. HN 토론 없음. 링크: <a href="https://runway.com/news/company-news/praxis-1-is-now-available" style="color:#0b3d91">원문</a> · <a href="https://github.com/runwayml/praxis-1-oss" style="color:#0b3d91">GitHub</a></p>
+<h3>4. <a href="https://huggingface.co/IFM/PAN2" style="color:#0b3d91">MBZUAI IFM PAN 2: 29B 오픈 월드 모델, 학습 코드까지 Apache 2.0</a></h3>
+<p class="m">출처. MBZUAI 보도자료 (11-11), Hugging Face 모델 카드</p>
+<p><b>요약.</b> PAN 2는 시작 장면과 글로 쓴 행동을 받아 다음 상황을 최대 20초 영상으로 시뮬레이션한다. LLM이 다음 세계 상태를 구조화된 글로 쓴다. 29B MMDiT가 그 글을 영상 잠재값으로 바꾼다. 디코더는 Wan 2.2 VAE이다. 가중치, 학습 코드, 추론 코드를 Apache 2.0으로 공개했다. IFM은 Physics-IQ Verified 리더보드에서 전체 3위, 오픈웨이트 중 1위라고 말한다. 6개 핵심 항목 평가에서는 MiniMax-H3 바로 다음이다. 정확한 점수는 보도자료에 없음. Diffusers와 vLLM을 지원한다.</p>
+<p><b>왜 중요한가.</b> 학습 코드까지 공개한 월드 모델은 드물다. 에이전트가 행동 전에 결과를 미리 보는 연구에 쓸 수 있다. 판정: 지켜볼 만함(대형 GPU 필요, 하드웨어 요건은 출처에 없음).</p>
+<p class="m">반응. HF 좋아요 66. HN 토론 없음. 링크: <a href="https://huggingface.co/IFM/PAN2" style="color:#0b3d91">원문</a> · <a href="https://mbzuai.ac.ae/news-events/news/the-institute-foundation-models-unveils-pan-2-open-world-model-physical" style="color:#0b3d91">보도자료</a> · <a href="https://github.com/ifm-ai/PAN2" style="color:#0b3d91">GitHub</a></p>
+<h3>5. <a href="https://www.alibabacloud.com/help/en/model-studio/qwen4-max-preview" style="color:#0b3d91">Alibaba Qwen4-Max Preview: 1M 문맥, 11-25까지만 운영, 벤치마크 미공개</a></h3>
+<p class="m">출처. Alibaba Cloud 문서, Qwen X 게시물 (11-11)</p>
+<p><b>요약.</b> Qwen4 계열의 첫 미리보기 모델이다. 텍스트, 이미지, 영상을 입력으로 받는다. 문맥은 1M 토큰이다. 최대 출력은 393,216 토큰이다. OpenAI·Anthropic API와 호환된다. Token Plan으로만 쓸 수 있다. 종량 과금은 없다. 미리보기 기간은 11-11 11:00 KST부터 11-26 01:00 KST까지이다. 기간이 끝나면 이 모델은 내려간다. 벤치마크, 파라미터 수, 라이선스, 토큰당 가격은 출처에 없음. 가중치 공개 계획도 출처에 없음.</p>
+<p><b>왜 중요한가.</b> Qwen4 세대의 첫 신호이다. 하지만 공식 수치가 없다. 초기 사용자 일부는 Qwen3.8-Flash보다 낮은 점수를 보고했다. 판정: 지켜볼 만함.</p>
+<p class="m">반응. HN 46점·3개. 링크: <a href="https://www.alibabacloud.com/help/en/model-studio/qwen4-max-preview" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50449130" style="color:#0b3d91">HN 토론</a> · <a href="https://twitter.com/Alibaba_Qwen/status/2120335993643684315" style="color:#0b3d91">Qwen 게시물</a></p>
+<h3>6. <a href="https://9to5mac.com/2026/11/10/apple-has-new-mac-app-coming-to-make-running-local-ai-models-easy/" style="color:#0b3d91">Apple "Harbor" 유출: 여러 Mac을 Thunderbolt 5로 묶는 로컬 AI 추론 서버 앱</a></h3>
+<p class="m">출처. 9to5Mac (11-10 미국 날짜, HN 11-11 06:25 KST)</p>
+<p><b>요약.</b> 유출자 Aaron Perris가 Apple의 새 Mac 앱 Harbor를 찾았다. Harbor는 Apple silicon에서 오픈웨이트 모델을 로컬로 돌린다. 데이터는 클라우드로 가지 않는다. Thunderbolt 5 Mac 2대 이상을 자동으로 묶는다. 각 Mac의 통합 메모리를 하나의 추론 자원으로 합친다. 앱 안에서 모델을 찾고 받는다. 현재는 Claris 브랜드로 비공개 미리보기 중이다. 출시일과 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> Apple이 로컬 LLM 클러스터를 공식 도구로 지원하는 신호이다. 아직 유출 정보이다. Apple은 확인하지 않았다.</p>
+<p class="m">반응. HN 508점·520개. 링크: <a href="https://9to5mac.com/2026/11/10/apple-has-new-mac-app-coming-to-make-running-local-ai-models-easy/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50446520" style="color:#0b3d91">HN 토론</a></p>
+<h3>7. <a href="https://claude.com/resources/articles/sheets-whiteboards-data" style="color:#0b3d91">Claude Whiteboards·Sheets 베타, Claude Data 정식 출시</a></h3>
+<p class="m">출처. Anthropic (11-10 미국 날짜, HN 11-11 02:55 KST)</p>
+<p><b>요약.</b> Whiteboards는 팀과 Claude가 함께 쓰는 공유 보드이다. Claude는 보드를 문서나 덱으로 바꾸거나 Lucid, Miro로 보낸다. Sheets는 탭, 수식, 서식, 드롭다운이 있는 스프레드시트를 만든다. .xlsx나 CSV로 내보낸다. Claude Dashboards는 Claude Data로 이름을 바꾸고 정식 출시했다. 인증 쿼리와 실시간 공유는 베타이다. 모든 유료 플랜에서 쓸 수 있다.</p>
+<p><b>왜 중요한가.</b> Claude가 결과물을 다른 도구로 옮기지 않고 안에서 계속 편집하게 한다. 문서 도구 시장으로 넓어진다.</p>
+<p class="m">반응. HN 280점·215개. 링크: <a href="https://claude.com/resources/articles/sheets-whiteboards-data" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50443716" style="color:#0b3d91">HN 토론</a></p>
+<h3>8. <a href="https://pietromiotti.com/latest/maya-site" style="color:#0b3d91">AI 에이전트 48개가 NASA 라이다로 미등록 마야 유적을 72시간 안에 찾음</a></h3>
+<p class="m">출처. 개인 블로그 (HN 11-11 21:05 KST)</p>
+<p><b>요약.</b> 저자는 고고학자가 아니다. 에이전트가 약 1,200 km² 정글의 라이다 자료를 이미지로 바꿨다. 에이전트 48개가 가이드를 따라 이미지를 하나씩 보며 피라미드와 광장을 찾았다. 별도 분류 모델은 쓰지 않았다. 멕시코 INAH는 그 위치에 등록 유적이 없다고 답했다. 11-11 갱신에서 저자는 이 유적이 Estrada-Belli et al. 2025에 이미 있었다고 밝혔다. 에이전트가 문헌 조사에서 이것을 놓쳤다.</p>
+<p><b>왜 중요한가.</b> 범용 에이전트로 대량 이미지 판독을 하는 실제 사례이다. 문헌 확인 실패도 함께 보여 준다.</p>
+<p class="m">반응. HN 895점·327개. 링크: <a href="https://pietromiotti.com/latest/maya-site" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50452455" style="color:#0b3d91">HN 토론</a></p>
+<h3>9. <a href="https://www.vulncheck.com/blog/anthropic-glasswing-november-update" style="color:#0b3d91">VulnCheck: Anthropic Glasswing 7개월, CVE 442개 중 실제 악용은 2개</a></h3>
+<p class="m">출처. VulnCheck 블로그 (HN 11-11 07:17 KST)</p>
+<p><b>요약.</b> VulnCheck는 Anthropic이 찾은 취약점을 따로 추적한다. 7개월 동안 Anthropic 귀속 CVE는 442개이다. 올해 전체 CVE 93,450개의 약 0.5%이다. 이 중 실제 악용 사례는 2개(0.45%)이다. Anthropic 원장은 11-02 기준 발견 37,966건, 수정 217건이다. 중복 표시는 1,670건이고 철회는 419건이다. 9월 이후 발견은 11,813건 늘었고 수정은 15건 늘었다. 주장 진양성률은 91.4%에서 94.2%로 올랐다.</p>
+<p><b>왜 중요한가.</b> AI 취약점 발견의 실제 효과를 외부에서 수치로 확인한 자료이다. 발견 수와 수정 수의 차이가 크다.</p>
+<p class="m">반응. HN 447점·217개. 링크: <a href="https://www.vulncheck.com/blog/anthropic-glasswing-november-update" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50447074" style="color:#0b3d91">HN 토론</a></p>
+<h3>10. <a href="https://github.com/GoogleChrome/modern-web-guidance" style="color:#0b3d91">Modern Web Guidance: 코딩 에이전트를 최신 웹 표준 쪽으로 이끄는 스킬 (Chrome·Edge·Firefox·MDN)</a></h3>
+<p class="m">출처. GitHub (Show HN, 11-11 03:01 KST)</p>
+<p><b>요약.</b> 이 도구는 웹 플랫폼 모범 사례와 브라우저 호환성 자료를 에이전트 스킬로 준다. 목표는 에이전트가 낡은 JavaScript 패턴 대신 기본 웹 API를 쓰게 하는 것이다. Google Chrome, Microsoft Edge, Mozilla Firefox, MDN 팀이 함께 관리한다. CLI로 가이드를 검색하고 코드베이스의 낡은 패턴을 스캔한다. 평가 대시보드도 공개한다. 스타는 4,954개이다. 마지막 푸시는 11-10 12:22 KST이다. 라이선스는 Apache-2.0이다.</p>
+<p><b>왜 중요한가.</b> 브라우저 제조사들이 직접 관리하는 에이전트 지식 팩이다. 판정: 써볼 만함(npx 한 줄 설치).</p>
+<p class="m">반응. HN 423점·139개. GitHub 트렌딩(소스 저장소 오늘 +133). 링크: <a href="https://github.com/GoogleChrome/modern-web-guidance" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50443812" style="color:#0b3d91">HN 토론</a></p>
+<h3>11. <a href="https://blog.atuin.sh/threads-agent-sessions/" style="color:#0b3d91">Atuin Threads: 여러 기기의 Claude Code·Codex 세션을 검색하고 다른 에이전트로 이어 쓰기</a></h3>
+<p class="m">출처. Atuin 블로그 (글 10-27, HN 11-11 23:10 KST)</p>
+<p><b>요약.</b> Atuin 18.24부터 에이전트 세션을 기기 사이에서 검색하고 재개한다. Claude Code에서 시작한 작업을 다른 기기의 Codex에서 이어 쓸 수 있다. 지원 에이전트는 Claude Code, Codex, Pi, Omp, OpenCode이다. 동기화는 종단간 암호화된다. 자체 서버나 로컬 전용도 된다. 세션 수집은 선택 사항이다. atuin mcp로 에이전트가 과거 세션을 직접 검색한다. atuin 저장소 스타는 32,293개이다. 마지막 푸시는 11-12 06:41 KST이다. 라이선스는 MIT이다.</p>
+<p><b>왜 중요한가.</b> 에이전트 작업 기록을 도구와 기기에 묶이지 않게 한다. 판정: 써볼 만함.</p>
+<p class="m">반응. HN 177점·63개. 링크: <a href="https://blog.atuin.sh/threads-agent-sessions/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50453637" style="color:#0b3d91">HN 토론</a> · <a href="https://github.com/atuinsh/atuin" style="color:#0b3d91">GitHub</a></p>
+<h3>12. <a href="https://nathan.rs/posts/weight-space-lp/" style="color:#0b3d91">가중치 공간 프로그래밍 후속: LP 1분 풀이와 Tree-Ising이 GPT-6 Astra 수정보다 나음</a></h3>
+<p class="m">출처. 개인 블로그 (HN 11-11 21:30 KST), arXiv 2611.14210</p>
+<p><b>요약.</b> MIT 연구에서 GPT-6 Astra는 Qwen3.5-0.8B의 생각 반복을 가중치 수정으로 고쳤다. MATH-500은 7.9%에서 48.1%로 올랐다. Astra는 약 8시간과 forward pass 28회를 썼다. 블로그 저자는 이 수정이 선형 계획(LP) 문제라고 보였다. LP 풀이 몇 번(각 약 1분)으로 같은 일을 한다. 바꾸는 가중치는 8배 적다. Tree-Ising 논문은 같은 수정을 BF16 비트 단위 Ising 문제로 풀었다. MATH-500은 54.6%로 Astra 수정 51.7%보다 높다(같은 평가 기준). LLM 토큰은 0개이고 GPU 비용은 약 $0.90이다. Qwen3.5-2B의 GSM8K는 21.6%에서 69.4%로 올랐다.</p>
+<p><b>왜 중요한가.</b> LLM 에이전트가 찾은 가중치 수정을 고전 최적화로 싸게 재현했다. 작은 모델의 반복 문제를 고치는 실용 방법이 될 수 있다.</p>
+<p class="m">반응. HN 227점·33개. HF 추천 71(당일 1위). 링크: <a href="https://nathan.rs/posts/weight-space-lp/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50452655" style="color:#0b3d91">HN 토론</a> · <a href="https://huggingface.co/papers/2611.14210" style="color:#0b3d91">Tree-Ising 논문</a></p>
+<h3>13. <a href="https://huggingface.co/papers/2611.12885" style="color:#0b3d91">논문: RoboScript 문맥 학습 83.4% · WikiTrace 증거 연결 메모리 · Apple Attention→Mamba 증류</a></h3>
+<p class="m">출처. Hugging Face Daily Papers (11-11), Apple ML Research</p>
+<p><b>요약.</b> World In-Context Learning은 고정된 모델이 시뮬레이터에서 작업을 연습한다. 결과는 가중치가 아니라 문맥 메모리에 쓴다. RoboScript는 RoboTwin 2.0 50개 과제에서 시연 1개로 평균 성공률 83.4%이다. 가장 강한 학습 정책보다 20점 이상 높다. 코드는 공개됐다. WikiTrace는 에이전트 메모리의 교훈을 원래 궤적에 연결한다. 잘못된 교훈 때문에 성능이 떨어지는 문제를 줄인다. 5개 에이전트 벤치마크에서 기존 메모리 방법보다 낫다고 저자는 말한다. 정확한 수치는 초록에 없음. Apple은 Transformer를 어텐션 없는 Mamba로 증류하는 2단계 방법을 냈다. Pythia-1B 교사의 perplexity 13.86에 대해 학생은 14.01이다.</p>
+<p><b>왜 중요한가.</b> 로봇 학습, 에이전트 메모리, 효율 아키텍처에서 새 방법이 나왔다. 수치는 모두 저자 측정이다.</p>
+<p class="m">반응. HF 추천 64 / 45. Apple 글 HN 61점·5개. 링크: <a href="https://huggingface.co/papers/2611.12885" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2611.14320" style="color:#0b3d91">WikiTrace</a> · <a href="https://machinelearning.apple.com/research/attention-mamba-distillation" style="color:#0b3d91">Apple 논문</a> · <a href="https://news.ycombinator.com/item?id=50453171" style="color:#0b3d91">Apple HN</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://openai.com/index/ai-effect-on-freelance-work" style="color:#0b3d91">OpenAI·Upwork 연구: AI 관련 프리랜서 일은 예산이 크고 작업이 다양해짐</a> — 63개 업무 분류 중 43개에서 ChatGPT에 흔한 일은 Upwork 비중이 줄었다. AI 관련 공고의 작업 다양성은 2023년 초 14.6에서 2025년 말 21.2로 45% 늘었다. HN 43점·21개. <a href="https://news.ycombinator.com/item?id=50443838" style="color:#0b3d91">HN</a></li>
+<li><a href="https://openai.com/index/introducing-businesses-chatgpt/" style="color:#0b3d91">OpenAI, ChatGPT에 Businesses·Business Agents 베타 도입</a> — 기업이 Business Hub에서 정보를 관리하고 노출 통계를 본다. Business Agent는 미국 이커머스·온라인 서비스 기업부터 쓴다. 주간 사용자 12억 명을 대상으로 한다. HN 38점·10개. <a href="https://news.ycombinator.com/item?id=50443944" style="color:#0b3d91">HN</a></li>
+<li><a href="https://osssaysno.com" style="color:#0b3d91">AI 생성 기여를 금지한 오픈소스 프로젝트 목록</a> — yt-dlp, immich, meilisearch 등 23개 프로젝트를 모았다. 각 정책 문구와 범위를 보여 준다. HN 61점·105개. <a href="https://news.ycombinator.com/item?id=50451102" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>Reddit(r/LocalLLaMA)은 403으로 막혔다. Reddit 반응은 넣지 못했다.</li>
+<li>Gemini 4 Carbon, Claude Whiteboards·Sheets·Data, Apple Harbor는 11-10 다이제스트 AFTER에 있었다. HN 게시가 11-11 KST라서 이번에 메인으로 넣었다.</li>
+<li>AlphaProof Code와 Claude Fable 5.2는 11-10 메인이라 다시 싣지 않았다. ERNIE 5.5 Flash Base는 11-05 메인이다. 이번 항목은 새 사후학습 모델이다.</li>
+<li>GitHub 트렌딩의 meta/astryx, agent-skills, agent-browser, ha-mcp는 이전 메인이라 뺐다. HF 트렌딩 상위 모델은 대부분 이전에 다뤘다.</li>
+<li>Bielik 11B v3.1(56개 언어, τ²-bench 16–45점 향상)과 DFlash 초안 모델은 비중이 낮아 각주로만 둔다.</li>
+<li>Runway 발표의 미국 시각은 출처에 없다. KST 기준 11-11 또는 11-12 새벽일 수 있다.</li>
+</ul><h2>AFTER (11-12 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50456631" style="color:#0b3d91">AWS emulator (aws/aws-emulator)</a> HN 537점·186개</li>
+<li><a href="https://news.ycombinator.com/item?id=50456791" style="color:#0b3d91">Gemini Decisions API</a> HN 178점·59개</li>
+<li><a href="https://news.ycombinator.com/item?id=50458900" style="color:#0b3d91">United Airlines, AI 에이전트의 항공권 대리 예약 금지</a> HN 182점·185개</li>
+<li><a href="https://news.ycombinator.com/item?id=50454625" style="color:#0b3d91">Yogurt: Granola의 오픈소스 대안</a> HN 140점·63개</li>
+<li><a href="https://news.ycombinator.com/item?id=50455633" style="color:#0b3d91">Apple: RAG용 더 빠른 검색</a> HN 127점·22개</li>
+<li><a href="https://news.ycombinator.com/item?id=50458166" style="color:#0b3d91">Huawei MACaQ 양자화 도구 공개</a> HN 37점·14개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
