@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-12</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-12</h1>
+<p class="m">대상 기간: 2026-11-12 00:00–24:00 KST. HN 수치는 2026-11-13 08:05 KST 전후에 HN API에서 확인했다. GitHub·Hugging Face 수치도 같은 시각에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>AWS는 에이전트가 만든 AWS Emulator(CC0, 200개 이상 서비스)를 공개했다.</li>
+<li>Google은 Gemini Decision 1을 냈다. 질문 최대 1,000개를 한 번에 판정하고 입력 100만 토큰당 $0.10이다.</li>
+<li>DeepMind AlphaGenome 2는 원인 변이를 30% 찾는다. 이전 모델은 16%이다.</li>
+<li>Tether BotPsy-0.8B(Apache 2.0)는 BFCL v4 44.0으로 Qwen3.5-2B-Think(37.7)보다 높다.</li>
+<li>Huawei MACaQ, Yogurt, A2UI 1.0, Codex Security 0.10.0이 나왔다.</li>
+<li>Jensen Huang이 Nvidia CEO에서 사임했다. Anthropic은 IPO 사이트를 열었다.</li>
+<li>Reddit은 403으로 막혔다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" style="color:#0b3d91">Gemini Decisions API와 Gemini Decision 1: 질문 최대 1,000개를 한 번에 판정, 입력 100만 토큰당 $0.10</a></h3>
+<p class="m">출처. Google 블로그 (11-11 미국 날짜, HN 11-12 03:32 KST)</p>
+<p><b>요약.</b> Google은 닫힌 선택지 판정용 API를 냈다. 모델 이름은 gemini-decision-1이다. 이 모델은 답을 토큰 단위로 생성하지 않는다. 선택지를 한 번의 forward pass로 채점하고 확률과 신뢰도(0–1)를 돌려준다. 질문 유형은 예/아니오, 선택(2–255개), 순서형 루브릭 3가지이다. 입력은 텍스트, 이미지, 오디오, 영상, PDF이다. 입력은 최대 256K 토큰이고 요청당 질문은 최대 1,000개이다. 지연 시간은 종단간 150–250 ms이다. 가격은 입력 100만 토큰당 $0.10이고 출력은 $0이다. Google은 공유 벤치마크에서 Gemini 3.5 Flash-Lite보다 약 5배 싸다고 말한다. 벤치마크 점수표는 본문 텍스트에 없음. 파라미터 수와 로컬 실행은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 에이전트의 도구 선택, 모델 라우팅, 정책 검사를 싼 분류 호출로 바꾼다. Google은 Gemini Notebook 라우팅에서 지연이 최대 40% 줄었다고 말한다. OpenRouter, LangChain, LiteLLM 등에서도 쓸 수 있게 된다.</p>
+<p class="m">반응. HN 553점·157개. AI Studio 무료 등급 글 HN 15점·1개. 링크: <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50456791" style="color:#0b3d91">HN 토론</a> · <a href="https://news.ycombinator.com/item?id=50457853" style="color:#0b3d91">HN (AI Studio)</a></p>
+<h3>2. <a href="https://github.com/aws/aws-emulator" style="color:#0b3d91">AWS Emulator 공개: 에이전트가 만든 200개 이상 AWS 서비스의 로컬 에뮬레이터, CC0</a></h3>
+<p class="m">출처. GitHub, All Things Distributed (11-11 미국 날짜, HN 11-12 03:21 KST)</p>
+<p><b>요약.</b> AWS Emulator는 AWS API를 내 컴퓨터에서 흉내 낸다. AWS 계정이 없어도 CLI와 SDK로 테스트한다. 코드는 모두 에이전트가 쓰고 테스트했다고 AWS는 말한다. 400개 이상 API 모델에서 200개 이상 서비스를 만들었다. 에이전트는 먼저 실제 AWS로 충실도 테스트를 맞추고, 그 테스트를 통과할 때까지 에뮬레이터를 고친다. 언어는 Rust이다. 서버 모드와 Rust 테스트용 임베디드 모드가 있다. 소스 빌드는 디스크 100 GB 이상이 필요하다. 텔레메트리는 기본으로 켜져 있다. 라이선스는 CC0-1.0이다(vendor/는 Apache-2.0). 스타는 5,274개이다. 마지막 푸시는 11-13 06:58 KST이다. PR은 받지 않는다.</p>
+<p><b>왜 중요한가.</b> 코딩 에이전트가 클라우드 비용 없이 결과를 스스로 검증하게 한다. LocalStack의 대안이 된다. 판정: 써볼 만함. 안 되는 API는 issues/things-that-do-not-work/에서 먼저 확인한다.</p>
+<p class="m">반응. HN 961점·263개. Werner Vogels 글 HN 111점·2개. 링크: <a href="https://github.com/aws/aws-emulator" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50456631" style="color:#0b3d91">HN 토론</a> · <a href="https://www.allthingsdistributed.com/2026/11/aws-emulator-and-the-engineers-job-when-agents-write-the-code.html" style="color:#0b3d91">Werner 블로그</a> · <a href="https://news.ycombinator.com/item?id=50456740" style="color:#0b3d91">HN (블로그)</a></p>
+<h3>3. <a href="https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/" style="color:#0b3d91">DeepMind AlphaGenome 2: 세포 유형별 DNA 변이 효과 예측, 원인 변이 발견 30% 대 16%</a></h3>
+<p class="m">출처. Google DeepMind 블로그 (11-12 00:00 KST), Nature 뉴스</p>
+<p><b>요약.</b> AlphaGenome 2는 DNA 변이가 특정 세포 유형에서 유전자 발현을 어떻게 바꾸는지 예측한다. 입력은 최대 100만 염기 서열과 목표 조건(조직, 세포 유형, 상태)이다. 사람과 생쥐의 단일세포 프로필 1억 700만 개 이상으로 학습했다. 조직은 68개이다. 학습한 세포 유형은 사람 637개, 생쥐 311개이다. 새 단일세포 데이터를 넣으면 학습에 없던 세포 상태도 예측한다. TenK10K 면역세포 자료에서 원인 변이를 30% 찾았다. 원래 AlphaGenome 미세조정판은 16%이다. 방향성 유전자 효과는 43% 대 23%이다. 비상업 연구용 API로 쓸 수 있다. 상업 연구는 비공개 미리보기이다. 파라미터 수는 출처에 없음. 가중치 공개는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 질병 관련 변이를 세포 수준에서 고르는 시간을 줄인다. IBD의 ETS2 변이 사례를 계산만으로 재현했다. 판정: 지켜볼 만함(API 전용, 비상업).</p>
+<p class="m">반응. HN 15점·0개. 링크: <a href="https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50454306" style="color:#0b3d91">HN</a> · <a href="https://www.nature.com/articles/d41586-026-03673-0" style="color:#0b3d91">Nature 뉴스</a> · <a href="https://github.com/google-deepmind/alphagenome" style="color:#0b3d91">GitHub (클라이언트)</a></p>
+<h3>4. <a href="https://huggingface.co/qvac/BotPsy-0.8B" style="color:#0b3d91">Tether QVAC BotPsy-0.8B: 0.8B 온디바이스 에이전트 모델, BFCL v4 44.0으로 Qwen3.5-2B보다 높음, Apache 2.0</a></h3>
+<p class="m">출처. Hugging Face 블로그·모델 카드, Tether 발표 (11-11 미국 날짜)</p>
+<p><b>요약.</b> BotPsy는 Qwen3.5-0.8B(Thinking) 위에 도구 호출을 학습한 0.8B 모델이다. 라이선스는 Apache 2.0이다. BF16 safetensors와 GGUF(BF16, Q8_0, Q4_K_M)를 공개했다. llama.cpp에서 돈다. BFCL v4는 23.4에서 44.0으로 올랐다. ACEBench는 30.1에서 58.7로, τ-bench는 23.2에서 51.5로 올랐다. 2.5배 큰 Qwen3.5-2B-Think보다 6개 중 5개 벤치마크에서 높다(BFCL v4 44.0 대 37.7, ToolSandbox 64.6 대 41.2). Claw-Eval만 낮다(46.5 대 48.9). IFEval은 59.7에서 90.8로 올랐다. 생각 반복에 빠지는 비율은 22.9%에서 1.4%로 줄었다. 문맥 길이는 출처에서 확인하지 못했다(출처에 없음).</p>
+<p><b>왜 중요한가.</b> 휴대폰에서 도는 크기로 일상 도구 호출을 처리한다. 웹 검색(14.0)과 BrowseComp-Plus(4.5)는 아직 약하다. 판정: 써볼 만함(로컬 에이전트·함수 호출 실험용). 수치는 Tether 자체 측정이다.</p>
+<p class="m">반응. HF 좋아요 14(GGUF 17), 다운로드 215(GGUF 827). HN 토론 없음. 링크: <a href="https://huggingface.co/qvac/BotPsy-0.8B" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/blog/qvac/botpsy" style="color:#0b3d91">HF 블로그</a> · <a href="https://huggingface.co/qvac/BotPsy-0.8B-GGUFs" style="color:#0b3d91">GGUF</a></p>
+<h3>5. <a href="https://github.com/huawei-csl/MACaQ" style="color:#0b3d91">Huawei MACaQ: 122B 모델을 메모리 32.5 GB로 64분에 양자화하는 오픈소스 GGUF 도구</a></h3>
+<p class="m">출처. GitHub (HN 11-12 05:23 KST)</p>
+<p><b>요약.</b> MACaQ는 Huawei가 내부에서 쓰던 모델 무관 양자화 도구이다. 텍스트, 이미지, 영상, 오디오 모델을 양자화한다. 백엔드는 llama.cpp(2/3/4비트 GGUF), vLLM(W4A4 또는 가중치 전용), Diffusers(W4A4), PyTorch, Ascend이다. 122B 모델을 장치 메모리 32.5 GB로 64분에 양자화한다고 README는 말한다. Llama-3-8B에서 MR-GPTQ, DuQuant++보다 perplexity가 낮다고 말한다. 같은 perplexity를 11배 짧은 시간에 낸다고 말한다. MACaQ-R은 기존 GGUF를 다듬고 표준 llama.cpp와 호환된다. 스타는 200개이다. 마지막 푸시는 11-12 18:57 KST이다. 라이선스는 Apache-2.0이다.</p>
+<p><b>왜 중요한가.</b> 로컬 사용자가 큰 MoE 모델을 직접 저비트 GGUF로 만들 수 있다. 판정: 지켜볼 만함. 저장소가 11-10에 생겼고 외부 검증이 아직 없다.</p>
+<p class="m">반응. HN 129점·31개. 링크: <a href="https://github.com/huawei-csl/MACaQ" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50458166" style="color:#0b3d91">HN 토론</a></p>
+<h3>6. <a href="https://github.com/FrigadeHQ/yogurt" style="color:#0b3d91">Yogurt: 봇 없이 로컬에서 회의를 녹음·요약하는 Granola 오픈소스 대안 (MIT)</a></h3>
+<p class="m">출처. GitHub (Show HN 11-12 00:33 KST)</p>
+<p><b>요약.</b> Yogurt는 마이크와 통화 소리를 녹음하고 실시간으로 받아 쓴다. 회의에 봇을 넣지 않는다. 받아쓰기는 whisper.cpp(지원 Mac은 Apple SpeechAnalyzer)를 쓴다. 요약은 llama.cpp로 로컬 오픈웨이트 모델을 돌린다. 오디오, 받아쓴 글, 처리는 컴퓨터 밖으로 나가지 않는다. 99개 언어를 받아쓴다. 로컬 MCP 서버로 다른 AI 앱이 노트를 읽게 한다. Mac, Windows, Linux를 지원하고 메모리 8 GB가 필요하다. 스타는 920개이다. 최신 릴리스는 v0.3.8(11-13 06:09 KST)이다. 라이선스는 MIT이다.</p>
+<p><b>왜 중요한가.</b> 회의 기록을 클라우드에 보내지 않는 무료 대안이다. 판정: 써볼 만함. 화자 이름 인식은 Mac 전용이다.</p>
+<p class="m">반응. HN 285점·110개. 링크: <a href="https://github.com/FrigadeHQ/yogurt" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50454625" style="color:#0b3d91">HN 토론</a></p>
+<h3>7. <a href="https://developers.googleblog.com/a2ui-10-build-delightful-fast-reliable-agentic-experiences/" style="color:#0b3d91">A2UI 1.0: 에이전트가 텍스트 대신 네이티브 화면으로 답하는 Google 오픈 프로토콜 안정판</a></h3>
+<p class="m">출처. Google Developers 블로그 (11-11 미국 날짜, HN 11-12 10:42 KST)</p>
+<p><b>요약.</b> A2UI는 에이전트가 보여 줄 화면을 기술하고 앱이 자기 컴포넌트로 그리게 하는 프로토콜이다. 1.0은 첫 안정판이다. 양방향 함수 호출이 들어갔다. 예를 들어 예약 선택기가 즉시 빈자리를 확인한다. 접근성 지원과 메타데이터 확장도 추가했다. 웹(React, Angular, Lit), Android, iOS 렌더러가 있다. 에이전트 SDK는 Python, TypeScript, Dart이다. 민감한 값은 서버에서 바인딩해 모델에 가지 않는다. 저장소 a2ui-project/a2ui 스타는 17,204개이다. 마지막 푸시는 11-13 06:32 KST이다. 라이선스는 Apache-2.0이다.</p>
+<p><b>왜 중요한가.</b> MCP 앱을 지원하는 Gemini, Claude 같은 호스트에서 같은 화면을 쓴다. Atlassian, Bloomberg, ByteDance가 이미 쓴다고 Google은 말한다. 판정: 써볼 만함(에이전트 UI를 만드는 팀).</p>
+<p class="m">반응. HN 39점·6개. 링크: <a href="https://developers.googleblog.com/a2ui-10-build-delightful-fast-reliable-agentic-experiences/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50461919" style="color:#0b3d91">HN 토론</a> · <a href="https://github.com/a2ui-project/a2ui" style="color:#0b3d91">GitHub</a></p>
+<h3>8. <a href="https://github.com/openai/codex-security/releases/tag/npm-v0.10.0" style="color:#0b3d91">OpenAI Codex Security 0.10.0: 중단된 스캔 재개, 일괄 스캔 비용 상한</a></h3>
+<p class="m">출처. GitHub 릴리스 (11-12 11:18 KST)</p>
+<p><b>요약.</b> Codex Security는 코드 취약점을 찾고 검증하고 고치는 CLI와 TypeScript SDK이다. 0.10.0은 중단된 Standard 스캔을 저장 지점부터 다시 시작한다(codex-security scans resume). --max-total-cost로 여러 저장소 일괄 스캔에 하나의 예상 비용 상한을 건다. 패치가 막히면 이유와 다음 할 일을 설명한다. ArmorCode SAST 결과를 가져올 수 있다. GitHub Action도 같은 날 나왔다. 스타는 12,368개이다. 마지막 푸시는 11-13 06:10 KST이다. 라이선스는 Apache-2.0이다.</p>
+<p><b>왜 중요한가.</b> AI 보안 스캔을 CI에서 비용을 통제하며 돌리게 한다. 판정: 써볼 만함. 탐지 정확도 수치는 릴리스 노트에 없음.</p>
+<p class="m">반응. GitHub 트렌딩 오늘 +663 스타. HN 토론 없음. 링크: <a href="https://github.com/openai/codex-security/releases/tag/npm-v0.10.0" style="color:#0b3d91">원문</a> · <a href="https://github.com/openai/codex-security" style="color:#0b3d91">GitHub</a></p>
+<h3>9. <a href="https://github.com/ashhart/TensorFold/releases/tag/v1.2.7" style="color:#0b3d91">TensorFold 1.2.7: Python 없이 Metal·CUDA로 도는 Zig 추론 엔진, 긴 대화 재개 첫 토큰 85초→0.3초</a></h3>
+<p class="m">출처. GitHub 릴리스 (11-12 02:18 KST)</p>
+<p><b>요약.</b> TensorFold는 Zig 바이너리 하나로 Apple Silicon과 NVIDIA GPU에서 언어 모델을 서빙한다. Python과 MLX 설치가 필요 없다. 1.2.7에서 Qwen3.8-27B는 M3 Ultra에서 긴 대화 후속 질문의 첫 토큰을 약 0.3초에 낸다. 전에는 85초였다. GLM-5.3-Flash는 CUDA에서 이전 턴부터 대화를 재개한다(선택 기능). Responses API WebSocket 모드와 LightOnOCR-3 이미지 채팅(CUDA)을 추가했다. 스타는 1,920개이다. 라이선스는 Apache-2.0이다.</p>
+<p><b>왜 중요한가.</b> 여러 에이전트가 긴 문맥을 반복해서 보내는 로컬 서빙에서 캐시 재사용이 중요하다. 판정: 지켜볼 만함. 1인 중심 프로젝트이고 수치는 저자 측정이다.</p>
+<p class="m">반응. GitHub 트렌딩 오늘 +94 스타. HN 토론 없음. 링크: <a href="https://github.com/ashhart/TensorFold/releases/tag/v1.2.7" style="color:#0b3d91">원문</a> · <a href="https://github.com/ashhart/TensorFold" style="color:#0b3d91">GitHub</a></p>
+<h3>10. <a href="https://pomerado.ai/" style="color:#0b3d91">Pomerado (YC F26): 아무 웹사이트나 결정적 MCP로 바꾸는 서비스</a></h3>
+<p class="m">출처. Launch HN (11-12 02:11 KST)</p>
+<p><b>요약.</b> Pomerado는 API가 없는 웹사이트를 에이전트용 MCP로 바꾼다. 사용자가 자연어로 작업을 설명하면 1시간 안에 MCP를 받는다. 이후 호출은 브라우저 자동화가 아니라 결정적 MCP로 처리한다. 응답은 보통 5–30초이다. 사이트가 바뀌면 스스로 고친다고 회사는 말한다. 소스는 공개하지 않는다.</p>
+<p><b>왜 중요한가.</b> 항공사, 은행, 공공 포털처럼 API가 없는 곳에 에이전트를 붙이는 방법이다. 같은 날 United는 AI 에이전트 예약을 막았다. 판정: 지켜볼 만함(상용 서비스, 약관 문제 확인 필요).</p>
+<p class="m">반응. HN 60점·47개. 링크: <a href="https://pomerado.ai/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50455811" style="color:#0b3d91">HN 토론</a></p>
+<h3>11. <a href="https://libreagi.com/" style="color:#0b3d91">LibreAGI: 사라질 수 있는 오픈 모델을 BitTorrent로 보존하는 회원제 트래커</a></h3>
+<p class="m">출처. LibreAGI (HN 11-12 23:11 KST)</p>
+<p><b>요약.</b> LibreAGI는 오픈 모델 가중치를 보관하는 비공개 BitTorrent 트래커이다. 사본이 적은 모델을 시드하면 기본 크레딧의 4배를 준다. Apache-2.0, MIT, Qwen Community License 모델만 받는다. 각 파일은 원본 커밋과 대조한다. 서명된 공개 카탈로그에 모델, 해시, 출처를 올린다. 같은 날 "모델 배포에 토렌트가 맞다"는 글도 HN에 올라왔다.</p>
+<p><b>왜 중요한가.</b> 허브에서 모델이 내려가도 가중치를 지키려는 움직임이다. 판정: 아직 이름(가입 심사제, 규모 정보 없음).</p>
+<p class="m">반응. HN 114점·24개. 토렌트 글 HN 36점·16개. 링크: <a href="https://libreagi.com/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50467439" style="color:#0b3d91">HN 토론</a> · <a href="https://pirateface.co/articles/every-ai-model-should-be-a-torrent" style="color:#0b3d91">토렌트 글</a> · <a href="https://news.ycombinator.com/item?id=50464055" style="color:#0b3d91">HN (토렌트 글)</a></p>
+<h3>12. <a href="https://machinelearning.apple.com/research/faster-retrieval" style="color:#0b3d91">Apple: 학습한 작은 신경망으로 RAG 검색을 빠르게, 99% recall까지 최대 약 8배 빠름</a></h3>
+<p class="m">출처. Apple ML Research (글 11-05, HN 11-12 01:57 KST), ICML 2026 논문</p>
+<p><b>요약.</b> Apple은 최대 내적 검색(MIPS)을 지지 함수 학습 문제로 본다. SupportNet은 각 클러스터의 지지 함수를 배워 질의를 더 맞는 클러스터로 보낸다. 약 260만 문단 Natural Questions(클러스터 128개)에서 작은 모델은 라우팅 recall 95%에 1.74 ms로 닿는다. 중심점 라우팅은 3.36 ms이다(약 1.9배). KeyNet은 질의를 최적 키 근처로 옮긴 뒤 기존 IVF 인덱스에 넣는다. 가장 큰 KeyNet은 99% recall을 0.23 ms에 낸다. 원래 질의는 1.8 ms이다(약 8배).</p>
+<p><b>왜 중요한가.</b> 기존 벡터 인덱스를 바꾸지 않고 앞단 모델만 붙여 RAG 검색 비용을 줄인다. 질의 분포가 안정된 서비스에 맞다. 글은 11-05에 나왔다.</p>
+<p class="m">반응. HN 232점·38개. 링크: <a href="https://machinelearning.apple.com/research/faster-retrieval" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50455633" style="color:#0b3d91">HN 토론</a></p>
+<h3>13. <a href="https://huggingface.co/papers/2611.13410" style="color:#0b3d91">논문: SteerDistill 4비트 에이전트 · 교과서 증명 데이터 TOME-Math · BookNavigator 자가학습 RL · Evolving Infra · SparseRead</a></h3>
+<p class="m">출처. Hugging Face Daily Papers (11-12)</p>
+<p><b>요약.</b> SteerDistill은 W4A16 양자화 에이전트를 교사 모델이 고쳐 주며 증류한다. 5개 에이전트 벤치마크에서 가장 강한 양자화 기준보다 평균 1.67–2.18점 높고 BF16과 1점 이내이다. τ²-Bench에서 QeRL보다 1.84%p 높고 학습 GPU 시간은 67% 적다. TOME-Math는 대학 수학 교과서 2,118권을 증명 기록 약 38만 개로 바꿨다. 이 데이터로 미세조정하면 평균 점수가 기본 모델보다 16.7%p 오른다. BookNavigator는 모델이 교과서를 읽고 증명을 푸는 RL이다. Intern-S2-Preview-35B 증명 정확도를 51.5%에서 79.5%로 올렸다. Evolving Infra(MIT Han Lab)는 에이전트 작업에 맞춰 prefill·decode 배분을 바꾼다. GB300 최대 256개에서 Dynamo보다 평균 지연은 최대 4.1배, P95 TTFT는 최대 14배 줄었다. SparseRead는 에이전트가 웹 문서를 필요한 부분만 읽게 해 토큰을 최대 92.9% 줄인다.</p>
+<p><b>왜 중요한가.</b> 작은·저비트 에이전트, 수학 데이터, 에이전트 서빙 비용에 바로 쓸 수 있는 방법이다. 수치는 모두 저자 측정이다.</p>
+<p class="m">반응. HF 추천 31 / 39 / 27 / 10 / 18. 링크: <a href="https://huggingface.co/papers/2611.13410" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2610.40394" style="color:#0b3d91">TOME-Math</a> · <a href="https://huggingface.co/papers/2610.39671" style="color:#0b3d91">BookNavigator</a> · <a href="https://huggingface.co/papers/2611.12304" style="color:#0b3d91">Evolving Infra</a> · <a href="https://huggingface.co/papers/2608.22237" style="color:#0b3d91">SparseRead</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.nbcnews.com/tech/tech-news/nvidia-ceo-jensen-huang-resigns-reports-extramarital-relationships-rcna608402" style="color:#0b3d91">Jensen Huang, Nvidia CEO에서 즉시 사임</a> — 여러 부적절한 관계 보도 뒤 사임했다. CFO Colette Kress가 임시 CEO가 된다. 이사회는 첫 의장으로 Harvey Jones를 뽑았다. Nvidia 주가는 장중 최대 16% 내렸고 4.3% 하락으로 마감했다. HN 2,639점·2,539개 (AP 기사). <a href="https://news.ycombinator.com/item?id=50467087" style="color:#0b3d91">HN</a></li>
+<li><a href="https://ipo.anthropic.com/us/" style="color:#0b3d91">Anthropic IPO 사이트 공개, Nasdaq 티커 ANT</a> — Q3 2026 매출은 $17.0B이고 순손실은 $23.3B이다(비현금 $21.9B 포함). Yahoo Finance에 따르면 공모가 범위는 $70–78이다. 같은 수정 신고서에서 Anthropic은 "AI가 연구 속도를 약 2배로 올리는" RSP 기준에 닿았다고 판단했다. HN 767점·762개. <a href="https://news.ycombinator.com/item?id=50465829" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.cbsnews.com/news/united-airlines-bans-ai-agents-booking-flights/" style="color:#0b3d91">United Airlines, 제3자 AI 에이전트의 항공권 예약 금지</a> — United는 보안 위험과 연방 규정을 이유로 들었다. 자사 앱과 여행사·중개 사이트에서 AI 에이전트 접근을 막는다. Southwest는 반대로 ChatGPT에 항공편을 열었다. HN 658점·682개. <a href="https://news.ycombinator.com/item?id=50458900" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>Reddit(r/LocalLLaMA)은 403으로 막혔다. Reddit 반응은 넣지 못했다.</li>
+<li>AWS Emulator, Gemini Decisions API, Yogurt, Apple RAG 검색, Huawei MACaQ, United 항목은 11-11 다이제스트 AFTER에 있었다. HN 게시가 11-12 KST라서 이번에 메인으로 넣었다.</li>
+<li>Modern Web Guidance 1.0 글(HN 34점)은 11-11 메인이라 다시 싣지 않았다. GitHub 트렌딩의 meta/astryx, agent-skills, modern-web-guidance-src도 이전에 다뤘다.</li>
+<li>HF 트렌딩 상위 45개에 이번 기간에 새로 만든 모델은 없었다. MiniMax-H3-Image, ZONOS3-Mini 등은 이전 메인이다.</li>
+<li>CopilotKit/OpenBot v1.0.2는 11-11 17:45 KST에 나와 기간 밖이다. Autoware AutoE2E(79.9M, Apache 2.0)와 Valory Olas-Predict-Qwen3.8-27B는 11-11 발표이고 KST 시각을 확인하지 못해 각주로만 둔다.</li>
+<li>BotPsy 저장소는 11-10에 생겼고 발표는 11-11(미국 날짜)이다. AlphaGenome 2 발표는 11-11 15:00 UTC(11-12 00:00 KST)이다.</li>
+</ul><h2>AFTER (11-13 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50471431" style="color:#0b3d91">Gemini 4 Hydrogen: AA Intelligence Index 51(Argon 50), 입력 $1.50·출력 $7.50, Terminal-Bench 4.1 57%(3.8 Flash 18.2%)</a> HN 411점·274개</li>
+<li><a href="https://news.ycombinator.com/item?id=50472260" style="color:#0b3d91">Gemini 4 Hydrogen과 Antigravity Orchestrator</a> HN 212점·55개</li>
+<li><a href="https://news.ycombinator.com/item?id=50468888" style="color:#0b3d91">smolmaxxing: 작고 오래된 기기에서 LLM 돌리기</a> HN 250점·86개</li>
+<li><a href="https://news.ycombinator.com/item?id=50471650" style="color:#0b3d91">Show HN: AgentRun – 자기 개선 관리형 에이전트 오픈소스</a> HN 65점·11개</li>
+<li><a href="https://news.ycombinator.com/item?id=50474361" style="color:#0b3d91">Apple Foundation Models framework</a> HN 61점·9개</li>
+<li><a href="https://news.ycombinator.com/item?id=50469007" style="color:#0b3d91">Show HN: Fable52.games – Fable 5.2가 만든 단일 HTML 게임</a> HN 61점·53개</li>
+<li><a href="https://news.ycombinator.com/item?id=50474883" style="color:#0b3d91">중국 최상위 모델에 수출 통제 GPU 흔적이 남는다는 분석</a> HN 49점·7개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
