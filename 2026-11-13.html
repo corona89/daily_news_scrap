@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-13</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-13</h1>
+<p class="m">대상 기간: 2026-11-13 00:00–24:00 KST. HN 수치는 2026-11-14 07:55 KST 전후에 HN API에서 확인했다. GitHub·Hugging Face 수치도 같은 시각에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>Google은 Gemini 4 Hydrogen을 냈다. AA Intelligence Index 51로 Argon(50)보다 높고 입력 100만 토큰당 $1.50이다.</li>
+<li>Edge0-145B 가중치가 나왔다. 24 GB GPU 한 장에서 98.3 tok/s이고 Terminal-Bench 2.1은 86.52이다(자체 수치).</li>
+<li>llama.cpp와 ggml이 v1.0.0이 됐다. C API를 시맨틱 버전으로 관리한다.</li>
+<li>smolmaxxing은 1 GB RAM TV 박스에서 16B MoE를 5.1 tok/s로 돌린다.</li>
+<li>가중치 포렌식 보고서는 중국 모델 6개에서 Blackwell GPU 흔적을 찾았다.</li>
+<li>AgentRun, Apple Foundation Models framework, Brave x402 결제, RealtimeVAD가 나왔다.</li>
+<li>Nvidia 직원들이 Huang 복귀를 청원했다. Claude는 약 2시간 인증 장애를 겪었다.</li>
+<li>Reddit은 403으로 막혔다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/" style="color:#0b3d91">Gemini 4 Hydrogen: AA Intelligence Index 51(Argon 50), 입력 100만 토큰당 $1.50·출력 $7.50, Terminal-Bench 4.1 57%</a></h3>
+<p class="m">출처. Google 블로그, DeepMind 모델 카드 (11-12 미국 날짜, HN 11-13 03:01 KST)</p>
+<p><b>요약.</b> Google은 빠른 실행용 모델 Gemini 4 Hydrogen을 냈다. 이 모델은 Gemini 4 Carbon을 바탕으로 만들었다. Artificial Analysis Intelligence Index는 기본 high 설정에서 51이다. Argon은 50이다. 가장 높은 xhigh 설정에서는 54이다. Terminal-Bench 4.1은 57%이다. Gemini 3.8 Flash는 18.2%이다. 작업 속도는 3.8 Flash보다 2.5배 빠르다고 Google은 말한다. 지어낸 주장은 5분의 1 이하로 줄었다. HLE-Diamond는 58.8%이다. MKA는 53.4%이고 Agents' Last Exam v1.1은 71.6%이다. 문맥은 입출력 합계 100만 토큰이다. 기본 출력은 64K이고 백그라운드 디코드로 최대 100만 토큰이다. 가격은 문맥 길이와 관계없이 입력 100만 토큰당 $1.50, 출력 $7.50이다. 파라미터 수는 출처에 없음. API 전용이고 로컬 실행은 할 수 없다.</p>
+<p><b>왜 중요한가.</b> 모든 등급의 AI Studio, Gemini API, Gemini 앱, 검색에 바로 들어간다. Antigravity에는 Orchestrator가 함께 나왔다. Orchestrator는 한 세션 안에서 Carbon과 Hydrogen을 바꿔 쓴다. Terminal-Bench 4.0에서 Carbon에 가까운 성공률을 내고 쿼터를 24% 덜 쓰며 19% 빨랐다고 Google은 말한다.</p>
+<p class="m">반응. HN 556점·348개. Antigravity Orchestrator 글 HN 493점·160개. 링크: <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50471431" style="color:#0b3d91">HN 토론</a> · <a href="https://deepmind.google/models/model-cards/gemini-4-hydrogen/" style="color:#0b3d91">모델 카드</a> · <a href="https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity/" style="color:#0b3d91">Antigravity 블로그</a> · <a href="https://news.ycombinator.com/item?id=50472260" style="color:#0b3d91">HN (Orchestrator)</a></p>
+<h3>2. <a href="https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer" style="color:#0b3d91">Edge0-145B 오픈 웨이트: 145B MoE를 24 GB GPU 한 장에서 실행, Terminal-Bench 2.1 86.52</a></h3>
+<p class="m">출처. Edge0 블로그, Hugging Face 모델 카드 (11-12 미국 날짜, HN 11-13 08:06 KST)</p>
+<p><b>요약.</b> Edge0은 Edge0-145B와 Edge0-120B 가중치와 추론 엔진을 공개했다. 전체 파라미터는 145B이고 토큰마다 약 10B가 계산에 참여한다. 구조는 48층, 전문가 512개, 토큰당 활성 전문가 10개이다. 문맥은 256K이다. 처음부터 4비트로 학습했다. 기반 모델은 Qwen3.8-Flash-Next이다. 자체 평가에서 DeepSWE 1.1은 64.6이다. Qwen3.8-Flash-Next는 58.7이고 DeepSeek-V4-Flash-0731은 54.4이다. Terminal-Bench 2.1은 86.52이다. Claude-Opus-4.6(Max)은 78.2이다. GPQA-Diamond는 90.4로 Qwen3.8-Flash-Next(91.7)보다 낮다. HLE는 35.4로 Claude-Opus-4.6(Max)(40.0)보다 낮다. RTX 5090 D 24 GB에서 NVFP4 빌드는 VRAM 23.25 GiB와 시스템 RAM 38.27 GiB를 썼다. 이때 에이전트 디코드는 98.3 tok/s이다. 노트북에서는 최대 메모리 29 GB, 디코드 80 tok/s 이상이라고 발표했다. 라이선스는 Edge0 Community Model License 1.0과 Qwen Community License 1.0이다. 상용 모델 서비스나 상용 코딩 도우미는 별도 서면 라이선스가 필요하다.</p>
+<p><b>왜 중요한가.</b> 소비자 GPU 한 장으로 100B급 에이전트 모델을 돌리는 첫 공개 사례이다. 벤치마크는 모두 Edge0 자체 수치이다. 판정: 써볼 만함. 24 GB GPU와 RAM 40 GB 이상이 있으면 시험할 만하다. 상용 사용은 라이선스를 먼저 확인한다.</p>
+<p class="m">반응. HN 338점·104개. HF 좋아요 169개, 지난달 다운로드 14,134회. 링크: <a href="https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50475713" style="color:#0b3d91">HN 토론</a> · <a href="https://huggingface.co/Edge0/Edge0-145B-NVFP4" style="color:#0b3d91">HF 모델 카드</a></p>
+<h3>3. <a href="https://huggingface.co/blog/ggml-org/llama-cpp-v1" style="color:#0b3d91">llama.cpp와 ggml v1.0.0: C API를 시맨틱 버전으로 고정</a></h3>
+<p class="m">출처. Hugging Face 블로그, GitHub 릴리스 (11-13 19:20 KST 릴리스)</p>
+<p><b>요약.</b> ggml-org는 libllama와 libggml을 v1.0.0으로 냈다. 앞으로 공개 C API를 깨는 변경은 메이저 버전을 올린다. 기능, 백엔드, 모델 지원 추가는 마이너 버전이다. 버그 수정은 패치 버전이다. llama.cpp는 150개 이상의 아키텍처 변형을 지원한다고 말한다. 배포 채널은 Docker, Debian, Homebrew, conda-forge, MacPorts, Winget, XCFramework이다. 저장소 스타는 134,866개이다. 라이선스는 MIT이다. 마지막 푸시는 11-14 06:54 KST이다.</p>
+<p><b>왜 중요한가.</b> 로컬 추론 앱과 라이브러리가 API 변경을 버전 번호로 미리 안다. 패키지 관리자로 설치하기도 쉬워진다. 판정: 써볼 만함. 이미 사실상 표준 로컬 추론 엔진이다.</p>
+<p class="m">반응. HN 20점·2개. HF 블로그 추천 125개. 링크: <a href="https://huggingface.co/blog/ggml-org/llama-cpp-v1" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50483765" style="color:#0b3d91">HN</a> · <a href="https://github.com/ggml-org/llama.cpp/releases/tag/v1.0.0" style="color:#0b3d91">GitHub 릴리스</a></p>
+<h3>4. <a href="https://github.com/hyperionaidev/smolmaxxing/" style="color:#0b3d91">smolmaxxing: 1 GB RAM TV 박스에서 16B MoE, 휴대폰에서 80B MoE 실행</a></h3>
+<p class="m">출처. GitHub (HN 11-13 00:23 KST)</p>
+<p><b>요약.</b> smolmaxxing은 작은 기기에서 돌릴 수 있는 가장 큰 모델을 찾는다. 모델 일부만 메모리에 두고 나머지는 플래시에서 읽는다. 1비트 커널도 직접 만들었다. Xiaomi TV Box S(사용 가능 RAM 약 1 GB)는 Qwen3.5-2B를 7.7 tok/s로, Ling-mini-2.0 16B를 5.1 tok/s로 돌린다. 2013년 iPad Air는 Bonsai-1.7B(1비트)를 24–26 tok/s로 돌린다. OnePlus Nord CE 2는 Qwen3-Next-80B-A3B를 2.6–3.1 tok/s로 돌린다. 모든 수치는 기기에서 직접 쟀다고 말한다. 스타는 631개이다. 라이선스는 MIT이다. 저장소는 11-04에 생겼고 마지막 푸시는 11-14 00:57 KST이다.</p>
+<p><b>왜 중요한가.</b> 남는 기기를 로컬 LLM 장치로 쓰는 실측 자료이다. 플래시 스트리밍 기법은 RAM보다 큰 모델에 일반적으로 쓸 수 있다. 판정: 지켜볼 만함. 아직 기기 3종만 검증했다.</p>
+<p class="m">반응. HN 463점·177개. 링크: <a href="https://github.com/hyperionaidev/smolmaxxing/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50468888" style="color:#0b3d91">HN 토론</a></p>
+<h3>5. <a href="https://unemploymentlabs.com/checkpoint-forensics" style="color:#0b3d91">가중치 포렌식: 중국 모델 6개에서 Blackwell GPU 흔적 발견</a></h3>
+<p class="m">출처. Unemployment Labs 보고서 (Will DePue, 11-12 미국 날짜, HN 11-13 06:56 KST)</p>
+<p><b>요약.</b> 이 보고서는 공개 가중치에 남은 초기값 흔적으로 학습 하드웨어를 추정한다. 2026년 4월 이후 모델 6개가 Blackwell 패턴과 맞았다. 모델은 DeepSeek-V4-Flash, DeepSeek-V4-Pro, Kimi K3, Kimi K3.1-Pro, MiniMax-M3, Ling-3.1-flash이다. 이전 모델은 Hopper 패턴과 맞았다. 하드웨어를 공개한 모델 24개에서 이 방법은 모두 맞았다. 우연 일치의 기대 최대값은 약 8 시그마이다. 6개 모델의 가장 강한 증거는 49–1,385 시그마이다. Qwen, GLM, Tencent, Xiaomi, StepFun 최신 모델은 Hopper로 읽혔다. 보고서는 수출 통제 위반 여부는 증명하지 않는다고 말한다.</p>
+<p><b>왜 중요한가.</b> 공개 가중치만으로 학습 하드웨어를 추정하는 새 기법이다. 오픈 웨이트 공개의 새 추적 위험을 보여 준다.</p>
+<p class="m">반응. HN 353점·149개. 링크: <a href="https://unemploymentlabs.com/checkpoint-forensics" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50474883" style="color:#0b3d91">HN 토론</a></p>
+<h3>6. <a href="https://github.com/Parcha-ai/agentrun" style="color:#0b3d91">AgentRun: 에이전트가 반복 작업을 배우게 하는 오픈소스 실행 플랫폼</a></h3>
+<p class="m">출처. GitHub (Show HN 11-13 03:15 KST)</p>
+<p><b>요약.</b> AgentRun은 Claude Code, Codex, OpenCode, pi 위에서 돈다. 실행이 끝나면 다음 실행에 쓸 노트, 스킬, 워크플로를 저장한다. 서버가 멈춰도 실행을 이어 간다. 승인, 지출 한도, 콘솔을 제공한다. 개발사는 저렴한 모델로 만든 코드 리뷰어가 리뷰당 18센트라고 말한다. 처음 보는 PR 30개에서 Greptile보다 실제 버그를 1.6배 찾았다고 말한다. Node 24.22.3 이상이 필요하다. 스타는 848개이다. 라이선스는 Apache-2.0이다. 마지막 푸시는 11-14 07:52 KST이다.</p>
+<p><b>왜 중요한가.</b> 비싼 모델이 찾은 방법을 싼 모델에 넘겨 토큰 비용을 줄인다. 판정: 지켜볼 만함. 성과 수치는 개발사 자체 사례이다.</p>
+<p class="m">반응. HN 133점·37개. 링크: <a href="https://github.com/Parcha-ai/agentrun" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50471650" style="color:#0b3d91">HN 토론</a></p>
+<h3>7. <a href="https://developer.apple.com/foundation-models-framework/" style="color:#0b3d91">Apple Foundation Models framework: 같은 Swift API로 Claude·Gemini·MLX 모델 호출</a></h3>
+<p class="m">출처. Apple Developer (HN 11-13 06:13 KST)</p>
+<p><b>요약.</b> 이 프레임워크는 앱에 LLM을 넣는 Swift API이다. 이제 기기 내 Apple 모델 외에 Claude, Gemini, MLX, Core AI 모델도 같은 API로 쓴다. 모델 제공사는 Language Model 프로토콜을 따르는 Swift 패키지를 만들면 된다. 이미지 이해와 Vision 도구(OCR, 바코드)가 들어갔다. Dynamic Profiles는 세션 안에서 모델, 도구, 지시를 바꾼다. App Store Small Business Program 개발사 중 첫 다운로드 200만 회 미만은 Private Cloud Compute 모델을 클라우드 API 비용 없이 쓴다. 모델 벤치마크와 파라미터 수는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> iOS 앱 개발자가 온디바이스와 서버 모델을 한 코드로 바꿔 쓴다.</p>
+<p class="m">반응. HN 263점·35개. 링크: <a href="https://developer.apple.com/foundation-models-framework/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50474361" style="color:#0b3d91">HN 토론</a></p>
+<h3>8. <a href="https://huggingface.co/papers/2611.15777" style="color:#0b3d91">HF 일간 논문: SO-Arena, 결정 모델을 교사로 쓰기, SimpleHC</a></h3>
+<p class="m">출처. Hugging Face Daily Papers (11-13)</p>
+<p><b>요약.</b> SO-Arena는 System One 모델을 11개 분야와 5개 능력군으로 평가한다. 21개 모델을 평가했다. 정확도 1위 모델이 신뢰성 순위에서는 7위였다. 두 번째 논문은 결정 모델 JEV를 강화학습 교사로 썼다. JEV는 Qwen2.5-1.5B 정책의 성공률을 GRPO 대비 ALFWorld에서 72.8%→82.9%, WebShop에서 56.8%→71.4%로 올렸다. 세 번째 논문 SimpleHC는 Hyper-Connections에서 잔차 혼합을 빼도 mHC와 비슷한 성능을 낸다고 보고한다.</p>
+<p><b>왜 중요한가.</b> 결정 모델(한 번에 선택지를 채점하는 모델)의 평가와 활용 연구가 늘고 있다. 높은 정확도가 곧 믿을 만한 결정은 아니라는 점을 수치로 보였다.</p>
+<p class="m">반응. HF 추천 SO-Arena 72개, 결정 모델 논문 29개, SimpleHC 26개. 링크: <a href="https://huggingface.co/papers/2611.15777" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2611.17167" style="color:#0b3d91">결정 모델 논문</a> · <a href="https://huggingface.co/papers/2611.05984" style="color:#0b3d91">SimpleHC</a></p>
+<h3>9. <a href="https://brave.com/blog/search-api-agentic-payments/" style="color:#0b3d91">Brave Search API, x402로 요청당 결제 지원: 1,000건당 $5</a></h3>
+<p class="m">출처. Brave 블로그 (11-12 미국 날짜, HN 11-13 12:08 KST)</p>
+<p><b>요약.</b> 에이전트는 계정과 API 키 없이 Brave Search API를 쓸 수 있다. 결제 없는 요청은 HTTP 402와 가격을 받는다. 에이전트는 Base 체인의 USDC로 서명한 결제를 붙여 다시 요청한다. LLM Context와 웹, 뉴스, 이미지, 영상, 지역 검색은 요청당 $0.005이다. 가스비는 한시적으로 Brave가 낸다. Stripe의 CLI 지갑 Purl Wallet을 권장한다.</p>
+<p><b>왜 중요한가.</b> 에이전트가 스스로 도구 비용을 내는 결제 방식이 주요 검색 API에 들어왔다.</p>
+<p class="m">반응. HN 255점·143개. 링크: <a href="https://brave.com/blog/search-api-agentic-payments/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50477649" style="color:#0b3d91">HN 토론</a></p>
+<h3>10. <a href="https://github.com/KoljaB/RealtimeVAD" style="color:#0b3d91">RealtimeVAD: Silero보다 92 ms 먼저 발화 끝 신호</a></h3>
+<p class="m">출처. GitHub (Show HN 11-13 06:30 KST)</p>
+<p><b>요약.</b> RealtimeVAD는 음성 비서용 조기 멈춤 신호를 준다. Silero VAD는 그대로 쓰고 10 ms마다 소리 크기를 잡음과 비교한다. 실제 음성 비서 발화 3,153개에서 Silero 확률 하락보다 중앙값 92 ms 먼저 신호를 냈다. fast 모드는 130 ms 먼저이다. 화자 214명의 6,600개 클립에서는 82–90 ms 먼저였다. 먼 마이크에서는 이득이 없다. CPU 한 스레드로 오디오 1초당 약 8 ms를 쓴다. 스타는 86개이다. 라이선스는 MIT이다. 마지막 푸시는 11-14 07:54 KST이다.</p>
+<p><b>왜 중요한가.</b> 음성 에이전트의 응답 지연을 줄인다. 판정: 써볼 만함. 근거리 마이크 음성 파이프라인에 바로 붙일 수 있다.</p>
+<p class="m">반응. HN 29점·8개. 링크: <a href="https://github.com/KoljaB/RealtimeVAD" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50474586" style="color:#0b3d91">HN</a></p>
+<h3>11. <a href="https://expo.dev/blog/introducing-expo-simulators-cloud-simulators-built-for-agents" style="color:#0b3d91">Expo Simulators 정식 출시: 에이전트용 클라우드 iOS·Android 시뮬레이터</a></h3>
+<p class="m">출처. Expo 블로그 (HN 11-13 02:53 KST)</p>
+<p><b>요약.</b> 에이전트와 CI가 클라우드 iOS 시뮬레이터와 Android 에뮬레이터를 띄운다. Mac이 없어도 된다. 세션마다 에이전트 동작, 영상, 스크린샷, 로그, 네트워크, CPU·메모리 사용을 기록한다. 모든 유료 요금제에서 쓸 수 있다. 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 모바일 앱 에이전트가 자기 결과를 병렬로 검증한다.</p>
+<p class="m">반응. HN 24점·12개. 링크: <a href="https://expo.dev/blog/introducing-expo-simulators-cloud-simulators-built-for-agents" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50471310" style="color:#0b3d91">HN</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.wired.com/story/nvidia-employees-petition-for-jensen-huangs-return/" style="color:#0b3d91">Nvidia 직원들, Jensen Huang 복귀 청원</a> — WIRED에 따르면 내부 게시글에 댓글이 1,600개 넘게 달렸다. 많은 댓글이 복귀를 지지한다. Reuters는 Huang이 두 번째 직원과도 관계를 가졌다고 보도했다(HN 446점·475개). HN 783점·640개. <a href="https://news.ycombinator.com/item?id=50477231" style="color:#0b3d91">HN</a></li>
+<li><a href="https://status.claude.com/incidents/nn11wk485zfn" style="color:#0b3d91">claude.ai, Claude Code, Console 인증 장애</a> — 11-13 18:58 KST에 조사를 시작했다. 20:58 KST에 해결됐다. claude.ai, Claude Console, Claude Code, Claude Cowork가 영향을 받았다. HN 479점·379개. <a href="https://news.ycombinator.com/item?id=50481187" style="color:#0b3d91">HN</a></li>
+<li><a href="https://garymarcus.substack.com/p/breaking-eli-lilly-ceo-becomes-latest" style="color:#0b3d91">Eli Lilly CEO, Amodei의 "10년 내 암 치료" 주장 반박</a> — Gary Marcus 글이다. Amodei가 IPO 영상에서 암·알츠하이머 등을 10년 안에 고친다고 말한 데 대한 반론을 모았다. HN 261점·364개. <a href="https://news.ycombinator.com/item?id=50483480" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.techspot.com/news/114532-chicago-schools-tell-google-they-can-live-without.html" style="color:#0b3d91">시카고 공립학교, AI 강제 대신 Google 검색 포기</a> — Google은 K-12 학교가 AI 서비스를 받아야 검색을 유지한다고 했다. 시카고 공립학교는 다른 검색을 쓰겠다고 답했다. HN 88점·28개. <a href="https://news.ycombinator.com/item?id=50476586" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>Reddit(r/LocalLLaMA)은 403으로 막혔다. Reddit 반응은 넣지 못했다.</li>
+<li>Gemini 4 Hydrogen, smolmaxxing, Apple Foundation Models framework, AgentRun, 가중치 포렌식 보고서는 11-12 다이제스트 AFTER에 있었다. HN 게시가 11-13 KST라서 이번에 메인으로 넣었다.</li>
+<li>Edge0-145B-NVFP4 HF 저장소는 11-11 14:22 KST에 생겼다. 블로그 발표와 HN 게시는 기간 안이다.</li>
+<li>GitHub 트렌딩에서 이번 기간에 새로 나온 AI 저장소는 없었다. modern-web-guidance-src와 codex-security는 이전에 다뤘다. alibaba/open-code-review(스타 50,556개)는 5월에 생긴 저장소이다.</li>
+<li>HF 트렌딩 상위 50개에 이번 기간에 새로 만든 모델은 없었다.</li>
+<li>Microsoft 365 대규모 장애(HN 1,151점)와 Rust 1.100(HN 870점)은 AI 주제가 아니라서 뺐다.</li>
+</ul><h2>AFTER (11-14 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50486748" style="color:#0b3d91">AI로 괴델 노트 해독, 증명된 정리 수백 개 포함 주장</a> HN 283점·83개</li>
+<li><a href="https://news.ycombinator.com/item?id=50487185" style="color:#0b3d91">JEPA 월드 모델 실험 600회에서 배운 점</a> HN 190점·32개</li>
+<li><a href="https://news.ycombinator.com/item?id=50484658" style="color:#0b3d91">Jonathan Blow: AI가 코딩을 풀었다면 왜 소프트웨어는 그대로인가 [영상]</a> HN 145점·130개</li>
+<li><a href="https://news.ycombinator.com/item?id=50488769" style="color:#0b3d91">No AI Slop 선언문</a> HN 143점·84개</li>
+<li><a href="https://news.ycombinator.com/item?id=50487184" style="color:#0b3d91">OpenAI, 범용 모델이 로봇을 움직이자 로보틱스 팀 해체</a> HN 128점·57개</li>
+<li><a href="https://news.ycombinator.com/item?id=50487762" style="color:#0b3d91">가중치 공간으로 바이러스를 옮기는 모델</a> HN 123점·44개</li>
+<li><a href="https://news.ycombinator.com/item?id=50486489" style="color:#0b3d91">Arm CEO Rene Haas, Nvidia CEO 후보로 접촉</a> HN 63점·71개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
