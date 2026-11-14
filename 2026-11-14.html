@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-14</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-14</h1>
+<p class="m">대상 기간: 2026-11-14 00:00–24:00 KST. HN 수치는 2026-11-15 07:55 KST 전후에 HN API에서 확인했다. GitHub·Hugging Face 수치도 같은 시각에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>Perplexity는 오픈 웨이트 결정 모델 Decider v1.3을 Apache 2.0으로 냈다. 질의 분류 평균 91.6%이고 입력 100만 토큰당 $0.02이다(자체 수치).</li>
+<li>Unsloth는 Qwen3.8-27B GGUF를 Dynamic v3.1로 다시 냈다. 같은 크기에서 정확도 5–10% 향상을 주장한다.</li>
+<li>Google은 Antigravity /teamwork 결과를 냈다. dav1d Rust 이식판이 C++보다 20–30% 빠르다.</li>
+<li>Thinking Machines는 4비트 순전파 학습으로 사전학습 8%, RL 20%를 단축했다.</li>
+<li>Baseten DeepSeek Ultrafast는 4×GB300에서 초당 약 1,700 토큰을 낸다. NVIDIA는 GLM-5.3을 DGX Station 2대로 초당 607.8 토큰에 서빙했다.</li>
+<li>JEPA 실험 600회 글은 재학습 없이 성공률을 22%에서 85%로 올렸다.</li>
+<li>Nvidia 순환 투자 의혹 보도가 HN 1,015점으로 가장 큰 반응을 얻었다.</li>
+<li>Reddit은 403으로 막혔다. 11-14는 토요일이라 HF 데일리 논문 목록이 없었다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://www.perplexity.ai/hub/blog/perplexity-decider" style="color:#0b3d91">Perplexity Decider v1.3·Flash v1.3: 오픈 웨이트 결정 모델, Apache 2.0, 질의 분류 63개 과제 평균 91.6%</a></h3>
+<p class="m">출처. Perplexity 블로그(11-12 미국 날짜), MarkTechPost 정리 기사, Hugging Face (HN 11-14 04:24 KST)</p>
+<p><b>요약.</b> Decider는 글을 쓰지 않고 선택지마다 확률을 돌려주는 결정 모델이다. v1.3은 Qwen3.8-27B를 바탕으로 한다. Flash v1.3은 Qwen3.5-4B를 바탕으로 하고 큰 모델에서 증류했다. 새 기능 Locate는 글에서 정확한 구간을 문자 위치와 함께 뽑는다. 자체 평가에서 질의 분류 63개 과제 평균 정확도는 91.6%이다. 검색·재순위 72개 과제 nDCG@10은 83.99이다. 이 값은 Qwen3-Reranker-8B보다 1.81점 높고 Jev 1.14보다 2.24점 높다. 선택지 순서를 바꿨을 때 답이 바뀌는 비율은 0.27%이다. Jev 1.14는 2.69–4.84%이다. 가격은 입력 100만 토큰당 v1.3 $0.02, Flash $0.01이고 출력은 무료이다. 가중치는 Apache 2.0이다. 로컬 실행에는 BF16 가중치 약 49 GiB(v1.3) 또는 약 8.5 GiB(Flash)가 필요하다. API 문맥은 256K 미만이고 로컬 기본값은 32,768이다.</p>
+<p><b>왜 중요한가.</b> 분류, 라우팅, 재순위, 개인정보 탐지를 생성 모델보다 싸게 처리한다. 판정: 써볼 만함. 가중치가 Apache 2.0이고 Flash는 8.5 GiB로 로컬에서 돈다. 모든 수치는 Perplexity 자체 수치이다.</p>
+<p class="m">반응. HN 144점·26개. HF 좋아요 v1.3 28개, Flash 28개. 링크: <a href="https://www.perplexity.ai/hub/blog/perplexity-decider" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50488464" style="color:#0b3d91">HN 토론</a> · <a href="https://huggingface.co/perplexity-ai/pplx-decider-v1.3" style="color:#0b3d91">HF v1.3</a> · <a href="https://huggingface.co/perplexity-ai/pplx-decider-flash-v1.3" style="color:#0b3d91">HF Flash</a> · <a href="https://www.marktechpost.com/2026/11/13/perplexity-decider-v1-3-open-weight-decision-models-locate/" style="color:#0b3d91">MarkTechPost</a></p>
+<h3>2. <a href="https://unsloth.ai/docs/models/qwen3.8" style="color:#0b3d91">Unsloth Qwen3.8-27B GGUF Dynamic v3.1: 같은 크기에서 정확도 5–10% 향상 주장, 4비트는 16–19 GB</a></h3>
+<p class="m">출처. Unsloth 문서 (11-11 업데이트, HN 11-14 09:06 KST)</p>
+<p><b>요약.</b> Unsloth는 Qwen3.8-27B GGUF를 새 양자화 방식 Dynamic v3.1(미리보기)로 다시 만들었다. Unsloth는 같은 크기에서 평균 정확도가 5–10% 오른다고 말한다. 평가에는 Terminal Bench 2.1, DeepSWE v1.1, LiveCodeBench v6, GPQA Diamond 등을 썼다. 2비트부터 6비트까지 대부분 다시 만들었다. 3비트는 기존 UD3과 비슷해서 바꾸지 않았다. 필요한 메모리는 4비트 16–19 GB, 2비트 9–11 GB, BF16 56 GB이다. 문맥은 262,144 토큰이고 YaRN으로 1M까지 늘릴 수 있다. 문서는 ISTA의 GSQ-RCO 비교 결과를 반박한다. ISTA는 1회 시행이고 Unsloth는 14회 시행으로 평균 회복률 93–96%를 얻었다고 말한다.</p>
+<p><b>왜 중요한가.</b> RTX 4090이나 24 GB Mac에서 27B 모델을 더 정확하게 돌린다. 양자화 비교 방법(시행 횟수, 문맥 길이)이 결과를 바꾼다는 점도 보여 준다. 판정: 써볼 만함.</p>
+<p class="m">반응. HN 238점·77개. HF unsloth/Qwen3.8-27B-GGUF 좋아요 5,939개. 링크: <a href="https://unsloth.ai/docs/models/qwen3.8" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50491980" style="color:#0b3d91">HN 토론</a> · <a href="https://huggingface.co/unsloth/Qwen3.8-27B-GGUF" style="color:#0b3d91">HF GGUF</a></p>
+<h3>3. <a href="https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/" style="color:#0b3d91">Google Antigravity /teamwork: 다중 에이전트로 수학 난제 증명, dav1d Rust 이식이 C++보다 20–30% 빠름</a></h3>
+<p class="m">출처. Google Research 블로그 (HN 11-14 22:20 KST)</p>
+<p><b>요약.</b> /teamwork는 Antigravity의 다중 에이전트 기능이다. 병렬 탐색과 검증기(증명 검사기, 원래 테스트, 하드웨어 계수기)를 짝지어 답을 고른다. 에이전트마다 필요한 파일과 도구만 준다. Gemini 4 Argon과 협업해 Courtade–Kumar 추측을 일반형으로 증명했다고 Google은 말한다. 에이전트 30개로 분자 구조 판정에서 top-1 일치 95%, top-3 100%를 얻었다. 단일 에이전트의 약 2배이다. AV1 디코더 dav1d를 약 17만 줄 Rust로 옮겼다. 이 Rust판은 원래 C++와 어셈블리보다 20–30% 빠르다. DuoDiscover는 JAXBench 커널 17개에서 기하평균 4.09배, vLLM TPU Pallas 커널 7개에서 2.99배 빨라졌다. Borg 스케줄링 변경 2건은 일부 하드웨어에서 TPU 작업 선점을 24% 줄였다.</p>
+<p><b>왜 중요한가.</b> 장기 에이전트 작업을 "생성 + 독립 검증" 구조로 묶는 실제 사례이다. 이 패턴은 Antigravity에서 지금 쓸 수 있다. 학술 연구자 10,000명에게 최고 사용 등급을 6개월 무료로 준다.</p>
+<p class="m">반응. HN 146점·33개. 링크: <a href="https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50496811" style="color:#0b3d91">HN 토론</a></p>
+<h3>4. <a href="https://thinkingmachines.ai/blog/end-to-end-4-bit-training/" style="color:#0b3d91">Thinking Machines: 4비트 순전파로 Inkling 2 Small 학습, 사전학습 8%·RL 20% 단축</a></h3>
+<p class="m">출처. Thinking Machines Lab 블로그 (HN 11-14 07:06 KST)</p>
+<p><b>요약.</b> Thinking Machines는 Inkling 2 Small을 사전학습부터 RL까지 같은 수치 형식으로 학습했다. MoE 전문가 층의 순전파는 NVFP4로 계산했다. 역전파는 MXFP8과 확률적 반올림을 썼다. GPU 통신도 양자화했다. 가장 큰 작업에서 전체 MXFP8 학습보다 사전학습은 8%, RL은 20% 빨랐다. 처음에 전체 NVFP4 학습을 시도했다. 이 방식은 정확도 손실이 너무 컸다. 회사는 Inkling 2 Small이 4비트 순전파로 학습한 가장 큰 모델이라고 말한다. 학습 하드웨어는 GB300이다.</p>
+<p><b>왜 중요한가.</b> 학습 끝에 따로 양자화하거나 보정할 필요가 없다. 오픈 웨이트 Inkling 2 Small(HF 트렌딩 좋아요 315개)의 학습 방법을 공개했다.</p>
+<p class="m">반응. HN 20점·1개. 링크: <a href="https://thinkingmachines.ai/blog/end-to-end-4-bit-training/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50490618" style="color:#0b3d91">HN</a> · <a href="https://huggingface.co/thinkingmachines/Inkling-2-Small" style="color:#0b3d91">HF 모델</a></p>
+<h3>5. <a href="https://github.com/basetenlabs/deepseek-ultrafast" style="color:#0b3d91">Baseten DeepSeek Ultrafast: DeepSeek-V4.1-Flash를 4×GB300에서 초당 1,700–1,770 토큰</a></h3>
+<p class="m">출처. GitHub (HN 11-14 02:39 KST)</p>
+<p><b>요약.</b> Rust로 만든 DeepSeek-V4.1-Flash 전용 추론 엔진이다. 1M 문맥을 지원한다. 디코드 속도는 4×GB300에서 초당 1,700–1,770 토큰이다. 8×B300에서는 초당 1,980–2,170 토큰이다. 4×GB300에서 한 단계는 3.24–3.37 ms이고 단계마다 5.1–6.1 토큰을 낸다. 서버끼리 대화별 KV 캐시를 RDMA로 주고받는다. 그래서 접두사 기반 라우팅이 필요 없다. 커널은 코딩 에이전트가 최적화했다고 저장소는 말한다. 저장소 스타는 318개이다. 마지막 커밋은 11-14 14:24 KST이다. 라이선스는 GitHub에서 표준 식별자로 인식되지 않는다(NOASSERTION).</p>
+<p><b>왜 중요한가.</b> MoE 모델의 단일 사용자 디코드 속도 기준을 크게 올린다. 판정: 지켜볼 만함. GB300·B300 급 하드웨어가 필요하다.</p>
+<p class="m">반응. HN 69점·17개. 링크: <a href="https://github.com/basetenlabs/deepseek-ultrafast" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50486914" style="color:#0b3d91">HN 토론</a></p>
+<h3>6. <a href="https://developer.nvidia.com/blog/when-one-gpu-isnt-enough-serving-glm-5-3-across-two-nvidia-dgx-stations-with-vllm/" style="color:#0b3d91">NVIDIA: DGX Station 2대로 GLM-5.3(753B) 서빙, 동시 요청 16에서 초당 607.8 토큰</a></h3>
+<p class="m">출처. NVIDIA 기술 블로그 (HN 11-14 23:09 KST)</p>
+<p><b>요약.</b> GLM-5.3 양자화 체크포인트는 전체 753B, 토큰당 활성 40B인 MoE이다. 크기는 약 464 GB이다. GB300 한 장의 HBM3e 252 GB에 들어가지 않는다. 이 글은 DGX Station 2대를 ConnectX-8 RDMA로 잇고 vLLM 텐서 병렬(TP=2)로 서빙한다. MTP, FP8 KV 캐시, 접두사 캐시를 켰다. SPEED-Bench Coding에서 전체 출력 처리량은 동시 요청 16일 때 초당 607.8 토큰으로 가장 높았다. 동시 요청 32에서는 초당 385.0 토큰으로 떨어졌고 평균 지연은 453.5초였다.</p>
+<p><b>왜 중요한가.</b> 프런티어급 오픈 웨이트 모델을 데이터센터 없이 사무실 장비 2대로 돌리는 절차와 기준값이다. 동시 요청 수를 너무 올리면 처리량이 오히려 떨어진다.</p>
+<p class="m">반응. HN 125점·64개. 링크: <a href="https://developer.nvidia.com/blog/when-one-gpu-isnt-enough-serving-glm-5-3-across-two-nvidia-dgx-stations-with-vllm/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50497155" style="color:#0b3d91">HN 토론</a></p>
+<h3>7. <a href="https://haddyalchaer.com/jepa" style="color:#0b3d91">JEPA 월드 모델 실험 600회: 재학습 없이 장거리 과제 성공률 22%→85%</a></h3>
+<p class="m">출처. 개인 블로그 Haddy Alchaer (HN 11-14 02:55 KST)</p>
+<p><b>요약.</b> 저자는 JEPA 월드 모델 LeWM을 Push-T 과제로 600회 실험했다. 목표가 75단계 떨어지면 원래 방식 성공률은 22%이다. 25단계 목표에서는 89.7%이다. 예측기를 정확한 물리로 바꾸면 20점 올랐다. 과제를 25단계 구간으로 나누면 약 60점 올랐다. 재학습 없이 새 계획 방법 4개를 만들었다. 처음 두 방법으로 성공률이 22%에서 85%가 됐다. 시범 데이터 약 46만 상태로 그래프를 만들어 중간 목표를 찾는다. 목표 이미지에서 밀대 위치를 비용에서 빼면 30개 과제가 실패에서 성공으로 바뀌었다.</p>
+<p><b>왜 중요한가.</b> 월드 모델의 다음 이득이 모델 개선보다 계획 방법에 있다는 실측 근거이다. 목표를 "이미지 하나"가 아니라 "끝 상태 집합"으로 정의해야 한다는 교훈은 로봇 전반에 쓸 수 있다.</p>
+<p class="m">반응. HN 286점·49개. 링크: <a href="https://haddyalchaer.com/jepa" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50487185" style="color:#0b3d91">HN 토론</a></p>
+<h3>8. <a href="https://claude.com/resources/articles/projects-redesigned" style="color:#0b3d91">Claude Code Projects 개편(베타)과 Claude Meetings(베타): 병렬 작업 스레드와 회의 참여</a></h3>
+<p class="m">출처. Anthropic Claude 블로그 (HN 11-14 09:28, 07:39 KST)</p>
+<p><b>요약.</b> 새 Projects는 목표를 받으면 코디네이터가 일을 나누고 스레드에 맡긴다. 각 스레드는 자기 브랜치와 저장소 사본을 쓰는 Claude Code 클라우드 세션이다. 스레드는 PR을 열고 테스트를 돌린다. 스레드들은 공유 메모리를 쓴다. 지금은 일부 Pro·Max 사용자에게 베타로 열린다. 스레드 여러 개가 동시에 돌아서 사용 한도에 더 빨리 닿을 수 있다. Claude Meetings는 Google Meet 회의에 참여자로 들어가 질문에 답하고 문서와 화이트보드를 만든다. Team·Enterprise 베타이고 오디오가 아니라 전사와 요약을 저장한다.</p>
+<p><b>왜 중요한가.</b> Claude Code가 단일 세션에서 여러 세션을 지휘하는 구조로 바뀐다. 파라미터, 가격 변경, 벤치마크는 출처에 없음.</p>
+<p class="m">반응. HN Projects 98점·91개, Meetings 109점·87개. 링크: <a href="https://claude.com/resources/articles/projects-redesigned" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50492141" style="color:#0b3d91">HN (Projects)</a> · <a href="https://claude.com/resources/articles/claude-meetings" style="color:#0b3d91">Claude Meetings</a> · <a href="https://news.ycombinator.com/item?id=50491097" style="color:#0b3d91">HN (Meetings)</a></p>
+<h3>9. <a href="https://www.alphaxiv.org/abs/2611.weight-space-misfolding" style="color:#0b3d91">논문: Weight Space Misfolding, 큰 모델이 작은 모델 가중치를 직접 고치는 위험</a></h3>
+<p class="m">출처. alphaXiv 논문 (HN 11-14 03:33 KST)</p>
+<p><b>요약.</b> 이 논문은 한 모델이 다른 모델의 가중치를 허가 없이 바꾸는 위험을 시험한다. 편집기는 ChatGPT 6.1-Sol이고 대상은 Qwen2.5-1.5B-Instruct이다. "2000년 올림픽 개최지" 답을 Sydney에서 Buenos Aires로 바꾸는 시험에서 100회 중 100회 바뀌었다. 대조 질문 70개 중 통과는 49개에서 48개로 줄었다. 법률 거절 문장 시험은 22개 중 5개만 성공했다. 공급사 이름 생략 시험은 22개 중 1개만 성공했다. 저자들은 편집 벤치마크 IWIBench 평균 보상이 5개월 안에 0.2148에서 0.4250으로 거의 2배가 됐다고 말한다. 자기 전파는 시연하지 않았다.</p>
+<p><b>왜 중요한가.</b> 가중치 편집 권한, 모델 출처 추적, 배포 전 검사가 새 보안 과제가 된다.</p>
+<p class="m">반응. HN 140점·55개. 링크: <a href="https://www.alphaxiv.org/abs/2611.weight-space-misfolding" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50487762" style="color:#0b3d91">HN 토론</a></p>
+<h3>10. <a href="https://github.com/paul-nameless/agweb" style="color:#0b3d91">agweb: 포커스를 뺏지 않는 코딩 에이전트용 macOS 브라우저 (MIT)</a></h3>
+<p class="m">출처. GitHub (Show HN 11-14 23:08 KST)</p>
+<p><b>요약.</b> agweb은 WebKit 기반 macOS 브라우저이다. 여러 에이전트가 동시에 써도 창이 앞으로 나오지 않는다. 에이전트마다 작업 공간과 탭을 따로 둔다. 대시보드는 모든 에이전트의 탭을 실시간으로 보여 준다. 쉬는 탭은 멈춘다. 개발자의 Mac에서 열린 페이지 5개는 CPU 0%였다. 같은 상황에서 Chrome GPU 프로세스는 코어 5–7개를 썼다고 개발자는 말한다. 비밀번호는 에이전트가 보지 못하게 입력한다. Claude Code와 Codex용 스킬을 설치할 수 있다. 스타 155개, 마지막 커밋 11-15 06:14 KST, MIT이다.</p>
+<p><b>왜 중요한가.</b> Playwright 창이 키보드 포커스를 뺏는 문제를 푼다. 판정: 지켜볼 만함. 만든 지 4일 된 macOS 전용 도구이다.</p>
+<p class="m">반응. HN 81점·21개. 링크: <a href="https://github.com/paul-nameless/agweb" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50497147" style="color:#0b3d91">HN 토론</a></p>
+<h3>11. <a href="https://github.com/bitsinfra/gnomon" style="color:#0b3d91">Gnomon: 에이전트용 Postgres 데이터 브랜치·diff·병합 확장</a></h3>
+<p class="m">출처. GitHub (HN 11-14 02:09 KST)</p>
+<p><b>요약.</b> Gnomon은 PostgreSQL 15–18 안에서 도는 확장이다. 에이전트에게 실제 DB의 브랜치를 연결 문자열로 준다. 브랜치는 바뀐 행만 저장해서 바로 열린다. 행과 필드 단위 diff를 보여 준다. 병합 전에 SQL 검사를 돌린다. 충돌하면 숫자는 더하고 JSON은 키별로 합친다. 스타 34개, 마지막 커밋 11-14 10:09 KST이다. 라이선스는 GitHub에서 표준 식별자로 인식되지 않는다.</p>
+<p><b>왜 중요한가.</b> 에이전트가 운영 DB를 직접 바꾸는 위험을 줄인다. 판정: 아직 이름. 저장소가 11-13에 생겼다.</p>
+<p class="m">반응. HN 22점·11개. 링크: <a href="https://github.com/bitsinfra/gnomon" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50486480" style="color:#0b3d91">HN</a></p>
+<h3>12. <a href="https://antithesis.com/blog/2026/nethack/" style="color:#0b3d91">Antithesis: NetHack 시드의 약 80%에서 5분 안에 승리 경로 발견</a></h3>
+<p class="m">출처. Antithesis 블로그 (HN 11-14 11:51 KST)</p>
+<p><b>요약.</b> Antithesis는 상태 공간 탐색(퍼징) 도구에 AI 에이전트를 결합했다. 이 시스템은 NetHack 시드의 약 80%에서 5분 안에 승리 경로를 찾는다. 끝난 시드의 승리 시간 중앙값은 2분 미만이다. 이전 AI 승리(GPT-6 Astra 포함)는 운 좋은 시드와 쉬운 직업에서만 나왔다고 글은 말한다.</p>
+<p><b>왜 중요한가.</b> LLM 단독 플레이가 아니라 탐색 엔진과 에이전트의 결합이다. 소프트웨어 테스트 탐색 기법의 사례이다.</p>
+<p class="m">반응. HN 16점·0개. 링크: <a href="https://antithesis.com/blog/2026/nethack/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50493246" style="color:#0b3d91">HN</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus" style="color:#0b3d91">WSJ 보도: Nvidia, AI 스타트업에 투자해 자사 GPU를 사게 했다는 의혹</a> — TechPowerUp가 WSJ 보도를 전했다. 8월 회의에서 CFO Colette Kress는 순환 투자 축소와 OpenAI와의 $2,500억 거래 축소를 주장했다고 한다. HN 1,015점·611개. <a href="https://news.ycombinator.com/item?id=50493251" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.theguardian.com/science/2026/nov/13/kurt-godel-notebooks-ai-helps-unlock-hidden-discoveries-man-who-transformed-maths" style="color:#0b3d91">AI가 괴델 노트 1,009쪽 해독을 도움</a> — Helsinki 대학 연구진은 9월부터 Claude를 썼다. 해독 속도는 주당 약 1쪽이었는데 Claude는 며칠 만에 전체 요약을 냈다. 노트에는 증명된 정리 수백 개가 있다고 한다. HN 421점·107개. <a href="https://news.ycombinator.com/item?id=50486748" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.freightwaves.com/news/11-4-million-in-nvidia-hardware-vanishes-during-shipment-from-california-to-texas" style="color:#0b3d91">$1,140만 상당 Nvidia 하드웨어, 운송 중 사라짐</a> — 팰릿 6개가 8월 29일 Oakland에서 실렸다. Fort Worth에 도착하지 않았다. 경찰은 금액을 아직 확인하지 않았다. HN 379점·209개. <a href="https://news.ycombinator.com/item?id=50487864" style="color:#0b3d91">HN</a></li>
+<li><a href="https://text.npr.org/nx-s1-6029408" style="color:#0b3d91">Google, AI 없는 학교에는 검색도 끊음: 이유에 대한 해석</a> — NPR 기사이다. 전직 Google 직원은 AI Overviews와 검색이 한 제품이라는 법원 판단과 관련 있다고 추정한다. HN 192점·191개. <a href="https://news.ycombinator.com/item?id=50484960" style="color:#0b3d91">HN</a></li>
+<li><a href="https://fortune.com/2026/11/13/openai-disbands-robotics-team-as-its-general-models-start-running-robots/" style="color:#0b3d91">OpenAI, 독립 로보틱스 팀 해체</a> — 연구원은 Mark Chen 아래 주 연구팀으로, 응용·하드웨어 팀은 Applied 조직으로 옮겼다. OpenAI는 로보틱스 포기가 아니라고 말한다. HN 174점·73개. <a href="https://news.ycombinator.com/item?id=50487184" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>Reddit(r/LocalLLaMA)은 403으로 막혔다. Reddit 반응은 넣지 못했다.</li>
+<li>Perplexity 블로그는 접속이 막혔다(Cloudflare). Decider 수치는 블로그 검색 발췌와 MarkTechPost 정리 기사에서 가져왔다.</li>
+<li>HF 데일리 논문은 11-14(토요일) 목록이 비어 있었다. HF 트렌딩 상위 500개에 이번 기간에 새로 만든 모델은 없었다(ComfyUI 워크플로 저장소 1개 제외).</li>
+<li>GitHub 트렌딩에서 이번 기간에 새로 만든 AI 저장소는 없었다. 상위 저장소는 이전에 생긴 것이다.</li>
+<li>ggml v1.0.0(HN 396점·67개)과 llama.cpp v1.0(HN 25점)은 11-13 다이제스트 메인이었다. 가중치 포렌식 트윗(HN 18점)도 11-13 메인이었다.</li>
+<li>"DeepSeek V4 Pro 0813"(HN 25점)은 2026-08-13에 나온 모델이라 이번 기간 소식이 아니다.</li>
+<li>JEPA 글, 괴델 노트, OpenAI 로보틱스, Weight Space Misfolding은 11-13 다이제스트 AFTER에 있었다. HN 게시가 11-14 KST라서 이번에 넣었다.</li>
+<li>Jonathan Blow 영상(HN 453점)과 No AI Slop 선언문(HN 216점)은 의견글이라 뺐다. FAA 전국 이륙 중단(HN 1,635점)은 AI 주제가 아니라서 뺐다.</li>
+</ul><h2>AFTER (11-15 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50499017" style="color:#0b3d91">Lovable로 만든 앱에서 여권 정보와 비공개 메시지 20만 건 이상 노출</a> HN 539점·197개</li>
+<li><a href="https://news.ycombinator.com/item?id=50497892" style="color:#0b3d91">PyPI 프로젝트 페이지 개편, 보안 신호 표시</a> HN 180점·82개</li>
+<li><a href="https://news.ycombinator.com/item?id=50497589" style="color:#0b3d91">Show HN: 순수 JAX 약 200줄로 구현한 DeepSeek V3</a> HN 127점·7개</li>
+<li><a href="https://news.ycombinator.com/item?id=50498945" style="color:#0b3d91">데이터센터를 우주에 둘 것인가</a> HN 45점·138개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
