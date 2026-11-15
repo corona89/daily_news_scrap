@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-15</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-15</h1>
+<p class="m">대상 기간: 2026-11-15 00:00–24:00 KST. HN 수치는 2026-11-16 07:51 KST 전후에 HN API에서 확인했다. GitHub·Hugging Face 수치도 같은 시각에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>이번 기간(일요일)에는 새로 공개된 주요 모델이 없었다. 기술 섹션은 오픈소스 도구와 기술 글이 중심이다.</li>
+<li>Claude Code의 실험 기능 Code Mode가 X에서 크게 퍼졌다. 퍼진 "토큰 37% 절감" 수치는 이 기능의 측정값이 아니다.</li>
+<li>DeepSeek V3 구조를 순수 JAX 190줄로 다시 만든 저장소가 HN 271점을 받았다. MacBook Air에서 36.2M 모델을 학습했다.</li>
+<li>turbo-browser-mcp는 브라우저 MCP 도구를 10개 묶음 도구로 줄였다. 자체 측정에서 폼 입력 토큰을 93.4% 줄였다.</li>
+<li>Crissy Field는 Lovable 프로젝트 159,041개를 조사했다. 7,403개 사이트에서 로그인 없이 이메일이 든 기록을 찾았다.</li>
+<li>기업·정책에서는 Nvidia 순환 금융 보도와 DRAM 담합 소송 기각 거부가 HN 상위에 올랐다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://code.claude.com/docs/en/changelog" style="color:#0b3d91">Claude Code Code Mode: Claude가 JavaScript로 도구를 묶어 호출하는 실험 기능</a></h3>
+<p class="m">출처. Claude Code 변경 기록 v2.1.323 (11-12 미국 날짜), i10X·wmedia.es 독립 테스트. 이번 기간에 X에서 크게 퍼졌다.</p>
+<p><b>요약.</b> Code Mode는 기본으로 꺼져 있는 실험 기능이다. 켜면 Claude는 Bash, Read, Edit를 하나씩 부르지 않는다. Claude는 도구를 부르는 JavaScript를 쓰고, Claude Code가 그 코드를 세션 안에서 실행한다. 켜는 방법은 CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1 환경 변수이다. Anthropic API와 대화형 터미널에서만 동작한다. 지원 모델은 Opus 5.5, Sonnet 5.5, Haiku 5.5, Fable 5.2이다. X에 퍼진 "37% 절감"은 2025년 11월 API 기능 Programmatic Tool Calling의 수치이다(43,588→27,297 토큰). Anthropic은 Code Mode 자체의 절감 수치를 내지 않았다. wmedia.es의 1회 테스트에서 전체 입력 토큰은 150,364에서 94,659로 줄었다. 같은 테스트에서 실행 시간은 15초에서 37초로 늘었다. 고정 도구 문맥은 24.6k에서 11.1k 토큰으로 줄었다.</p>
+<p><b>왜 중요한가.</b> 도구 정의 토큰은 매 요청에 붙는다. 이 기능은 그 고정 비용을 줄인다. 판정: 지켜볼 만함. 절감은 실제로 보이지만 느려질 수 있고, Remote Control과 Chrome 기능을 쓸 수 없다.</p>
+<p class="m">반응. HN 토론 없음. X 뉴스 요약에서 상위 AI 주제였다. 독립 테스트는 1회 측정이라 벤치마크가 아니다. 링크: <a href="https://code.claude.com/docs/en/changelog" style="color:#0b3d91">원문</a> · <a href="https://i10x.ai/news/claude-code-code-mode-javascript-tool-calls" style="color:#0b3d91">i10X 분석</a> · <a href="https://wmedia.es/en/tips/claude-code-code-mode-turn-on" style="color:#0b3d91">wmedia.es 테스트</a> · <a href="https://www.anthropic.com/research/advanced-tool-use" style="color:#0b3d91">Anthropic 2025 원글</a></p>
+<h3>2. <a href="https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax" style="color:#0b3d91">deepseek-v3-jax: DeepSeek V3 구조를 순수 JAX 190줄로 구현</a></h3>
+<p class="m">출처. GitHub, Show HN (11-15 00:04 KST)</p>
+<p><b>요약.</b> 이 저장소는 DeepSeek-V3 기술 보고서의 핵심 구조를 JAX 190줄로 구현한다. MLA, decoupled RoPE, DeepSeekMoE, 보조 손실 없는 부하 균형, MTP를 포함한다. Flax와 PyTorch를 쓰지 않는다. 기본 설정 모델은 36.2M 파라미터이고 토큰당 13.6M을 쓴다. MacBook Air M5(24 GB)에서 약 2.6시간 동안 약 98M 토큰을 학습했다. 검증 손실은 5.02에서 3.51로 내려갔다. 균형 bias를 켜면 전문가 부하가 5.7–6.9%이고, 끄면 0.09–18.6%이다. 두 경우 2000 단계 검증 손실은 3.921과 3.923으로 같았다.</p>
+<p><b>왜 중요한가.</b> MoE와 MLA를 읽고 실험하기 좋은 교재 코드이다. 판정: 써볼 만함(학습용). 저자도 성능 모델이 아니라 구조 데모라고 말한다.</p>
+<p class="m">반응. HN 271점·27개. GitHub 스타 194개, 포크 17개, 마지막 푸시 11-15, MIT. 링크: <a href="https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50497589" style="color:#0b3d91">HN 토론</a> · <a href="https://vaibhaav.in/writing/deepseek-v3-jax/" style="color:#0b3d91">저자 해설 글</a></p>
+<h3>3. <a href="https://github.com/Tthanh2k6/turbo-browser-mcp" style="color:#0b3d91">turbo-browser-mcp: 브라우저 MCP 도구를 10개 묶음 도구로 줄인 Playwright 서버</a></h3>
+<p class="m">출처. GitHub, Show HN (11-15 13:09 KST)</p>
+<p><b>요약.</b> 이 MCP 서버는 25–33개의 세밀한 브라우저 도구를 10개 묶음 도구로 합친다. 바뀐 DOM만 돌려주는 delta 스냅샷, 한 번에 폼을 채우는 smart_fill_form, 디스크 경로로 파일 올리기를 제공한다. 자체 벤치마크에서 10필드 폼은 11턴에서 1턴으로 줄었다. 같은 작업의 토큰은 93.4% 줄었다. 클릭 후 delta 스냅샷은 전체 ARIA 3,582 토큰 대신 56 토큰이다. 도구 정의 토큰은 Playwright MCP보다 19.1% 적다. 제출 버튼 앞에서 멈추는 submit guard가 있다.</p>
+<p><b>왜 중요한가.</b> 브라우저 에이전트의 비용은 턴 수와 스냅샷 크기에서 나온다. 이 도구는 두 가지를 모두 줄인다. 판정: 지켜볼 만함. 수치는 모두 저자 자체 측정이고 저장소는 11-14에 생겼다.</p>
+<p class="m">반응. HN 46점·9개. GitHub 스타 106개, 포크 6개, 마지막 푸시 11-15, MIT, 버전 0.5.0. 링크: <a href="https://github.com/Tthanh2k6/turbo-browser-mcp" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50503930" style="color:#0b3d91">HN 토론</a></p>
+<h3>4. <a href="https://github.com/backnotprop/plannotator" style="color:#0b3d91">Plannotator v0.28.65: 코딩 에이전트의 계획·diff를 사람이 주석으로 검토하는 도구</a></h3>
+<p class="m">출처. GitHub 트렌딩(일간), 릴리스 11-15 09:07 KST</p>
+<p><b>요약.</b> Plannotator는 에이전트가 만든 계획, 명세, HTML, diff에 사람이 주석을 단다. 그 피드백을 에이전트에게 다시 보낸다. Claude Code, Codex, Copilot CLI, Gemini CLI, OpenCode 등을 지원한다. 새 기능 Inbox는 여러 에이전트의 결정과 결과물을 한곳에 모은다. 이번 기간에 v0.28.65를 냈다.</p>
+<p><b>왜 중요한가.</b> 여러 에이전트를 돌릴 때 사람의 검토 단계가 병목이 된다. 이 도구는 그 단계를 다룬다. 판정: 써볼 만함. 스타가 많고 릴리스가 잦다.</p>
+<p class="m">반응. GitHub 스타 11,794개, 오늘 스타 860개, 포크 1,081개, Apache-2.0. 링크: <a href="https://github.com/backnotprop/plannotator" style="color:#0b3d91">원문</a> · <a href="https://plannotator.ai/" style="color:#0b3d91">공식 사이트</a></p>
+<h3>5. <a href="https://github.com/Tencent/LoopForge" style="color:#0b3d91">Tencent LoopForge: 코딩 에이전트 CLI를 샌드박스와 승인 단계로 묶는 자체 호스팅 작업 공간</a></h3>
+<p class="m">출처. GitHub 트렌딩(일간), 마지막 릴리스 v0.3.9-rc.1 (11-14 05:11 KST)</p>
+<p><b>요약.</b> LoopForge는 채팅 봇이 Docker 샌드박스를 열고 저장소를 받아 PR을 만드는 작업 공간이다. 반복 작업은 SOP로 저장한다. SOP는 에이전트, 스크립트, 사람 승인, 하위 SOP 노드를 순서대로 실행한다. 지원 CLI는 CodeBuddy, Codex, Claude Code, OpenCode, Cursor CLI, Kimi Code 등 10종이다. README는 MIT 라이선스라고 말한다. GitHub API는 라이선스를 NOASSERTION으로 표시한다.</p>
+<p><b>왜 중요한가.</b> 여러 코딩 에이전트를 사내 인프라에서 승인 절차와 함께 돌리려는 팀에 맞다. 판정: 지켜볼 만함. 아직 0.3 RC 단계이다.</p>
+<p class="m">반응. GitHub 스타 1,432개, 오늘 스타 484개, 포크 263개, 마지막 푸시 11-15. 링크: <a href="https://github.com/Tencent/LoopForge" style="color:#0b3d91">원문</a></p>
+<h3>6. <a href="https://github.com/NVIDIA/SkillEvaluator" style="color:#0b3d91">NVIDIA SkillEvaluator v0.9.0: 에이전트 스킬의 품질과 효과를 재는 평가 도구</a></h3>
+<p class="m">출처. GitHub 트렌딩(일간), 릴리스 v0.9.0 (11-13 20:03 KST)</p>
+<p><b>요약.</b> SkillEvaluator는 Agent Skills 형식의 스킬을 검사한다. 먼저 품질 검사를 하고, 스킬이 있을 때와 없을 때의 실행 결과를 비교한다. 1단계 검사는 API 키 없이 돈다. skillevaluator ci init 명령은 PR마다 바뀐 스킬을 검사하는 설정을 만든다. NVIDIA Verified Skills 파이프라인의 일부이다.</p>
+<p><b>왜 중요한가.</b> 스킬 저장소가 커지면 "이 스킬이 실제로 도움이 되는가"를 재야 한다. 판정: 써볼 만함. 스킬·MCP 자산을 관리하는 팀에 바로 맞다.</p>
+<p class="m">반응. GitHub 스타 1,616개, 오늘 스타 205개, 포크 227개, 마지막 푸시 11-16, Apache-2.0. 링크: <a href="https://github.com/NVIDIA/SkillEvaluator" style="color:#0b3d91">원문</a></p>
+<h3>7. <a href="https://magazine.sebastianraschka.com/p/understanding-positional-embeddings" style="color:#0b3d91">Raschka: 최신 LLM의 위치 임베딩 정리 (절대 위치, RoPE, partial RoPE, NoPE)</a></h3>
+<p class="m">출처. Ahead of AI (11-15)</p>
+<p><b>요약.</b> Sebastian Raschka가 LLM의 위치 정보 방식을 정리했다. GPT-2의 학습된 절대 위치 임베딩부터 RoPE까지 단계별로 설명한다. 작은 PyTorch 구현과 그림을 포함한다. 2026년 오픈 웨이트 모델이 어떤 방식을 쓰는지 표로 묶었다. partial RoPE와 NoPE 같은 변형도 다룬다.</p>
+<p><b>왜 중요한가.</b> 긴 문맥 성능은 위치 인코딩 선택에 크게 달려 있다. 새 모델 카드를 읽을 때 기준이 된다.</p>
+<p class="m">반응. HN 184점·23개. 링크: <a href="https://magazine.sebastianraschka.com/p/understanding-positional-embeddings" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50506376" style="color:#0b3d91">HN 토론</a></p>
+<h3>8. <a href="https://claude.dev/blog/what-a-task-costs-on-opus-5-5/" style="color:#0b3d91">Anthropic 블로그: Opus 5.5에서 작업 하나의 비용 계산법</a></h3>
+<p class="m">출처. claude.dev 블로그 (11-09 게시, HN 11-15 10:57 KST)</p>
+<p><b>요약.</b> 글은 토큰 단가보다 턴 수와 캐시 적중률이 비용을 정한다고 말한다. Opus 5.5 가격은 입력 100만 토큰당 $4, 출력 $20, 캐시 읽기 $0.20이다. 입력과 출력은 Opus 5보다 20% 싸고, 캐시 읽기는 60% 싸다. 예시에서 2.8M 입력 토큰은 캐시 없이 $11.20, 캐시 90%에서 $1.62이다. 같은 토큰 수로 계산한 예시 세션은 Opus 5보다 약 31% 싸다. "40% 싸다"는 수치는 토큰 사용 감소를 더한 추정이라고 글이 밝힌다.</p>
+<p><b>왜 중요한가.</b> 에이전트 비용을 줄이려면 캐시를 깨지 않고 턴을 줄여야 한다. 계산기를 자기 작업에 넣어 볼 수 있다.</p>
+<p class="m">반응. HN 23점·20개. 링크: <a href="https://claude.dev/blog/what-a-task-costs-on-opus-5-5/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50503241" style="color:#0b3d91">HN 토론</a></p>
+<h3>9. <a href="https://www.crissyfield.de/research/lovable-en/" style="color:#0b3d91">Lovable 앱 보안 조사: 159,041개 프로젝트 중 다수가 로그인 없이 데이터 노출</a></h3>
+<p class="m">출처. Crissy Field 연구 보고서 (HN 11-15 02:43 KST)</p>
+<p><b>요약.</b> 보안 회사 Crissy Field는 Common Crawl에서 Lovable 프로젝트 159,041개를 찾았다. 그중 34,545개가 Supabase를 썼다. 24,664개 사이트는 로그인 없이 페이지를 열자마자 DB 기록을 보냈다. 그중 7,403개(30%)에서 이메일이 든 표를 찾았다. 한 포럼은 프로필 80,000개 이상과 채팅 메시지 200,000건 이상을 노출했다. 한 업체는 여권 번호가 든 기록 1,000건 이상을 노출했다. 보고서는 30%를 확정 유출률로 읽지 말라고 말한다.</p>
+<p><b>왜 중요한가.</b> AI 앱 빌더로 만든 앱은 접근 제어(RLS)를 사람이 확인해야 한다. 노코드 에이전트 빌더를 만드는 팀에도 같은 위험이 있다.</p>
+<p class="m">반응. HN 970점·368개. 링크: <a href="https://www.crissyfield.de/research/lovable-en/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50499017" style="color:#0b3d91">HN 토론</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.techspot.com/news/114558-nvidia-deliberately-kept-gpu-prices-high-through-circular.html" style="color:#0b3d91">Nvidia가 순환 금융으로 GPU 가격을 높게 유지했다는 보도</a> — 보도에 따르면 Nvidia는 2026년 중후반 TSMC 웨이퍼 과잉을 흡수하려고 고객 금융 거래를 늘렸다. 이후 OpenAI 거래 등 일부 거래를 줄이거나 멈췄다. HN 442점·231개. <a href="https://news.ycombinator.com/item?id=50501631" style="color:#0b3d91">HN</a></li>
+<li><a href="https://litnews.ai/articles/garciaguirre-samsung-sk-hynix-micron-dram-conspiracy-suit-survives-dismissal" style="color:#0b3d91">법원, Samsung·SK Hynix·Micron DRAM 공급 담합 소송 기각 요청을 거부</a> — 미국 연방 판사가 11-14에 기각 요청을 전부 거부했다. 원고는 세 회사가 일반 DRAM 공급을 줄이고 HBM으로 생산을 옮기기로 공모했다고 주장한다. 주장은 아직 증명되지 않았다. HN 481점·212개. <a href="https://news.ycombinator.com/item?id=50502988" style="color:#0b3d91">HN</a></li>
+<li><a href="https://jakub.jankiewicz.org/blog/ai-code-open-source/" style="color:#0b3d91">의견: AI가 생성한 코드는 모두 오픈소스여야 한다</a> — 저자는 모델이 오픈소스 코드로 학습했고 AI 생성 코드는 저작권 보호가 약하다고 말한다. 그래서 사람이 거의 손대지 않은 AI 코드는 오픈소스나 CC0로 내야 한다고 주장한다. HN 1,015점·563개. <a href="https://news.ycombinator.com/item?id=50507303" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.nytimes.com/2026/11/15/us/politics/lutnick-pushed-to-weaken-chip-rules-that-overlap-with-his-family-business.html" style="color:#0b3d91">Lutnick이 가족 사업과 겹치는 칩 규제 완화를 밀었다는 NYT 보도</a> — 본문은 유료라 열지 못했다. 제목만 확인했다. HN 440점·190개. <a href="https://news.ycombinator.com/item?id=50506180" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/rogue-claude-ai-tasked-with-renumbering-pages-accidentally-deletes-law-professors-entire-syllabus-one-year-of-lecture-notes-youre-right-to-be-angry-i-deleted-your-files-through-my-own-carelessness-humbled-agent-admits" style="color:#0b3d91">Claude가 쪽 번호 수정 중 교수의 강의 노트 1년치와 강의 계획서를 삭제</a> — 시카고대 William Baude 교수의 사례이다. 파일은 Dropbox에서 복구했다. 어떤 모델이었는지는 기사에 없다. HN 50점·75개. <a href="https://news.ycombinator.com/item?id=50499114" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>모델: 이번 기간에 새로 공개된 주요 모델을 찾지 못했다. 11-15 기사에 나온 LongCat-2.5 가중치(MIT, 1.6T/48B 활성)는 11-02 메인이었다. Praxis-1은 11-11 메인, Inkling 2 Small과 Edge0-145B는 이전에 다뤘다. Nex-N2.6(321B, Apache 2.0)은 11-10 공개라 기간 밖이다.</li>
+<li>LongCat-Video-Avatar 1.6 추론 코드가 11-15 11:57 KST에 LongCat-Video 저장소(스타 9,463개, MIT)에 합쳐졌다. HF 좋아요는 8개라 메인에서 뺐다.</li>
+<li>GitHub 트렌딩의 modern-web-guidance-src, open-code-review, univer는 이전에 다뤘다. Claude-BugHunter(스타 6,351개, MIT)는 보안 점검 스킬 묶음으로 트렌딩에 올랐다.</li>
+<li>db-branch(HN 28점, 스타 16개, Apache-2.0)는 ZFS 복제로 MySQL 브랜치를 바로 만든다. 판정: 아직 이름.</li>
+<li>Hugging Face Daily Papers는 주말이라 11-14·11-15 날짜 목록이 비어 있었다. Reddit은 접속이 막혀 확인하지 못했다.</li>
+</ul><h2>AFTER (11-16 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50509883" style="color:#0b3d91">Jensen Huang, Nvidia CEO 복귀를 측근과 논의 (FT)</a> HN 82점·73개</li>
+<li><a href="https://news.ycombinator.com/item?id=50509953" style="color:#0b3d91">학비 $75k AI 학교 Alpha, 학생 절반이 수학 목표 미달</a> HN 56점·59개</li>
+<li><a href="https://news.ycombinator.com/item?id=50510799" style="color:#0b3d91">에이전트는 해킹하기 쉬운 쪽을 고른다</a> HN 49점·29개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
