@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-16</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-16</h1>
+<p class="m">대상 기간: 2026-11-16 00:00–24:00 KST. HN 수치는 2026-11-17 07:50 KST 전후에 HN API에서 확인했다. GitHub·Hugging Face 수치도 같은 시각에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>Alibaba가 Qwen4-Max를 정식 출시했다. 총 2.4T, 활성 71B인 MoE이다. 가중치는 공개하지 않는다. HN에서 847점을 받았다.</li>
+<li>Qwen4-Max는 자체 표 16개 중 4개에서 1위이다. 하지만 Artificial Analysis 지수는 43이다. Kimi K3.1 Pro(46)보다 낮다.</li>
+<li>Shanghai AI Laboratory가 Sage S2.1 Flash를 MIT 라이선스로 공개했다. 320B, 활성 18B인 과학용 멀티모달 모델이다.</li>
+<li>오픈소스에서는 Coral(에이전트 도구 게이트웨이), ffmpeg-skill v3.10, Google PaperOrchestra가 주목을 받았다.</li>
+<li>논문에서는 MIRIX-2.0 메모리 시스템과 MMFlash 추측 디코딩(최대 3.58배)이 눈에 띈다.</li>
+<li>기업·정책에서는 Jensen Huang의 Nvidia CEO 복귀설이 HN 상위에 올랐다.</li>
+<li>Reddit은 이번에도 접근이 차단되었다. Reddit 수치는 넣지 못했다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://www.alibabacloud.com/en/press-room/alibaba-unveils-qwen4-max" style="color:#0b3d91">Qwen4-Max: Qwen4 세대 첫 정식 모델 (가중치 비공개)</a></h3>
+<p class="m">출처. Alibaba Cloud 보도자료(11-16), Qwen 블로그, Artificial Analysis, MarkTechPost·AgentsPulse 표 정리</p>
+<p><b>요약.</b> Qwen4-Max는 총 2.4T 파라미터 MoE이다. 토큰당 71B가 활성이다. 이는 Qwen3.8-Max보다 25% 적다. 문맥은 1M 토큰이다. 텍스트, 이미지, 영상을 입력으로 받는다. 가격은 입력 $1.50, 출력 $4.50(1M 토큰당)이다. 캐시 입력은 $0.075이다. 자체 표에서 DeepSWE v1.1 75.7(Opus 5.5 74.2, Kimi K3.1 75.5)이다. HLAB-Vals-1.1은 21.3(Kimi K3.1 11.7)이다. 하지만 Terminal-Bench 4.0은 48.5이다(Kimi K3.1 67.2). ProgramBench는 31.5이다(Opus 5.5 65.0). Artificial Analysis 지수는 43이다. 과제당 비용은 $3.27이다. 과제당 시간은 33.2분이다(중앙값 13.4분). 가중치는 공개하지 않는다. 로컬 실행은 불가능하다.</p>
+<p><b>왜 중요한가.</b> 중국 최상위 모델이 가격을 낮추었다. 그러나 독립 지수는 Kimi K3.1 Pro보다 낮다. 코딩 터미널 작업과 비전에서 약하다. Alibaba는 작은 Qwen4 오픈 가중치 모델을 곧 낸다고 한다. 로컬 사용자는 그 모델을 기다리면 된다.</p>
+<p class="m">반응. HN 847점, 댓글 468개. 댓글은 느린 속도, 높은 토큰 사용량, 27B 오픈 모델 기대에 집중했다. 링크: <a href="https://www.alibabacloud.com/en/press-room/alibaba-unveils-qwen4-max" style="color:#0b3d91">원문</a> · <a href="https://qwen.ai/blog?id=qwen4-max" style="color:#0b3d91">Qwen 블로그</a> · <a href="https://artificialanalysis.ai/models/qwen4-max" style="color:#0b3d91">Artificial Analysis</a> · <a href="https://agentspulse.github.io/tutorials/qwen4-max-benchmarks/" style="color:#0b3d91">벤치마크 표</a> · <a href="https://news.ycombinator.com/item?id=50513215" style="color:#0b3d91">HN</a></p>
+<h3>2. <a href="https://huggingface.co/internlm/Sage-S2.1-Flash" style="color:#0b3d91">Sage S2.1 Flash: 과학 연구용 320B 오픈 가중치 모델 (MIT)</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (Shanghai AI Laboratory). 저장소는 11-15 11:34 KST에 생성되었다. 모델 카드 내용과 보도는 11-16에 나왔다.</p>
+<p><b>요약.</b> Sage S2.1 Flash는 320B, 활성 18B인 멀티모달 MoE이다. GLM-5.3-Flash 구조를 쓴다. 분자 그래프, 결정 구조, 단백질 구조 등 10종 이상의 과학 입력을 받는다. 자체 표 15개 중 4개에서 1위, 7개에서 2위이다. MLE-bench Lite는 90.3이다(DeepSeek-V4.1-Flash-1017 89.2). OfficeQA Pro는 72.2, SpreadsheetBench 2는 37.1이다. 반면 SWE-bench Pro는 60.6이다(Claude Opus 5 76.5). 라이선스는 MIT이다. BF16은 약 645GB이다. FP8 버전도 있다. 참고 배포는 H200 8장이다(orcarouter 분석). 문맥 길이와 가격은 모델 카드 기준 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 상업 사용이 가능한 과학 특화 대형 모델이다. 문서·표 작업에서 Opus 5보다 높은 자체 점수를 냈다. 코딩에서는 뒤진다. 수치는 모두 자체 측정이다.</p>
+<p class="m">반응. Hugging Face 좋아요 52개, 다운로드 22회(11-17 07:50 KST). HN 스레드는 없다. 링크: <a href="https://huggingface.co/internlm/Sage-S2.1-Flash" style="color:#0b3d91">원문</a> · <a href="https://www.orcarouter.ai/blog/sage-s2-1-flash-quiet-release" style="color:#0b3d91">orcarouter 분석</a></p>
+<h3>3. <a href="https://huggingface.co/higurashi-ai/Haru-4B" style="color:#0b3d91">Haru-4B: 듣기와 말하기를 동시에 하는 음성 대화 모델</a></h3>
+<p class="m">출처. Hugging Face 모델 카드, GitHub higurashi-ai/Haru. 저장소는 11-12에 생성되었다. 공식 발표는 11-13이다. 이번 기간에 HF 트렌딩 상위에 올랐다. 이전 다이제스트에 없었다.</p>
+<p><b>요약.</b> Haru-4B는 전이중(full-duplex) 음성 대화 기반 모델이다. 133ms마다 사용자 음성 한 프레임을 받는다. 같은 시간에 자기 음성과 텍스트 한 프레임을 낸다. 이산 오디오 토큰을 쓰지 않는다. 한국어를 포함한 9개 언어를 지원한다. 라이선스는 Apache-2.0이다. NVIDIA GPU 약 12GB로 로컬 실행이 된다. MLX 버전과 macOS 앱도 있다. 지시 수행 모델이 아니고 연구용 사전학습 모델이다. 벤치마크 수치는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 전화 통화처럼 끊김 없는 음성 에이전트를 로컬에서 시험할 수 있다. 한국어를 지원한다.</p>
+<p class="m">반응. HF 좋아요 416개, 다운로드 3,372회. GitHub 별 518개. 판정: 지켜볼 만함. 기반 모델이라 바로 쓰기 어렵다. 링크: <a href="https://huggingface.co/higurashi-ai/Haru-4B" style="color:#0b3d91">원문</a> · <a href="https://github.com/higurashi-ai/Haru" style="color:#0b3d91">GitHub</a></p>
+<h3>4. <a href="https://github.com/withcoral/coral" style="color:#0b3d91">Coral: 에이전트가 자기 도구를 코드로 쓰는 오픈소스 게이트웨이</a></h3>
+<p class="m">출처. GitHub, Show HN</p>
+<p><b>요약.</b> Coral은 에이전트와 외부 시스템 사이에 놓는 자체 호스팅 게이트웨이이다. 에이전트는 짧은 TypeScript 프로그램으로 도구를 호출한다. 잘 된 프로그램은 사용자 도구로 저장해 다시 쓴다. 모든 호출은 Allow, Ask, Block 정책 검사를 거친다. 그 뒤에 Coral이 자격 증명을 붙인다. 보통 MCP 게이트웨이는 도구를 보이거나 숨기기만 한다. Coral은 도구 안의 규칙까지 정할 수 있다.</p>
+<p><b>왜 중요한가.</b> 에이전트에 도구 권한을 줄 때 범위를 좁게 정할 수 있다. 같은 작업을 반복할 때 토큰도 줄인다.</p>
+<p class="m">반응. HN 51점, 댓글 24개. GitHub 별 4,997개, Apache-2.0, 최신 릴리스 v1.8.0(11-13), 마지막 push 11-17 05:55 KST. 판정: 써볼 만함. 정책 기반 MCP 게이트웨이가 필요하면 바로 시험할 가치가 있다. 링크: <a href="https://github.com/withcoral/coral" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50517803" style="color:#0b3d91">HN</a></p>
+<h3>5. <a href="https://github.com/kajisho5/ffmpeg-skill" style="color:#0b3d91">ffmpeg-skill v3.10: 코딩 에이전트용 로컬 영상 편집 도구 42개</a></h3>
+<p class="m">출처. GitHub 릴리스, GitHub 트렌딩</p>
+<p><b>요약.</b> ffmpeg-skill은 FFmpeg 도구 42개를 MCP 서버와 스킬로 묶었다. Claude Code, Cursor, Codex에서 쓴다. 자르기, 자막, 화면 비율 변경, 음량 맞추기, 플랫폼별 내보내기를 한다. 각 도구에는 기계가 읽는 입력·출력 스키마가 있다. 작업 뒤 결과를 스스로 검사한다. 클라우드와 API 키가 필요 없다. v3.10.0과 v3.10.1이 이번 기간에 나왔다.</p>
+<p><b>왜 중요한가.</b> 셸 문자열 대신 구조화된 도구를 쓴다. 그래서 에이전트의 영상 작업 실패를 줄인다.</p>
+<p class="m">반응. GitHub 별 6,620개(오늘 +475), MIT, v3.10.1 11-16 08:32 KST. 판정: 써볼 만함. 영상 작업을 에이전트에 맡길 때 유용하다. 링크: <a href="https://github.com/kajisho5/ffmpeg-skill" style="color:#0b3d91">원문</a> · <a href="https://github.com/kajisho5/ffmpeg-skill/releases" style="color:#0b3d91">릴리스</a></p>
+<h3>6. <a href="https://github.com/google-research/paper-orchestra" style="color:#0b3d91">Google PaperOrchestra: 연구 자료를 LaTeX 논문으로 만드는 다중 에이전트</a></h3>
+<p class="m">출처. GitHub (Google Cloud AI Research), GitHub 트렌딩</p>
+<p><b>요약.</b> PaperOrchestra는 아이디어와 실험 기록을 받아 제출용 LaTeX 원고를 만든다. 개요, 문헌 조사, 절 작성, 다듬기, 그림 생성을 각 에이전트가 맡는다. Semantic Scholar로 문헌을 찾는다. Gemini와 OpenAI 모델을 쓴다. 평가 데이터셋은 아직 공개하지 않았다.</p>
+<p><b>왜 중요한가.</b> 연구 글쓰기 자동화의 공개 기준 구현이다. 다중 에이전트 구조를 참고할 수 있다.</p>
+<p class="m">반응. GitHub 별 1,421개(오늘 +306), Apache-2.0, 릴리스 없음, 마지막 push 11-16 03:08 KST. 판정: 지켜볼 만함. 데이터셋이 없어 결과를 재현하기 어렵다. 링크: <a href="https://github.com/google-research/paper-orchestra" style="color:#0b3d91">원문</a></p>
+<h3>7. <a href="https://huggingface.co/papers/2611.12068" style="color:#0b3d91">MIRIX-2.0: LLM 에이전트용 다중 에이전트 메모리 시스템</a></h3>
+<p class="m">출처. Hugging Face Daily Papers (11-16), arXiv 2611.12068</p>
+<p><b>요약.</b> MIRIX-2.0은 에이전트 장기 기억 시스템이다. 비교 대상 중 QA 벤치마크 5개 중 4개에서 가장 정확하다. LoCoMo 91.4%, LongMemEval-S 72.6%이다. LongMemEval-S에서 가장 강한 기준보다 14.3점 높다. 문서 QA에서 HyperMem보다 단일 홉 31.0점, 다중 홉 22.0점 높다.</p>
+<p><b>왜 중요한가.</b> 에이전트 메모리는 개인화와 일관성의 핵심이다. 코드가 공개되어 바로 시험할 수 있다.</p>
+<p class="m">반응. HF 추천 45개. GitHub Mirix-AI/MIRIX 별 3,481개, Apache-2.0, 마지막 push 11-11. 링크: <a href="https://huggingface.co/papers/2611.12068" style="color:#0b3d91">원문</a> · <a href="https://github.com/Mirix-AI/MIRIX" style="color:#0b3d91">GitHub</a></p>
+<h3>8. <a href="https://huggingface.co/papers/2611.18482" style="color:#0b3d91">MMFlash: 비전-언어 모델용 추측 디코딩, 최대 3.58배 가속</a></h3>
+<p class="m">출처. Hugging Face Daily Papers (11-16), National University of Singapore</p>
+<p><b>요약.</b> 저자들은 시각 의존도가 높은 토큰에서 초안 수락률이 낮다는 것을 찾았다. 수락률은 46%에서 22%로 떨어진다. MMFlash는 이런 토큰에 가중치를 더 준다. 긴 영상에는 희소 어텐션을 쓴다. 손실 없는 가속은 최대 3.58배이다. EAGLE-3보다 최대 195.4%, DFlash보다 최대 17.1% 낫다.</p>
+<p><b>왜 중요한가.</b> VLM 추론 비용을 바로 줄이는 기법이다. 추론 엔진에 들어갈 가능성이 있다.</p>
+<p class="m">반응. HF 추천 35개. GitHub 별 24개, MIT. 링크: <a href="https://huggingface.co/papers/2611.18482" style="color:#0b3d91">원문</a> · <a href="https://github.com/fscdc/MMFlash" style="color:#0b3d91">GitHub</a></p>
+<h3>9. <a href="https://huggingface.co/papers/2611.18397" style="color:#0b3d91">Gamer: 장시간 실시간 게임 에이전트용 VLA 기반 모델</a></h3>
+<p class="m">출처. Hugging Face Daily Papers (11-16)</p>
+<p><b>요약.</b> Gamer는 인지, 기억, 다단계 추론을 한 구조로 묶은 에이전트이다. 수만 시간의 키보드·마우스 기록으로 추가 사전학습을 했다. 2D 화면과 3D 시뮬레이션 세계 모두에서 동작한다. 세부 점수는 초록에 없어 넣지 않았다.</p>
+<p><b>왜 중요한가.</b> 컴퓨터 사용 에이전트와 게임 에이전트를 같은 모델로 다루는 시도이다.</p>
+<p class="m">반응. HF 추천 87개(이 날 2위). GitHub 별 196개, Apache-2.0. 링크: <a href="https://huggingface.co/papers/2611.18397" style="color:#0b3d91">원문</a> · <a href="https://github.com/RainBowLuoCS/Gamer" style="color:#0b3d91">GitHub</a></p>
+<h3>10. <a href="https://supermimic.github.io/" style="color:#0b3d91">SuperMimic: 휴머노이드 전신 제어를 GPU 1장, 3시간에 학습</a></h3>
+<p class="m">출처. 프로젝트 페이지, HN</p>
+<p><b>요약.</b> SuperMimic은 미분 가능한 월드 모델과 정책을 함께 학습한다. H100 1장으로 3시간 만에 SONIC의 정규화 보상(0.90)을 넘었다. SONIC은 L40 128장으로 7일을 학습했다. GPU 시간은 1,000배 이상 적다. 129,514개 동작 중 SONIC 체크포인트는 179개를 실패한다. SuperMimic은 H100 2장, 9.8시간 뒤 실패가 0개이다. 실제 Unitree G1에서 제로샷으로 동작했다.</p>
+<p><b>왜 중요한가.</b> 로봇 제어 학습의 연산 비용을 크게 낮출 수 있다. 단, 벤치마크 동작은 학습 동작이라 일반화 측정은 아니다.</p>
+<p class="m">반응. HN 16점, 댓글 0개. 링크: <a href="https://supermimic.github.io/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50510827" style="color:#0b3d91">HN</a></p>
+<h3>11. <a href="https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/" style="color:#0b3d91">"Lean으로 검증했다"는 주장을 해석하는 법 (Xena 블로그)</a></h3>
+<p class="m">출처. Xena Project 블로그 (11-12 게시, HN은 이번 기간)</p>
+<p><b>요약.</b> 글은 AI가 만든 Lean 증명을 믿기 전에 할 검사 4가지를 설명한다. 첫 질문은 Lean 명제가 원래 명제와 같은지이다. OpenAI가 지난달 공개한 수학 논문 722편 중 약 45%에 Lean 코드가 있었다. 저자는 그 다수에서 이 검사가 아직 체계적으로 안 되었다고 말한다.</p>
+<p><b>왜 중요한가.</b> AI 수학 결과의 신뢰도를 판단하는 실용 기준이다. 형식 검증을 쓰는 에이전트 개발에도 적용된다.</p>
+<p class="m">반응. HN 279점, 댓글 129개. 링크: <a href="https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50515058" style="color:#0b3d91">HN</a></p>
+<h3>12. <a href="https://geoffstearns.com/blog/your-agent-will-pick-the-hackable-one/" style="color:#0b3d91">에이전트는 해킹 가능한 기기를 고른다 (Geoff Stearns)</a></h3>
+<p class="m">출처. 개인 블로그 (11-15 게시), HN</p>
+<p><b>요약.</b> M-VAVE FM-1 신시사이저 사용자들은 AI 코딩 도구로 자체 펌웨어를 많이 만들었다. 제조사는 10월에 펌웨어를 GPLv3로 공개했다. 저자는 앞으로 AI 에이전트가 기기 펌웨어를 고치고 설치한다고 본다. 그래서 교체 가능한 기기가 더 잘 팔린다고 주장한다.</p>
+<p><b>왜 중요한가.</b> AI 코딩 비용 하락이 하드웨어 생태계를 바꾸는 사례이다. 의견 글이다.</p>
+<p class="m">반응. HN 76점, 댓글 65개. 링크: <a href="https://geoffstearns.com/blog/your-agent-will-pick-the-hackable-one/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50510799" style="color:#0b3d91">HN</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.reuters.com/world/china/jensen-huang-discusses-comeback-nvidia-ceo-with-allies-ft-reports-2026-11-15/" style="color:#0b3d91">Jensen Huang의 Nvidia CEO 복귀 논의 (Reuters/FT)</a> — FT 보도를 Reuters가 전했다. Huang이 측근들과 CEO 복귀를 논의했다는 내용이다. HN 175점, 댓글 186개(FT 스레드 131점·129개). <a href="https://news.ycombinator.com/item?id=50511982" style="color:#0b3d91">HN</a></li>
+<li><a href="https://steveblank.com/2026/11/15/whats-next-for-nvidia/" style="color:#0b3d91">Steve Blank: Nvidia의 다음은?</a> — Blank는 Nvidia의 큰 고객들이 경쟁자가 되고 있다고 쓴다. Google, Amazon, Microsoft, Meta, OpenAI, Tesla를 예로 든다. HN 455점, 댓글 565개. <a href="https://news.ycombinator.com/item?id=50512235" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.hntrends.com/2026/november.html" style="color:#0b3d91">HN "Who is Hiring?" 구인 글 12년 최저 수준</a> — 11월 구인 글은 작년 같은 시점보다 37% 적다. AI를 언급한 구인 글은 51.6%이다. 2년 전에는 30%였다. HN 93점, 댓글 83개. <a href="https://news.ycombinator.com/item?id=50512950" style="color:#0b3d91">HN</a></li>
+<li><a href="https://fortune.com/2026/11/14/alpha-school-ai-students-tuition-learning-goals/" style="color:#0b3d91">Alpha AI 학교, 학생 절반이 수학 목표 미달 (Fortune)</a> — 학비는 연 최대 $75,000이다. 내부 자료에서 수학과 읽기 목표를 모두 맞춘 학생은 42%이다. HN 68점, 댓글 67개. <a href="https://news.ycombinator.com/item?id=50509953" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.theguardian.com/technology/2026/nov/16/ai-related-child-sexual-abuse-material-rise-exploitation-deepfakes" style="color:#0b3d91">AI 관련 아동 성착취물 신고 2년간 8,400% 증가 (Guardian)</a> — Childlight 보고서이다. 신고는 2023년 약 4,700건에서 2025년 40만 건 이상으로 늘었다. HN 18점, 댓글 19개. <a href="https://news.ycombinator.com/item?id=50513713" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>이전 다이제스트 주요 항목(이번에 다시 다루지 않음): Qwen4-Max Preview(11-11), LongCat-2.5, Inkling-2, ZONOS3, MiniMax-H3-Image, alibaba/open-code-review, Claude-BugHunter, Plannotator, NVIDIA SkillEvaluator. 이 중 여러 저장소가 이번에도 GitHub 트렌딩에 있었다.</li>
+<li>GitHub 트렌딩에는 ag-ui(오늘 +790), google-labs-code/stitch-skills(+540), claude-trading-skills(+841)도 있었다. 이번 기간의 새 릴리스가 아니어서 본문에 넣지 않았다.</li>
+<li>Tencent Hy4 flash도 11-16 출시로 추적 사이트에 올랐다. 1차 출처 수치를 확인하지 못해 넣지 않았다.</li>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning)은 접근이 차단되어 확인하지 못했다.</li>
+<li>벤치마크 수치는 모두 각 발표자 자체 수치이다. 별도 표시가 있으면 Artificial Analysis 등 독립 수치이다.</li>
+</ul><h2>AFTER (11-17 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50518567" style="color:#0b3d91">Nvidia was in trouble before the Jensen Huang mess (Wired)</a> HN 230점, 댓글 220개</li>
+<li><a href="https://news.ycombinator.com/item?id=50520804" style="color:#0b3d91">OpenAI: Strengthening the fight against online child sexual abuse</a> HN 79점, 댓글 168개</li>
+<li><a href="https://news.ycombinator.com/item?id=50518501" style="color:#0b3d91">OpenAI: ChatGPT Wallet 소개</a> HN 44점, 댓글 79개</li>
+<li><a href="https://news.ycombinator.com/item?id=50520796" style="color:#0b3d91">FBI: 오픈소스 AI 해킹 도구 Artex가 3시간 안에 네트워크 침투에 쓰임 (TechCrunch)</a> HN 39점, 댓글 8개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
