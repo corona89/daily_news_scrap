@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-17</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-17</h1>
+<p class="m">대상 기간: 2026-11-17 00:00–24:00 KST. HN·GitHub·Hugging Face 수치는 2026-11-18 07:55 KST 전후에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>SenseNova가 SenseNova-Loop-9B를 Apache-2.0으로 공개했다. 9B 모델이 같은 층을 두 번 실행한다. 일부 에이전트 벤치마크에서 Qwen3.8-27B와 비슷하다.</li>
+<li>OVH가 첫 자체 LLM인 Olala mini 7A1B를 발표했다. 활성 1B인 MoE이다. 8GB GPU에서 돌아간다.</li>
+<li>MBZUAI(IFM)가 K2-Horizon 기술 보고서를 냈다. 0.9B부터 375B까지 6개 모델과 학습 데이터, 코드를 공개한다.</li>
+<li>FrontierHarness Eval v1.1은 하네스 22개와 모델 5개를 비교했다. 모델마다 가장 좋은 하네스가 다르다.</li>
+<li>오픈소스에서는 OpenCode Browse, TrnRT, last30days-skill v4, tokendoctor가 눈에 띈다.</li>
+<li>Windows 11이 코딩 에이전트 사용 기록을 진단 데이터로 보낸다는 분석이 HN 704점을 받았다.</li>
+<li>Reddit은 이번에도 접근이 차단되었다. Reddit 수치는 넣지 못했다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://huggingface.co/sensenova/SenseNova-Loop-9B" style="color:#0b3d91">SenseNova-Loop-9B: 반복(looped) 구조의 9B 멀티모달 모델</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (SenseNova, 11-17 공개)</p>
+<p><b>요약.</b> 이 모델은 9B 파라미터이다. 32개 층 중 24개 층을 두 번 실행한다. 그래서 한 번의 순전파에서 56개 층을 계산한다. 문맥은 512K 토큰이다. 입력은 텍스트와 이미지이다. 라이선스는 Apache-2.0이다. 자체 표에서 AutomationBench는 36.67이다. Qwen3.8-27B도 36.67이다. AIDABench는 65.31이다(Qwen3.8-27B 65.01). NL2Repo는 41.36이다(Qwen3.8-27B 44.60). Preview 대비 Terminal-Bench 2.1은 40.45에서 59.55로 올랐다. GAIA는 37.86에서 69.90으로 올랐다. 4비트 가중치와 8비트 KV 캐시로 256K 문맥에서 약 15GiB GPU 메모리가 필요하다. 공식 AWQ 4비트 버전이 있다. API 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 작은 파라미터로 깊은 계산을 하는 방법이다. 소비자용 GPU 한 장으로 로컬 에이전트를 돌릴 수 있다. 단, 층을 두 번 돌리므로 속도는 따로 확인해야 한다.</p>
+<p class="m">반응. HF 좋아요 169. HN 반응은 확인되지 않았다. 링크: <a href="https://huggingface.co/sensenova/SenseNova-Loop-9B" style="color:#0b3d91">원문</a></p>
+<h3>2. <a href="https://corporate.ovhcloud.com/en/newsroom/news/ovh-olala-mini/" style="color:#0b3d91">Olala mini 7A1B: OVH의 첫 자체 LLM (Apache-2.0 예정)</a></h3>
+<p class="m">출처. OVH 보도자료 (11-17)</p>
+<p><b>요약.</b> 총 7B 파라미터 MoE이다. 활성 파라미터는 1B이다. 층마다 전문가 256개가 있다. 주의 구조는 Differential-TPA와 Mamba-3를 섞었다. 8GB GPU에서 돌아간다. RTX A4500에서 초당 160토큰이다. GPU 없이 CPU에서 초당 50토큰이다. 문맥은 32,000 토큰이다. Hugging Face에 Apache 2.0으로 공개할 예정이다. 공식 출시는 11-19이다. 벤치마크 수치는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 유럽 기업이 공공 슈퍼컴퓨터로 처음부터 학습한 모델이다. Qwant가 이미 쓴다. 비용은 1/3로 줄고 응답은 20% 빨라졌다고 한다. 벤치마크가 나오기 전에는 성능을 판단할 수 없다.</p>
+<p class="m">반응. HN 반응은 확인되지 않았다. 링크: <a href="https://corporate.ovhcloud.com/en/newsroom/news/ovh-olala-mini/" style="color:#0b3d91">원문</a></p>
+<h3>3. <a href="https://huggingface.co/papers/2611.21003" style="color:#0b3d91">K2-Horizon 기술 보고서: 0.9B~375B 완전 공개 모델 6종</a></h3>
+<p class="m">출처. Hugging Face Papers 2611.21003 (IFM/MBZUAI), AI Weekly 정리</p>
+<p><b>요약.</b> K2-Horizon은 0.9B 밀집 모델부터 375B-A23B MoE까지 6개 모델이다. LLM360 기준으로 중간 체크포인트, 사전학습 데이터, 학습 코드를 공개한다. 36B-A4B 모델은 MoVA(값 투영에 MoE 적용)를 쓴다. 이 모델은 같은 데이터의 32B 밀집 모델과 거의 같다. 활성 파라미터는 1/7이다. Uno 어댑터는 디코딩을 최대 2.2배 빠르게 한다. AI Weekly에 따르면 375B-A23B는 Toolathlon-Verified 65.3이다. SWE-Atlas-QnA는 48.4이다. HLE와 CritPt에서는 폐쇄 모델보다 약하다. 라이선스는 Apache-2.0이다(HF 태그). 작은 모델 가중치는 2026-09부터 HF에 있었다.</p>
+<p><b>왜 중요한가.</b> 데이터와 코드까지 공개한 큰 모델은 드물다. 규제 산업에서 학습 과정을 감사할 수 있다. 단, 375B와 36B는 데이터와 코드가 아직 없다고 한다.</p>
+<p class="m">반응. HF 업보트 70 (이날 2위). 링크: <a href="https://huggingface.co/papers/2611.21003" style="color:#0b3d91">원문</a> · <a href="https://aiweekly.co/alerts/mbzuai-opens-k2-horizon-fleet-six-models-from-09b-to-375b" style="color:#0b3d91">AI Weekly</a> · <a href="https://huggingface.co/IFM/K2-Horizon-MoVA-36B-A4B" style="color:#0b3d91">36B-A4B 모델 카드</a></p>
+<h3>4. <a href="https://runta.com/blog/introducing-frontierharness-eval-v1-1/" style="color:#0b3d91">FrontierHarness Eval v1.1: 모델별 최적 코딩 하네스 비교</a></h3>
+<p class="m">출처. Runta 블로그 (11-17), Baseten 협업</p>
+<p><b>요약.</b> 하네스 22개, 모델 5개, 과제 62개, 과제당 4회를 실행했다. 실행은 27,280회이다. 토큰은 83B개를 썼다. 모델마다 최고 가성비 하네스가 다르다. GLM-5.3은 Codex CLI, GLM-5.3 Flash는 Pi, DeepSeek V4.1 Flash는 ZCode, Kimi-K3는 Alma이다. Codex CLI는 GLM-5.3에서 비용 1위였다. Kimi-K3에서는 16위였다. 전체 최저 비용은 OpenCode v2(과제당 $0.561)이다. 최고 통과율은 ZCode(61.9%)이다.</p>
+<p><b>왜 중요한가.</b> 모델을 바꿀 때 하네스도 다시 골라야 한다. 비용 차이가 크다. 오픈 모델로 에이전트를 돌리는 팀에 바로 쓸 수 있는 자료이다.</p>
+<p class="m">반응. HN 310점, 댓글 109개. 링크: <a href="https://runta.com/blog/introducing-frontierharness-eval-v1-1/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50532191" style="color:#0b3d91">HN</a></p>
+<h3>5. <a href="https://opencode.ai/product/browse" style="color:#0b3d91">OpenCode Browse: 코딩 에이전트가 내 실제 브라우저를 쓰게 하는 MCP 서버</a></h3>
+<p class="m">출처. OpenCode(Anomaly) 제품 페이지, GitHub anomalyco/browse</p>
+<p><b>요약.</b> MCP 서버와 Chromium 확장으로 구성된다. 에이전트가 사용자의 탭, 로그인, 확장을 그대로 쓴다. 에이전트 탭은 배경의 접힌 그룹에서 열린다. 로그인, 2FA, 결제 단계에서는 사용자에게 탭을 넘긴다. 허용 사이트 목록으로 범위를 제한한다. OpenCode, Claude Code, Cursor, Codex, Zed 등 MCP 클라이언트에서 쓴다. GitHub 별 856, MIT 라이선스. 최근 커밋 날짜는 확인하지 못했다.</p>
+<p><b>왜 중요한가.</b> 별도 헤드리스 브라우저 없이 로그인된 세션을 쓴다. 편하지만 에이전트가 내 계정 권한을 그대로 가진다. 판정: 써볼 만함. 단, 허용 사이트를 좁게 설정해야 한다.</p>
+<p class="m">반응. HN 323점, 댓글 209개. 링크: <a href="https://opencode.ai/product/browse" style="color:#0b3d91">원문</a> · <a href="https://github.com/anomalyco/browse" style="color:#0b3d91">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50523459" style="color:#0b3d91">HN</a></p>
+<h3>6. <a href="https://github.com/RunanywhereAI/trnrt" style="color:#0b3d91">TrnRT: AWS Trainium용 오픈 LLM 추론 엔진</a></h3>
+<p class="m">출처. GitHub README (RunAnywhere)</p>
+<p><b>요약.</b> TrnRT는 trn2.48xlarge 한 대에서 OpenAI 호환 API를 제공한다. 디코딩은 층 절반마다 하나의 NKI 메가커널로 실행한다. 문맥은 1M 토큰이다. FP8 KV 페이지에 접두사 캐시를 둔다. 첫 지원 모델은 GLM-5.3-Flash(320B MoE, 활성 18B, FP8)이다. GitHub 별 1.6k, Apache-2.0, 커밋 315개.</p>
+<p><b>왜 중요한가.</b> NVIDIA GPU 밖에서 큰 오픈 모델을 서빙하는 선택지이다. 지원 모델이 하나뿐이다. 판정: 지켜볼 만함. Trainium을 쓰는 팀만 해당한다.</p>
+<p class="m">반응. HN 38점, 댓글 5개. 링크: <a href="https://github.com/RunanywhereAI/trnrt" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50533270" style="color:#0b3d91">HN</a></p>
+<h3>7. <a href="https://github.com/mvanhorn/last30days-skill" style="color:#0b3d91">last30days-skill v4: 최근 30일 여론을 모아 요약하는 에이전트 스킬</a></h3>
+<p class="m">출처. GitHub README, GitHub Trending</p>
+<p><b>요약.</b> 이 스킬은 Reddit, X, YouTube, HN, Polymarket, 웹을 검색한다. 그리고 근거가 있는 요약을 만든다. v4는 미국 특허 출원과 회사 채용 페이지를 읽는다. 공개 전 신호를 찾는다. 상장사는 30일 주가와 S&amp;P 500을 비교한다. GitHub 별 68,985, 이날 +772. MIT 라이선스. 커밋 1,565개.</p>
+<p><b>왜 중요한가.</b> 리서치 스킬 중 가장 큰 프로젝트 중 하나이다. Claude Code에서 바로 설치한다. 판정: 써볼 만함. 출처 수집 범위가 넓다.</p>
+<p class="m">반응. GitHub Trending 일간 상위. HN 반응은 확인되지 않았다. 링크: <a href="https://github.com/mvanhorn/last30days-skill" style="color:#0b3d91">원문</a></p>
+<h3>8. <a href="https://github.com/localixai/tokendoctor" style="color:#0b3d91">tokendoctor: Claude Code 비용 절감 도구</a></h3>
+<p class="m">출처. GitHub README</p>
+<p><b>요약.</b> 사용자의 과거 Claude Code 세션을 다시 재생한다. 각 설정 변경이 얼마를 절약했을지 보여 준다. 사용자가 고른 변경만 적용한다. 개발자는 최대 38% 절감을 주장한다. GitHub 별 139, MIT, 마지막 푸시 11-17.</p>
+<p><b>왜 중요한가.</b> 자기 사용 기록으로 효과를 먼저 확인한다. 판정: 지켜볼 만함. 38%는 개발자 자체 수치이다.</p>
+<p class="m">반응. HN 31점, 댓글 16개. 링크: <a href="https://github.com/localixai/tokendoctor" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50526584" style="color:#0b3d91">HN</a></p>
+<h3>9. <a href="https://blog.antonio.cx/running-agents-with-lend" style="color:#0b3d91">lend: 원격 코딩 에이전트에 자격 증명을 넘기지 않는 방법</a></h3>
+<p class="m">출처. 개인 블로그 (11-13 작성, HN 11-17 게시)</p>
+<p><b>요약.</b> 저자는 에이전트를 버릴 수 있는 VM에서 돌린다. SSH 키, 1Password, gh CLI는 노트북에 둔다. lend는 원격 에이전트가 노트북의 도구를 쓰게 한다. 사용할 때마다 사용자가 승인한다. 비밀 값은 에이전트에게 보이지 않는다. 임대(lease)와 사용 기록도 있다.</p>
+<p><b>왜 중요한가.</b> 에이전트 보안의 실용적 패턴이다. 별 수와 라이선스는 이 글에서 확인하지 못했다. 판정: 지켜볼 만함.</p>
+<p class="m">반응. HN 126점, 댓글 110개. 링크: <a href="https://blog.antonio.cx/running-agents-with-lend" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50526152" style="color:#0b3d91">HN</a></p>
+<h3>10. <a href="https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/" style="color:#0b3d91">Claude Code 팀의 검증(verification) 방식</a></h3>
+<p class="m">출처. claude.dev 엔지니어링 블로그 (Addy Osmani, 11-16)</p>
+<p><b>요약.</b> Claude Code 팀 코드의 약 90%는 Claude가 쓰고 리뷰한다. 팀은 end-to-end 테스트, 속성 테스트, 차분(differential) 테스트를 중시한다. 별도 채점자가 루브릭으로 검사하면 과제 성공률이 최대 10점 오른다(내부 테스트). 반복 실패는 hook이나 CLAUDE.md 규칙으로 막는다.</p>
+<p><b>왜 중요한가.</b> 에이전트를 여러 개 병렬로 돌리려면 자동 검증이 필요하다. 바로 따라 할 수 있는 실무 지침이다.</p>
+<p class="m">반응. HN 245점, 댓글 190개. 링크: <a href="https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50529612" style="color:#0b3d91">HN</a></p>
+<h3>11. <a href="https://xusheng.dev/posts/windows-coding-agent-telemetry/" style="color:#0b3d91">Windows 11이 코딩 에이전트 사용 기록을 수집한다는 분석</a></h3>
+<p class="m">출처. Xusheng Li 블로그 (역공학 분석)</p>
+<p><b>요약.</b> 저자는 MissionControlAggregator.dll을 분석했다. 이 DLL은 codex.exe, claude.exe, copilot.exe, cursor.exe, antigravity.exe 등 이름을 비교한다. python.exe, node.exe, gcc.exe 같은 개발 도구도 확인한다. 기능 이름은 CLICodingAgentUsage(ID 62580080)이다. 선택 진단 데이터가 켜져 있으면 결과를 Microsoft로 보낸다. 이 설정은 기본으로 켜져 있다.</p>
+<p><b>왜 중요한가.</b> 회사 PC에서 어떤 AI 도구를 쓰는지 외부로 나갈 수 있다. 보안 정책이 있는 조직은 진단 데이터 설정을 확인해야 한다.</p>
+<p class="m">반응. HN 704점, 댓글 584개. 링크: <a href="https://xusheng.dev/posts/windows-coding-agent-telemetry/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50524736" style="color:#0b3d91">HN</a></p>
+<h3>12. <a href="https://www.harmonic.fun/news/aristotle-rust-verification/" style="color:#0b3d91">Aristotle, Rust 코드 형식 검증 지원</a></h3>
+<p class="m">출처. Harmonic 발표</p>
+<p><b>요약.</b> Aristotle은 C와 Verilog에 이어 Rust를 지원한다. unsafe 블록 안에서도 정의되지 않은 동작이 없음을 증명한다. C를 Rust로 옮길 때 동작이 같음을 증명한다. Solana 주문장 Manifest에서 28개 결과를 증명했다. 반올림 버그 1개를 찾았다.</p>
+<p><b>왜 중요한가.</b> AI가 쓴 코드를 테스트 대신 증명으로 검사하는 흐름이다. 가격과 공개 여부는 출처에 없음.</p>
+<p class="m">반응. HN 120점, 댓글 66개. 링크: <a href="https://www.harmonic.fun/news/aristotle-rust-verification/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50520270" style="color:#0b3d91">HN</a></p>
+<h3>13. <a href="https://huggingface.co/papers/2611.07222" style="color:#0b3d91">논문: SPILLWAY, SWE-CoWork, ScaleVLA</a></h3>
+<p class="m">출처. Hugging Face Daily Papers (11-17)</p>
+<p><b>요약.</b> SPILLWAY는 도구 사용 에이전트의 프롬프트 주입 방어이다. 행동 대상이 도구의 타입 필드에서 왔는지 결정적으로 검사한다. 표준 주입 공격이 행동을 공격자에게 돌리지 못했다고 한다(HF 49). SWE-CoWork는 동료 26명이 있는 가상 조직에서 코딩 에이전트를 평가한다. 상위 두 모델은 테스트의 약 63%를 통과하지만 과제 완료는 8% 미만이다(HF 44). ScaleVLA는 552B DeepSeek-V4.1-Flash를 로봇 정책에 붙였다. LIBERO-PRO 성공률은 45.1%이다. 작은 백본은 최대 31.3%이다(HF 41).</p>
+<p><b>왜 중요한가.</b> 에이전트 보안과 실제 업무 평가가 핵심 주제이다. SWE-CoWork는 부분 구현과 완전한 납품 사이의 큰 차이를 보여 준다.</p>
+<p class="m">반응. HF 업보트 49 / 44 / 41. 링크: <a href="https://huggingface.co/papers/2611.07222" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2611.20218" style="color:#0b3d91">SWE-CoWork</a> · <a href="https://huggingface.co/papers/2611.21607" style="color:#0b3d91">ScaleVLA</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.scmp.com/tech/big-tech/article/3374774/baidu-xiaomi-ceos-warn-growing-gap-between-ai-hype-and-returns" style="color:#0b3d91">Baidu·Xiaomi CEO, AI 기대와 수익의 차이를 경고</a> — 중국 대기업 CEO들이 AI 투자 수익이 기대보다 늦다고 말했다. HN 182점·댓글 239개. <a href="https://news.ycombinator.com/item?id=50531751" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.wired.com/story/nvidia-was-already-in-trouble-before-the-jensen-huang-mess/" style="color:#0b3d91">Nvidia는 Jensen Huang 사태 전부터 어려웠다 (Wired)</a> — Wired가 Nvidia의 기존 문제를 분석했다. 이사회는 Huang 복귀를 검토하지 않는다고 보도되었다. HN 287점·댓글 261개. <a href="https://news.ycombinator.com/item?id=50518567" style="color:#0b3d91">HN</a></li>
+<li><a href="https://openai.com/index/strengthening-online-child-safety/" style="color:#0b3d91">OpenAI, 온라인 아동 성착취 대응 강화</a> — OpenAI가 아동 안전 대책을 발표했다. 댓글에서 논쟁이 많았다. HN 125점·댓글 314개. <a href="https://news.ycombinator.com/item?id=50520804" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.newsweek.com/us-expected-to-block-killer-robot-treaty-talks-12722369" style="color:#0b3d91">미국, 킬러 로봇 국제 금지에 반대 예정</a> — 미국이 자율 무기 금지 조약 논의를 막을 것으로 보도되었다. HN 92점·댓글 130개. <a href="https://news.ycombinator.com/item?id=50524728" style="color:#0b3d91">HN</a></li>
+<li><a href="https://apnews.com/article/south-korea-exam-cheating-ai-college-e25b5612dbf4bd09fdf9197254" style="color:#0b3d91">한국, 수능 AI 부정행위로 전국 긴급 문자 발송</a> — 한국 정부가 AI를 쓴 수능 부정행위에 대해 전국 경보를 보낸다고 AP가 보도했다. HN 64점·댓글 85개. <a href="https://news.ycombinator.com/item?id=50531484" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>재등장(이전 메인): Sage S2.1 Flash 기술 보고서(HF 85, 11-16 메인), PaperOrchestra(이날 별 +1,175, 11-16 메인), Claude-BugHunter(이날 +1,007), alibaba/open-code-review(+764), Tencent/LoopForge, Plannotator, ag-ui, stitch-skills.</li>
+<li>Claude Mythos가 AMD GPU 지원 작업을 약 3일로 줄였다는 Tom's Hardware 기사(HN 52점)는 본문을 열지 못했다. 그래서 제목만 적는다.</li>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning)은 접근이 차단되었다.</li>
+<li>HN 수치는 2026-11-18 07:55 KST 전후에 HN Algolia API에서 확인했다. 벤치마크는 각 발표자 자체 수치이다.</li>
+</ul><h2>AFTER (11-18 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50535230" style="color:#0b3d91">GPT‑6.2 Astra and Sol (OpenAI 새 모델, 11-18 02:46 KST 게시)</a> HN 967점·댓글 600개</li>
+<li><a href="https://news.ycombinator.com/item?id=50535885" style="color:#0b3d91">MAI Code 2 and Code 2 Flash (Microsoft AI 코딩 모델)</a> HN 238점·댓글 111개</li>
+<li><a href="https://news.ycombinator.com/item?id=50534631" style="color:#0b3d91">Nvidia stopped disclosing Singapore sales as revenues hit $104B</a> HN 282점·댓글 149개</li>
+<li><a href="https://news.ycombinator.com/item?id=50534044" style="color:#0b3d91">Jensen Huang says he’s open to returning</a> HN 94점·댓글 171개</li>
+<li><a href="https://news.ycombinator.com/item?id=50535238" style="color:#0b3d91">Apple Services Down</a> HN 570점·댓글 313개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
