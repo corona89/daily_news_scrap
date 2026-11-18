@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-18</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-18</h1>
+<p class="m">대상 기간: 2026-11-18 00:00–24:00 KST. HN·GitHub·Hugging Face 수치는 2026-11-19 07:50 KST 전후에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>OpenAI가 GPT-6.2 Astra와 GPT-6.2 Sol을 발표했다. Astra의 API 가격은 GPT-6 Astra보다 20% 낮다. HN 1,336점으로 이날 1위이다.</li>
+<li>Microsoft AI가 코딩 모델 MAI Code 2와 Code 2 Flash를 냈다. 회사는 GPT-6.1 Sol 성능의 98%를 40% 비용으로 낸다고 한다.</li>
+<li>Tencent가 Hy4 flash 가중치를 공개했다. 총 220B, 활성 약 12B, 문맥 1M 토큰이다.</li>
+<li>Qwen3.8-27B용 pi 코딩 에이전트 LoRA가 나왔다. 생각 모드 없이 SWE-bench Pro(hard 51) 64.7%이다. 기본 모델은 39.2%이다.</li>
+<li>Apple이 FastFrames(1.3B, 14B)를 공개했다. 480p 영상을 대화형 지연으로 만든다.</li>
+<li>Microsoft의 ONNX Runtime 저장소가 GitHub에서 사라졌다. 이유는 아직 발표되지 않았다.</li>
+<li>Reddit은 이번에도 접근이 차단되었다. Reddit 수치는 넣지 못했다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://openai.com/index/introducing-gpt-6-2-astra-sol/" style="color:#0b3d91">GPT‑6.2 Astra와 GPT‑6.2 Sol</a></h3>
+<p class="m">출처. OpenAI 블로그 (11-18 KST 새벽 게시)</p>
+<p><b>요약.</b> Astra는 어려운 전문 작업용 최상위 모델이다. Sol은 일상 작업용 효율 모델이다. Agents’ Last Exam에서 Astra는 GPT-6 Astra보다 5.2점 높다. 비용은 1/3 미만이다. Claude Fable 5.2보다 5.5점 높다. 비용은 5%이다. Terminal-Bench-Science 0.1에서 GPT-6 Astra보다 9%p 높다. GDPval v2에서 GPT-6 Astra보다 6.2%p 높다. 출력 토큰은 22% 적다. Sol은 GDPval v2에서 GPT-6.1 Sol보다 5.3점 높다. FrontierCode 2.0에서 Sol은 Astra와 0.5점 차이이다. 비용은 약 1/5이다. Astra API 가격은 100만 토큰당 입력 $8, 캐시 입력 $0.40, 출력 $40이다. Sol은 GPT-6.1 Sol 가격을 유지한다. 파라미터 수와 문맥 길이는 출처에 없음. 로컬 실행은 불가(폐쇄 모델)이다.</p>
+<p><b>왜 중요한가.</b> 같은 품질을 더 적은 토큰과 비용으로 낸다는 것이 핵심이다. 모든 수치는 OpenAI 자체 측정이다. 독립 평가를 기다려야 한다.</p>
+<p class="m">반응. HN 1,336점, 댓글 848개 (이날 1위). 링크: <a href="https://openai.com/index/introducing-gpt-6-2-astra-sol/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50535230" style="color:#0b3d91">HN</a></p>
+<h3>2. <a href="https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/" style="color:#0b3d91">MAI Code 2와 MAI Code 2 Flash (Microsoft AI)</a></h3>
+<p class="m">출처. Microsoft AI 뉴스 (11-17, Ignite)</p>
+<p><b>요약.</b> 두 모델은 일상적인 기업 코딩 작업용이다. 4개 벤치마크(DeepSWE 1.1, Terminal Bench 2.1, SWE-Atlas, FrontierCode v1.1) 평균을 비교했다. MAI Code 2는 GPT-6.1 Sol 성능의 98%를 40% 비용으로 낸다. Claude Opus 5.5 성능의 96%를 5% 비용으로 낸다. 프런트엔드 블라인드 평가에서 개발자는 GPT-6 Sol보다 이 모델을 64% 선택했다. Code 2 Flash는 GPT-6 Luna, Claude Haiku 5.5와 비슷한 성능이다. 비용은 각각 65%, 20%이다(50% 프로모션 가격 기준). 회사는 장기 에이전트 작업에는 아직 맞추지 않았다고 밝혔다. GitHub Copilot에서 쓸 수 있다. Flash는 Microsoft Foundry에서 제한 프리뷰이다. 토큰당 가격, 파라미터, 문맥 길이는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> Copilot 사용자에게 싼 기본 코딩 모델이 생긴다. 비교 수치는 Microsoft 자체 측정이다.</p>
+<p class="m">반응. HN 415점, 댓글 167개. 링크: <a href="https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50535885" style="color:#0b3d91">HN</a></p>
+<h3>3. <a href="https://huggingface.co/tencent/Hy4-flash" style="color:#0b3d91">Hy4 flash: Tencent의 220B MoE 오픈 가중치 모델</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (11-17 공개), Tencent Hy 사이트</p>
+<p><b>요약.</b> 총 파라미터는 220B이다. 이 중 64B는 Engram(n-gram 임베딩) 파라미터이다. 토큰당 활성 파라미터는 텍스트 11.3B와 비전 0.43B이다. 문맥은 1M 토큰이다. 입력은 텍스트와 이미지이다. KV 캐시는 Hy3의 1/24, Hy4의 1/6이다. 내부 WorkIndex 점수는 42.1이다. Hy4 preview는 39.7이다. 과제당 비용은 Hy4 preview의 1/13, DeepSeek-V4.1-Flash-1017의 1/8이다. 베이스 모델 MMLU-Pro는 71.1이다(DeepSeek-V4-flash-Base 68.6). 디코딩은 초당 150토큰 이상이다. 예시 서빙은 GPU 8장(FP8, 텐서 병렬 8)이다. GGUF 버전이 있다. 라이선스는 Tencent Hy License(자체 라이선스)이다. API 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 큰 오픈 모델 중 활성 파라미터가 작고 문맥이 길다. 단, 표준 오픈 라이선스가 아니다. 상업 사용 전에 라이선스를 확인해야 한다.</p>
+<p class="m">반응. HN 162점, 댓글 26개. HF 좋아요 227. GitHub 별 55. 링크: <a href="https://huggingface.co/tencent/Hy4-flash" style="color:#0b3d91">원문</a> · <a href="https://hy.tencent.ai/research/hy4-flash" style="color:#0b3d91">공식 사이트</a> · <a href="https://github.com/Tencent-Hunyuan/Hy4-flash" style="color:#0b3d91">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50538184" style="color:#0b3d91">HN</a></p>
+<h3>4. <a href="https://huggingface.co/harness-hub/Qwen3.8-27B-pi-adapted" style="color:#0b3d91">Qwen3.8-27B-pi-adapted: pi 코딩 에이전트용 RL LoRA</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (harness-hub, 11-16 공개)</p>
+<p><b>요약.</b> Qwen3.8-27B에 붙이는 LoRA 어댑터이다. pi 코딩 에이전트 환경에서 강화학습(GRPO)으로 학습했다. 생각 모드 없이 SWE-bench Pro(hard 51)가 39.2%에서 64.7%로 올랐다. Terminal-Bench 2.1은 39.5%에서 55.8%로 올랐다. 이는 기본 모델의 최고 생각 모드(xhigh)와 같은 수준이다. 생성 토큰은 약 4.5배 적다. 모든 수치는 pi 하네스, 과제당 1회, 100단계 제한 조건이다. 라이선스는 Apache-2.0이다. GGUF와 llama.cpp 실행 방법이 있다.</p>
+<p><b>왜 중요한가.</b> 27B 로컬 모델의 코딩 에이전트 성능을 하네스 맞춤 학습으로 크게 올렸다. 판정: 써볼 만함. pi를 쓰면 바로 적용할 수 있다. 다른 하네스에서는 효과를 다시 확인해야 한다.</p>
+<p class="m">반응. HF 좋아요 389, HF 트렌딩 3위. HN 반응은 확인되지 않았다. 링크: <a href="https://huggingface.co/harness-hub/Qwen3.8-27B-pi-adapted" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/harness-hub/Qwen3.8-27B-pi-adapted-GGUF" style="color:#0b3d91">GGUF</a></p>
+<h3>5. <a href="https://huggingface.co/apple/FastFrames-L" style="color:#0b3d91">FastFrames: Apple의 대화형 지연 영상 생성 모델</a></h3>
+<p class="m">출처. Hugging Face 모델 카드, arXiv 2611.23226</p>
+<p><b>요약.</b> FastFrames-S(1.3B)와 FastFrames-L(14B)을 공개했다. 두 모델은 자기회귀 2단계 영상 확산 모델이다. 480p 영상을 만든다. FastFrames-S는 GPU 1장에서 프레임당 약 35.4ms이다. FastFrames-L은 Wan2.1-14B를 증류했다. LingBot 1.3B 최적화 버전도 공개했다. 이 버전은 원본보다 16배 빠르다. 라이선스는 Apple 샘플 코드 라이선스(apple-amlr)이다. NVIDIA GPU와 CUDA 12.8이 필요하다.</p>
+<p><b>왜 중요한가.</b> 실시간에 가까운 영상 생성과 카메라 조작을 로컬에서 시험할 수 있다. 판정: 지켜볼 만함. 라이선스가 연구용에 가깝다.</p>
+<p class="m">반응. HF 좋아요 204. HF Papers 업보트 21. 링크: <a href="https://huggingface.co/apple/FastFrames-L" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2611.23226" style="color:#0b3d91">논문</a> · <a href="https://apple-aiml-research.github.io/ml-fastframes/" style="color:#0b3d91">프로젝트 페이지</a></p>
+<h3>6. <a href="https://energy-based-reasoners.github.io/" style="color:#0b3d91">Energy-Based Reasoners: 1.8M 파라미터로 Sudoku-Extreme 99.9%</a></h3>
+<p class="m">출처. 프로젝트 페이지, arXiv 2611.08977 (Duke, UIUC, Harvard)</p>
+<p><b>요약.</b> EBR은 잠재 추론 상태에 대한 에너지 함수를 학습한다. 반복 갱신을 이 에너지의 경사 하강으로 계산한다. 에너지 값으로 후보 답을 채점한다. 외부 검증기가 필요 없다. 기울기로 멈출 시점도 정한다. 1.8M 파라미터로 Sudoku-Extreme 99.9% 정확도이다. 다음으로 좋은 모델보다 추론 계산이 345배 적다. 코드는 GitHub 별 73, MIT, 마지막 푸시 11-09이다.</p>
+<p><b>왜 중요한가.</b> 작은 반복 추론 모델에 멈춤 기준과 자체 채점을 준다. 아직 퍼즐 과제 결과이다. 판정: 지켜볼 만함.</p>
+<p class="m">반응. HN 293점, 댓글 49개. 링크: <a href="https://energy-based-reasoners.github.io/" style="color:#0b3d91">원문</a> · <a href="https://arxiv.org/abs/2611.08977" style="color:#0b3d91">arXiv</a> · <a href="https://github.com/wwillchen/ebr" style="color:#0b3d91">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50543989" style="color:#0b3d91">HN</a></p>
+<h3>7. <a href="https://github.com/microsoft/onnxruntime" style="color:#0b3d91">Microsoft ONNX Runtime 저장소가 GitHub에서 사라짐</a></h3>
+<p class="m">출처. GitHub (현재 404), HN 토론</p>
+<p><b>요약.</b> github.com/microsoft/onnxruntime 주소가 현재 "Page not found"를 보여 준다. 우리가 확인한 시점에도 404였다. HN 사용자들은 사전 공지가 없었다고 말한다. 일부 사용자는 평가 파이프라인이 실패해서 알았다고 썼다. Microsoft의 공식 설명은 아직 없다.</p>
+<p><b>왜 중요한가.</b> ONNX Runtime은 많은 추론 파이프라인의 의존성이다. 소스에서 빌드하거나 저장소를 참조하는 CI는 지금 확인해야 한다.</p>
+<p class="m">반응. HN 449점, 댓글 97개. 링크: <a href="https://github.com/microsoft/onnxruntime" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50539610" style="color:#0b3d91">HN</a></p>
+<h3>8. <a href="https://kernel.dev/blog/why-is-gemini-4-carbon-taking-so-long/" style="color:#0b3d91">Gemini 4 Carbon은 왜 느린가: 실행 기록 분석</a></h3>
+<p class="m">출처. Kernel 블로그</p>
+<p><b>요약.</b> Kernel은 비공개 버그 수정 평가에서 Carbon의 모든 단계를 추적했다. Carbon은 GPT-6 Astra보다 단계가 약 7배 많다. 입력 처리량은 16배 이상이다. 느린 추론은 Astra 대비 추가 시간의 16–30%만 설명한다. 단계의 약 절반은 과제가 요구하지 않은 감사 작업이었다. 다섯 턴마다 "고칠 준비가 되었는가"를 묻자 37분이 28분으로 줄었다. Carbon은 읽은 줄의 39%를 다시 읽었다. Astra는 7%였다.</p>
+<p><b>왜 중요한가.</b> 모델 선택에서 점수만큼 실행 시간과 행동 습관이 중요하다. 하네스에 확인 질문을 넣는 간단한 방법도 보여 준다.</p>
+<p class="m">반응. HN 261점, 댓글 137개. 링크: <a href="https://kernel.dev/blog/why-is-gemini-4-carbon-taking-so-long/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50541790" style="color:#0b3d91">HN</a></p>
+<h3>9. <a href="https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference" style="color:#0b3d91">Cerebras 분리형(disaggregated) 추론 출시</a></h3>
+<p class="m">출처. Cerebras 블로그 (11-17)</p>
+<p><b>요약.</b> GPU가 프롬프트 처리(prefill)를 맡는다. Cerebras 시스템이 출력 생성(decode)을 맡는다. 이 구성은 이미 운영 중이다. 회사는 같은 속도에서 메가와트당 토큰이 5배 많다고 말한다. 인프라 파트너도 이 구성을 자체 데이터센터에 쓸 수 있다.</p>
+<p><b>왜 중요한가.</b> 전력이 한계인 환경에서 빠른 추론 용량을 늘리는 방법이다. 5배 수치는 회사 자체 수치이다.</p>
+<p class="m">반응. HN 105점, 댓글 24개. 링크: <a href="https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50540472" style="color:#0b3d91">HN</a></p>
+<h3>10. <a href="https://newsletter.posthog.com/p/decision-models" style="color:#0b3d91">모든 일에 LLM이 필요하지는 않다: PostHog의 결정 모델</a></h3>
+<p class="m">출처. PostHog 뉴스레터</p>
+<p><b>요약.</b> PostHog는 작은 분류용 결정 모델을 비싼 LLM 호출 앞에 둔다. 개인정보 검사 예에서 운영 요청의 98.7%가 LLM 호출을 건너뛴다. 임계값은 틀렸을 때의 비용에 따라 정한다. 같은 방식으로 Slack 봇의 모델 라우터도 만든다.</p>
+<p><b>왜 중요한가.</b> 에이전트 비용을 줄이는 실용적인 설계이다. 바로 따라 할 수 있다.</p>
+<p class="m">반응. HN 177점, 댓글 74개. 링크: <a href="https://newsletter.posthog.com/p/decision-models" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50535740" style="color:#0b3d91">HN</a></p>
+<h3>11. <a href="https://shivamduggal4.github.io/latent-lattice-language-models/" style="color:#0b3d91">Latent Lattice Language Models (MIT, Adobe)</a></h3>
+<p class="m">출처. 프로젝트 페이지, arXiv 2611.21608</p>
+<p><b>요약.</b> 층마다 토큰을 따라 흐르는 가로 잠재 상태를 추가한다. FineWeb-Edu 20B 토큰으로 학습한 406M 모델의 검증 퍼플렉서티가 15.41에서 14.40으로 내려갔다. 비교 대상은 같은 크기의 Transformer이다. 다른 개선과 합치면 13.61이다. Gated DeltaNet, Mamba-2에서도 개선되었다. 코드는 곧 공개된다.</p>
+<p><b>왜 중요한가.</b> 깊이 대신 "유지하는 상태 수"로 계산량을 늘리는 새 축이다. 아직 작은 규모 결과이다.</p>
+<p class="m">반응. HN 55점, 댓글 5개. 링크: <a href="https://shivamduggal4.github.io/latent-lattice-language-models/" style="color:#0b3d91">원문</a> · <a href="https://arxiv.org/pdf/2611.21608" style="color:#0b3d91">논문</a> · <a href="https://news.ycombinator.com/item?id=50539039" style="color:#0b3d91">HN</a></p>
+<h3>12. <a href="https://huggingface.co/papers/2611.22115" style="color:#0b3d91">논문 묶음: Xing 4, AscendGYM, Weight-Space Programming, Multi-Branch Transformer</a></h3>
+<p class="m">출처. Hugging Face Daily Papers (11-18)</p>
+<p><b>요약.</b> Xing 4(TeleChat): 285B 모델을 Ascend 910C 8,192장으로 사전학습했다. 에이전트 학습 플랫폼 TeleGym도 소개한다. AscendGYM: Ascend NPU 커널 최적화 벤치마크이다. 실제 작업에서 뽑은 커널 48개로 시작한다. Weight-Space Programming: LLM이 경사 하강 없이 가중치를 직접 쓴다. LLM이 설계한 표 구조 모델은 같은 LLM이 쓴 Transformer보다 정확하다. 파라미터는 약 1,800배 적다. Multi-Branch Transformer: 블록을 병렬 가지로 나눈다. 0.8B–2.1B MoE 실험에서 같은 계산량의 일반 Transformer보다 좋다.</p>
+<p><b>왜 중요한가.</b> 중국산 칩 위의 대형 학습 기록이 늘고 있다. 구조 연구는 깊이와 너비 밖의 확장 방법을 찾는다.</p>
+<p class="m">반응. HF 업보트: Xing 4 149, AscendGYM 91, Weight-Space 47, MBT 43. 링크: <a href="https://huggingface.co/papers/2611.22115" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2611.17621" style="color:#0b3d91">AscendGYM</a> · <a href="https://huggingface.co/papers/2611.22055" style="color:#0b3d91">Weight-Space</a> · <a href="https://huggingface.co/papers/2611.19800" style="color:#0b3d91">MBT</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.ft.com/content/dbde7a30-548c-4f9d-a4be-7898a0c24dcf" style="color:#0b3d91">Nvidia가 싱가포르 매출 공개를 중단 (FT)</a> — FT 보도이다. 제목에 따르면 매출이 $104B에 이르렀을 때 중단했다. 본문은 유료라서 열지 못했다. HN 656점·295댓글. <a href="https://news.ycombinator.com/item?id=50534631" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.cnbc.com/2026/11/17/nvidia-jensen-huang-statement.html" style="color:#0b3d91">Jensen Huang, 사임 후 첫 성명에서 복귀 가능성 언급 (CNBC)</a> — 이사회 의장은 복귀시킬 의도가 없다고 따로 말했다. HN 100점·194댓글. <a href="https://news.ycombinator.com/item?id=50534044" style="color:#0b3d91">HN</a></li>
+<li><a href="https://revscope.co/blog/search-seo-geo-2026/" style="color:#0b3d91">Google AI 답변이 검색 유입을 40% 줄인다는 분석</a> — 원문 사이트가 접속 제한 상태라 본문을 열지 못했다. 수치는 제목 기준이다. HN 683점·530댓글. <a href="https://news.ycombinator.com/item?id=50540178" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.washingtonsun.com/technology/bank-ceos-nsa-tell-congress-ai-driven-patches-behind-outages" style="color:#0b3d91">은행 CEO와 NSA, "AI 기반 패치가 장애 원인" 의회 증언</a> — AI가 만든 패치의 운영 위험이 정책 논의로 올라왔다. HN 95점·56댓글. <a href="https://news.ycombinator.com/item?id=50540836" style="color:#0b3d91">HN</a></li>
+<li><a href="https://openai.com/index/advancing-computer-use-for-healthcare-teams/" style="color:#0b3d91">OpenAI, 의료팀용 컴퓨터 사용 에이전트 발표</a> — 의료 현장 업무용 컴퓨터 사용 에이전트 소식이다. 본문 수치는 확인하지 못했다. HN 53점·32댓글. <a href="https://news.ycombinator.com/item?id=50535898" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>재등장(이전 다이제스트 본문): Claude-BugHunter(GitHub 이날 +2,322), PaperOrchestra(+1,529), last30days-skill(+1,062), ECC, SkillEvaluator, SenseNova-Loop-9B, Haru-4B. 이번에는 본문에서 뺐다.</li>
+<li>Harvard 코딩 에이전트 리뷰 병목 기사(HN 313점)는 2026-10-13 기사라서 뺐다. "AI is killing All About Berlin"(HN 744점)은 2026-05-26 글이라서 뺐다.</li>
+<li>"Claude was trained on protein sequences at scale"(HN 159점)은 본문을 열지 못했다.</li>
+<li>Reddit(r/LocalLLaMA 등)은 접근이 차단되어 확인하지 못했다.</li>
+<li>HN 수치는 2026-11-19 07:50 KST 전후 Algolia 값이다. 벤치마크는 각 발표자 자체 수치이다.</li>
+</ul><h2>AFTER (11-19 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50548021" style="color:#0b3d91">Seven new models at scalable price-performance (Microsoft Ignite)</a> HN 381점</li>
+<li><a href="https://news.ycombinator.com/item?id=50552424" style="color:#0b3d91">Gemini 4 Neon</a> HN 253점</li>
+<li><a href="https://news.ycombinator.com/item?id=50550415" style="color:#0b3d91">Genie 4 is now available</a> HN 156점</li>
+<li><a href="https://news.ycombinator.com/item?id=50549493" style="color:#0b3d91">Advancing chip design with OpenAI models</a> HN 127점</li>
+<li><a href="https://news.ycombinator.com/item?id=50551046" style="color:#0b3d91">DaisyRose-27B: Qwen3.8 Terminal-Bench 4.1 5.6%→12%</a> HN 93점</li>
+<li><a href="https://news.ycombinator.com/item?id=50547777" style="color:#0b3d91">AI agents ask better questions than KPMG accountants in audit trial</a> HN 280점</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
