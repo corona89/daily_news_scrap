@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-19</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-19</h1>
+<p class="m">대상 기간: 2026-11-19 00:00–24:00 KST. HN·GitHub·Hugging Face 수치는 2026-11-20 07:55 KST 전후에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>Google이 Gemini 4 Neon을 출시했다. 가격은 100만 토큰당 입력 $3, 출력 $15이다. 문맥은 100만 토큰이다. HN 1,006점으로 이날 AI 1위이다.</li>
+<li>RadixArk가 오픈 가중치 DaisyRose-27B를 공개했다. Terminal-Bench 4.1을 5.6%에서 12.0%로 올렸다. 라이선스는 Apache-2.0이다.</li>
+<li>Microsoft AI가 Ignite에서 모델 7종을 발표했다. MAI Image 2.7은 Artificial Analysis 이미지 편집 1위라고 한다.</li>
+<li>OpenAI가 칩 설계 결과를 공개했다. AMD GPU IP에서 PPA를 최대 14% 개선했다고 한다.</li>
+<li>Mastra가 오픈소스 소프트웨어 팩토리를 공개했다. 지난주 PR 238개를 열고 병합했다.</li>
+<li>Reddit은 이번에도 접근이 차단되었다. Reddit 수치는 넣지 못했다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" style="color:#0b3d91">Gemini 4 Neon</a></h3>
+<p class="m">출처. Google 블로그 (11-18 미국 시간, Koray Kavukcuoglu)</p>
+<p><b>요약.</b> Neon은 빠른 프런티어급 모델이다. Artificial Analysis Intelligence Index에서 61점으로 전체 3위이다(xhigh 설정). Vals Index에서 70.9%로 2위이다. Artificial Analysis Coding Agent Index에서 58.6으로 1위이다. Terminal-Bench 4.1은 65.2%이다. FrontierCode 2.0은 46.2%이다(기본 high 설정). Agents’ Last Exam v1.1은 75.8%이다. Terminal-Bench Science는 70.5%이다. HLE-Diamond는 71.3%이다. Arena Agent Arena Index에서 1336점으로 2위이다. 가격은 100만 토큰당 입력 $3, 캐시 입력 $0.15, 출력 $15이다. 문맥은 100만 토큰이다. 파라미터 수는 출처에 없음. 로컬 실행은 불가(폐쇄 모델)이다. 별도 블로그(micjm)는 Neon의 Elo를 1,066으로 추정한다. Opus 5.5는 1,078이다. 이 값은 측정이 아닌 추정이다.</p>
+<p><b>왜 중요한가.</b> Opus 5.5급 성능을 더 낮은 가격과 빠른 속도로 낸다는 주장이다. 벤치마크 대부분은 Google 발표 수치이다. Antigravity에서 Hydrogen 하위 에이전트를 지휘하는 역할도 한다.</p>
+<p class="m">반응. HN 1,006점, 댓글 753개. micjm 분석 글 HN 249점, 댓글 78개. 링크: <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50552424" style="color:#0b3d91">HN</a> · <a href="https://micjm.com/blog/gemini-4-neon-looks-like-a-top-model/" style="color:#0b3d91">micjm 분석</a> · <a href="https://news.ycombinator.com/item?id=50554374" style="color:#0b3d91">분석 HN</a></p>
+<h3>2. <a href="https://www.radixark.com/blog/daisyrose-27b" style="color:#0b3d91">DaisyRose-27B (RadixArk, 오픈 가중치)</a></h3>
+<p class="m">출처. RadixArk 블로그 (11-18), Hugging Face</p>
+<p><b>요약.</b> Qwen3.8-27B를 강화학습으로 후속 학습한 모델이다. 과제 1,200개로 18일 동안 H200 144장에서 학습했다. 세션은 최대 100만 토큰이다. Terminal-Bench 4.1 pass@1을 5.6%에서 12.0%로 올렸다. 회사는 모든 비교 벤치마크에서 기본 모델보다 높다고 한다. 학습 프레임워크는 오픈소스 Miles이다. 자체 백엔드 MFU는 37%이다. 오픈소스 Megatron 트레이너는 16%였다. BF16, FP8, NVFP4 체크포인트를 공개했다. 라이선스는 Apache-2.0이다. GGUF와 MLX 양자화가 이미 나왔다. 필요 하드웨어는 출처에 없음. 문맥 길이와 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 적은 과제와 GPU로 에이전트 성능을 두 배로 올린 사례이다. 다만 절대 점수 12.0%는 아직 낮다. 평가: 써볼 만함(27B를 로컬에서 돌릴 수 있으면). 이유: 오픈 라이선스와 양자화 파일이 이미 있다.</p>
+<p class="m">반응. HN 247점, 댓글 104개. HF 좋아요 176. Miles GitHub 3,370 stars(Apache-2.0, 마지막 push 11-20). 링크: <a href="https://www.radixark.com/blog/daisyrose-27b" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/RadixArk/DaisyRose-27B" style="color:#0b3d91">모델 카드</a> · <a href="https://github.com/radixark/miles" style="color:#0b3d91">Miles</a> · <a href="https://news.ycombinator.com/item?id=50551046" style="color:#0b3d91">HN</a></p>
+<h3>3. <a href="https://microsoft.ai/news/microsoft-ignite-2026/" style="color:#0b3d91">Microsoft AI, Ignite에서 모델 7종 발표</a></h3>
+<p class="m">출처. Microsoft AI 뉴스 (Ignite 2026)</p>
+<p><b>요약.</b> MAI Image 2.7은 Artificial Analysis 이미지 편집 1위라고 한다. GPT Image 2.6 Sunburst(max)보다 앞서고 가격은 1/5이다. 텍스트-이미지 생성에서는 4위이다. MAI Image 2.7 Flash는 1,000장당 약 $10이다. MAI Realtime 1은 첫 음성-음성 모델이다. GPT-Realtime 2.1보다 낫다고 한다. 가격은 오디오 1분당 $0.01부터이다. MAI Cyber 2 Flash의 출력 토큰 가격은 MAI Cyber 1.1 Flash보다 86% 낮다. 기업용 MAI Licensed Weights도 발표했다. 이것은 Azure 안에서 가중치를 직접 운영하는 방식이다. 파라미터 수와 문맥 길이는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> Microsoft가 OpenAI 의존을 줄이는 자체 모델군을 넓혔다. 비교 수치는 모두 Microsoft 자체 평가이다. MAI Code 2는 11-18 다이제스트에서 다뤘다.</p>
+<p class="m">반응. HN 590점, 댓글 375개. 링크: <a href="https://microsoft.ai/news/microsoft-ignite-2026/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50548021" style="color:#0b3d91">HN</a></p>
+<h3>4. <a href="https://openai.com/index/advancing-chip-design-with-our-models/" style="color:#0b3d91">OpenAI 모델로 칩 설계 개선 (Jalapeño, AMD, RISC-V)</a></h3>
+<p class="m">출처. OpenAI 블로그 (11-18)</p>
+<p><b>요약.</b> 모델 제안으로 Jalapeño 칩의 셀 면적을 줄였다. 벡터 유닛은 약 13%, 행렬 유닛은 약 10%이다. 이 변경은 실리콘에서 검증되었다. AMD 주력 GPU IP에서 PPA를 최대 14% 개선했다. AMD는 일부 변경을 실제 제조 설계에 넣었다. RISC-V 코어(PicoRV32, Ibex) 평가에서 GPT-6.2 Astra가 최고 점수이다. 약 112,000 토큰에서 PicoRV32 점수는 GPT-6 Astra의 약 2배이다. 전체 평가는 9,881회 실행이다. Synopsys와 GPT-Synopsys 모델도 학습한다.</p>
+<p><b>왜 중요한가.</b> LLM이 실제 생산 칩 설계에 기여한 구체적 수치이다. 대부분 OpenAI 측 측정이다. AMD 결과의 세부 데이터는 출처에 없음.</p>
+<p class="m">반응. HN 219점, 댓글 167개. 링크: <a href="https://openai.com/index/advancing-chip-design-with-our-models/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50549493" style="color:#0b3d91">HN</a></p>
+<h3>5. <a href="https://github.com/mastra-ai/template-factory" style="color:#0b3d91">Mastra Factory: 오픈소스 소프트웨어 팩토리</a></h3>
+<p class="m">출처. Show HN (Mastra 팀)</p>
+<p><b>요약.</b> Mastra 팀이 자체 유지보수에 쓰는 에이전트 칸반 도구이다. Slack에서 @태그로 작업을 맡긴다. 지속 에이전트, 대화 메모리, 출처가 달린 위키, 클라우드 샌드박스를 쓴다. 지난주 Factory가 PR 238개를 열고 병합했다. 같은 기간 사람이 병합한 PR은 630개이다. `npm create factory`로 시작한다. 자체 인프라에서 돌릴 수 있다. 호스팅 버전도 있다.</p>
+<p><b>왜 중요한가.</b> 실제 오픈소스 조직의 운영 수치를 공개한 드문 사례이다. 평가: 지켜볼 만함. 이유: 저장소가 새롭고(51 stars) GitHub 라이선스 표시가 없다. Claude Code, Codex 지원은 아직 작업 중이다.</p>
+<p class="m">반응. HN 136점, 댓글 42개. template-factory 51 stars(마지막 push 11-18). Mastra 본체 29,664 stars. 링크: <a href="https://github.com/mastra-ai/template-factory" style="color:#0b3d91">원문</a> · <a href="https://factory.mastra.ai" style="color:#0b3d91">사이트</a> · <a href="https://news.ycombinator.com/item?id=50548660" style="color:#0b3d91">HN</a></p>
+<h3>6. <a href="https://huggingface.co/n4ze3m/tiny-voca" style="color:#0b3d91">tiny-voca: 4.5M 파라미터 영어 TTS</a></h3>
+<p class="m">출처. Hugging Face 모델 카드</p>
+<p><b>요약.</b> 파형 생성기를 포함해 전체 4.5M 파라미터이다. 약 18시간의 합성 음성으로 처음부터 학습했다. CPU 4스레드에서 실시간보다 약 70배 빠르다. 학습 비용은 $10이다(HN 제목 기준). 목소리는 여성 1개, 남성 1개이다. 한 번에 최대 512토큰, 32초를 읽는다. onnxruntime-web으로 브라우저에서도 돈다. 라이선스는 Apache-2.0이다. 영어만 지원한다.</p>
+<p><b>왜 중요한가.</b> 휴대폰과 브라우저에서 도는 아주 작은 TTS이다. 평가: 써볼 만함(영어 온디바이스 음성). 이유: CPU만으로 충분하다.</p>
+<p class="m">반응. HF 좋아요 334, 다운로드 6,368(HF 트렌딩). HN 43점, 댓글 4개. 링크: <a href="https://huggingface.co/n4ze3m/tiny-voca" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/spaces/n4ze3m/tiny-voca-studio" style="color:#0b3d91">데모</a> · <a href="https://news.ycombinator.com/item?id=50547122" style="color:#0b3d91">HN</a></p>
+<h3>7. <a href="https://www.lkuffo.com/superemeans/" style="color:#0b3d91">SuperEMeans: e-means 군집화 가속</a></h3>
+<p class="m">출처. Leonardo Kuffo 블로그 (CWI)</p>
+<p><b>요약.</b> SuperKMeans와 e-means를 합쳤다. 고차원 벡터 군집화가 Lloyd k-means 대비 3배 빠르다고 한다. e-means 대비로는 최대 1.8배 빠르다. 테스트는 OpenAI 임베딩 500만 개(1536차원)와 Cohere 임베딩 1,000만 개이다. 같은 수의 벡터를 스캔할 때 검색 recall 손실이 없다고 한다. 장비는 Zen 5 16코어 1대이다.</p>
+<p><b>왜 중요한가.</b> IVF 벡터 인덱스 구축 시간을 줄인다. 평가: 써볼 만함(대규모 벡터 인덱스를 직접 만들 때). 이유: CPU·GPU 모두 지원하고 FAISS 대안이다.</p>
+<p class="m">반응. HN 61점, 댓글 0개. cwida/SuperKMeans 112 stars, MIT, 마지막 push 11-19. 링크: <a href="https://www.lkuffo.com/superemeans/" style="color:#0b3d91">원문</a> · <a href="https://github.com/cwida/SuperKMeans" style="color:#0b3d91">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50548038" style="color:#0b3d91">HN</a></p>
+<h3>8. <a href="https://www.slowchronicle.com/posts/llm-assisted-reverse-engineering" style="color:#0b3d91">LLM 보조 리버스 엔지니어링 실무 방법</a></h3>
+<p class="m">출처. Slow Chronicle 블로그</p>
+<p><b>요약.</b> 20년 경력의 저자가 AI 리버스 엔지니어링 절차를 정리했다. 주 모델은 DeepSeek이다. Ghidra를 MCP 브리지로 에이전트에 연결한다. 에이전트가 발견 내용을 MD 파일에 계속 기록하게 한다. 이 기록이 압축(compaction) 후에도 작업을 이어 준다. 막히면 디버거, 로그 프로브, 에뮬레이터 접근을 준다.</p>
+<p><b>왜 중요한가.</b> MCP와 기록 파일로 장시간 에이전트 작업을 유지하는 실전 패턴이다. 다른 에이전트 작업에도 그대로 쓸 수 있다.</p>
+<p class="m">반응. HN 296점, 댓글 75개. 링크: <a href="https://www.slowchronicle.com/posts/llm-assisted-reverse-engineering" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50553225" style="color:#0b3d91">HN</a></p>
+<h3>9. <a href="https://contralabs.com/frontierdesign" style="color:#0b3d91">Frontier Design Benchmark: 스텔스 모델이 1위</a></h3>
+<p class="m">출처. Contra Labs × BenchFlow 리더보드</p>
+<p><b>요약.</b> 실제 고객 디자인 의뢰 33건으로 모델을 평가한다. 디자이너 68명이 블라인드 투표 4,311회를 했다. 스텔스 모델 Gestalt가 Elo 1931로 1위이다. 인간 디자이너는 1739로 2위이다. Claude Fable 5.2는 1713으로 3위이다. GPT-6.1 Sol은 1668이다.</p>
+<p><b>왜 중요한가.</b> 디자인 작업에서 모델이 사람을 넘었다는 주장이다. HN 댓글은 신뢰도를 의심한다. 갤러리에 스텔스 모델 결과물이 없다는 지적이 있다.</p>
+<p class="m">반응. HN 111점, 댓글 42개. 링크: <a href="https://contralabs.com/frontierdesign" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50558559" style="color:#0b3d91">HN</a></p>
+<h3>10. <a href="https://huggingface.co/papers/2611.24738" style="color:#0b3d91">Jeveration: 한 번의 순전파로 이미지 생성</a></h3>
+<p class="m">출처. HF Daily Papers (11-19 1위)</p>
+<p><b>요약.</b> 고정된 VLM 위에 이미지 생성을 얹었다. 모든 위치가 공유 난수 상태를 받아 일관된 이미지를 만든다. 512×512 이미지를 78ms에 만든다. 기존 통합 모델보다 최대 122배 빠르다고 한다. 한 체크포인트가 텍스트-이미지, 이미지-이미지, 밀집 예측을 모두 한다.</p>
+<p><b>왜 중요한가.</b> 확산 모델의 반복 단계를 없애는 방향이다. 이미지 품질 수치는 출처 초록에 "경쟁력 있음"으로만 있다.</p>
+<p class="m">반응. HF 추천 110. GitHub 41 stars. 링크: <a href="https://huggingface.co/papers/2611.24738" style="color:#0b3d91">원문</a> · <a href="https://github.com/Carol-lyh/Jeveration" style="color:#0b3d91">GitHub</a></p>
+<h3>11. <a href="https://huggingface.co/papers/2611.23068" style="color:#0b3d91">The Resolution Hypothesis: 에이전트 진화의 병목</a></h3>
+<p class="m">출처. HF Daily Papers</p>
+<p><b>요약.</b> 진화 방법 7개와 모델 6개로 1,000만 회 이상 LLM을 호출했다. 좋은 후보 산출물은 실제로 존재했다. 그러나 선택 단계는 좋은 것과 나쁜 것을 무작위 수준으로만 구분했다. 방법 간 차이 몇 %p는 같은 방법 두 번 실행의 차이보다 작았다.</p>
+<p><b>왜 중요한가.</b> 자기개선 에이전트 논문의 순위가 운일 수 있다는 결과이다. 평가 노이즈를 먼저 줄여야 한다는 뜻이다.</p>
+<p class="m">반응. HF 추천 35. 링크: <a href="https://huggingface.co/papers/2611.23068" style="color:#0b3d91">원문</a></p>
+<h3>12. <a href="https://huggingface.co/papers/2611.21366" style="color:#0b3d91">ALIVE: 대화형 스트리밍 영상 모델</a></h3>
+<p class="m">출처. HF Daily Papers</p>
+<p><b>요약.</b> 스트리밍 영상 LLM에 능동 감시와 되묻기 기능을 넣었다. 학습 데이터는 ALIVE-SFT-288K와 ALIVE-RL-3K이다. 새 벤치마크 FSI-Bench를 함께 냈다. 공개 벤치마크 4개에서 비교 모델 중 가장 높다고 한다.</p>
+<p><b>왜 중요한가.</b> 카메라 비서처럼 계속 보면서 먼저 말하는 에이전트의 기반이다.</p>
+<p class="m">반응. HF 추천 32. GitHub 15 stars. 링크: <a href="https://huggingface.co/papers/2611.21366" style="color:#0b3d91">원문</a> · <a href="https://github.com/lijinzhao30/ALIVE" style="color:#0b3d91">GitHub</a></p>
+<h3>13. <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/genie-4-now-available-project-genie/" style="color:#0b3d91">Genie 4, Google AI Ultra 구독자에게 출시</a></h3>
+<p class="m">출처. Google 블로그</p>
+<p><b>요약.</b> Project Genie에서 Genie 4를 Ultra 구독자에게 연다. 텍스트로 날씨와 캐릭터를 실시간으로 바꾼다. 소리도 함께 만든다. 대화형 제작 에이전트와 커뮤니티 갤러리를 추가했다. Pro 구독자는 대기 명단에 등록한다.</p>
+<p><b>왜 중요한가.</b> 연구 미리보기였던 월드 모델이 유료 제품이 되었다. 모델 자체는 10-28 다이제스트에서 다뤘다.</p>
+<p class="m">반응. HN 286점, 댓글 182개. 링크: <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/genie-4-now-available-project-genie/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50550415" style="color:#0b3d91">HN</a></p>
+<h3>14. <a href="https://arxiv.org/abs/2607.29378" style="color:#0b3d91">PTP: 이전 토큰 예측으로 프롬프트 복원</a></h3>
+<p class="m">출처. arXiv</p>
+<p><b>요약.</b> LLM 출력에서 원래 프롬프트를 거의 그대로 복원하는 방법이다. 기존 방법은 외부 데이터로 seq2seq 모델을 미세조정해야 했다. 이 방법은 이전 토큰을 예측하는 방식으로 접근한다.</p>
+<p><b>왜 중요한가.</b> 시스템 프롬프트 유출 위험과 관련된다. 구체적 정확도 수치는 가져온 초록 부분에 없다.</p>
+<p class="m">반응. HN 46점, 댓글 9개. 링크: <a href="https://arxiv.org/abs/2607.29378" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50554908" style="color:#0b3d91">HN</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.anthropic.com/news/anthropic-prices-initial-public-offering" style="color:#0b3d91">Anthropic, IPO 가격 확정</a> — 주당 $83, 9억 8천만 주이다. 11-19 Nasdaq에서 "ANT"로 거래를 시작한다. HN 410점 / 댓글 771개. <a href="https://news.ycombinator.com/item?id=50553843" style="color:#0b3d91">HN</a></li>
+<li><a href="https://europeanbusinessmagazine.com/ai-agents-better-questions-kpmg/" style="color:#0b3d91">KPMG 감사 실험: AI 에이전트가 더 좋은 질문을 했다</a> — KPMG UK가 에이전트 100개 이상으로 FTSE 250 기업을 감사했다. 일부 사례에서 사람 팀보다 깊게 조사했다고 한다. HN 481점 / 댓글 248개. <a href="https://news.ycombinator.com/item?id=50547777" style="color:#0b3d91">HN</a></li>
+<li><a href="https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-acquire-applied-compute-bringing-secure-open" style="color:#0b3d91">Palo Alto Networks, Applied Compute를 $4.5B에 인수</a> — 보안 회사가 AI 기업을 인수한다. 원문 페이지는 열리지 않았다(HN 제목 기준). HN 79점 / 댓글 26개. <a href="https://news.ycombinator.com/item?id=50554009" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.businesswire.com/news/home/20261118974464/en/Anthropic-is-Not-a-Safe-AI-Company---Broad-Coalition-of-Scientists-Legal-Scholars-and-Tech-Leaders-Challenge-Anthropics-Safety-Branding-Ahead-of-IPO" style="color:#0b3d91">"Anthropic은 안전한 AI 회사가 아니다" 연합 성명</a> — 과학자와 법학자 연합이 IPO 직전 Anthropic의 안전 홍보를 비판했다. HN 144점 / 댓글 79개. <a href="https://news.ycombinator.com/item?id=50548485" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.lawyerscommittee.org/lawyers-committee-files-lawsuit-on-behalf-of-black-students-detained-and-searched-due-to-ai-alert-falsely-identifying-a-bag-of-chips-as-a-firearm/" style="color:#0b3d91">AI가 과자 봉지를 총으로 오인, 학생들이 소송</a> — AI 경보 오류로 수색당한 고교생들이 소송을 냈다. HN 112점 / 댓글 82개. <a href="https://news.ycombinator.com/item?id=50554641" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.gdmunion.co.uk" style="color:#0b3d91">DeepMind 직원 노조 결성</a> — 영국 DeepMind 직원들이 노조를 만들고 있다. HN 111점 / 댓글 76개. <a href="https://news.ycombinator.com/item?id=50557885" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>이전 다이제스트 본문 항목은 다시 본문에 넣지 않았다. MAI Code 2(11-18), Hy4 flash, FastFrames, Qwen3.8-27B-pi-adapted(11-18)는 HF 트렌딩 상위에 계속 있다.</li>
+<li>GitHub 트렌딩의 Claude-BugHunter(이날 +1,353, 총 12,434 stars), superpowers(+2,029), last30days-skill(+952)는 이전에 다뤘다. 새 항목은 CLI-Anything(+899), firecrawl(+795), cursor/plugins(+383)이다.</li>
+<li>DaisyRose-27B는 11-18 다이제스트에서 AFTER 한 줄로만 다뤘다. 이번에 본문으로 올렸다.</li>
+<li>Reddit(r/LocalLLaMA)은 접근이 차단되어 수치를 넣지 못했다.</li>
+<li>HF Daily Papers 기타: PROLA(27), Game2Player(25), CurvDelta(22), HINT-WAM(22).</li>
+</ul><h2>AFTER (11-20 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50562754" style="color:#0b3d91">Anthropic hits $2T in Nasdaq debut</a> HN 761점 / 댓글 1,412개</li>
+<li><a href="https://news.ycombinator.com/item?id=50563148" style="color:#0b3d91">Claude solves two open problems in the physics of black holes</a> HN 321점 / 댓글 142개</li>
+<li><a href="https://news.ycombinator.com/item?id=50562262" style="color:#0b3d91">Fuck Your AI Safeguards</a> HN 430점 / 댓글 173개</li>
+<li><a href="https://news.ycombinator.com/item?id=50561508" style="color:#0b3d91">Pete Warden on local AI, open models, voice interfaces</a> HN 195점 / 댓글 177개</li>
+<li><a href="https://news.ycombinator.com/item?id=50562636" style="color:#0b3d91">Chrome AI features wasting much bandwidth</a> HN 119점 / 댓글 44개</li>
+<li><a href="https://news.ycombinator.com/item?id=50562320" style="color:#0b3d91">Launch HN: Onlook (YC W25) – open-source developer tool for designers</a> HN 73점 / 댓글 66개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
