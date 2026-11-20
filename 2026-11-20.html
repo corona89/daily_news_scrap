@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-20</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-20</h1>
+<p class="m">대상 기간: 2026-11-20 00:00–24:00 KST. HN·GitHub·Hugging Face 수치는 2026-11-21 07:55 KST 전후에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>Tencent가 Hy4 가중치를 공개했다. 총 770B, 활성 49B, 문맥 1M 토큰이다. 자체 그래프에서 Terminal Bench 4.0은 44.4%이다. Claude Opus 5.5는 66.4%이다.</li>
+<li>수학자 Levent Alpöge가 Claude와 함께 일반화 리만 가설(GRH)을 증명했다고 주장했다. Lean 형식화를 마쳤다고 한다. HN 2,215점으로 이날 1위이다.</li>
+<li>Architect Labs가 AI가 설계한 CPU Frostbite를 공개했다. 전력당 성능이 비교 CPU의 4.59배라고 한다.</li>
+<li>Anthropic은 Claude가 블랙홀 물리 미해결 문제 2개를 풀었다고 발표했다.</li>
+<li>Models Engineering Index에서 Gemini 4 Neon이 68.4로 1위가 되었다.</li>
+<li>Reddit은 이번에도 접근이 차단되었다. Reddit 수치는 넣지 못했다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://huggingface.co/tencent/Hy4" style="color:#0b3d91">Hy4: Tencent의 770B MoE 오픈 가중치 모델</a></h3>
+<p class="m">출처. Hugging Face 모델 카드, GitHub (11-20 갱신)</p>
+<p><b>요약.</b> Hy4는 Tencent의 새 플래그십 모델이다. 언어 본체는 총 770B 파라미터이다. 토큰당 활성 파라미터는 텍스트 49B와 비전 1.23B이다. 문맥은 1M(1,048,576) 토큰이다. 입력은 텍스트, 이미지, 영상이다. 추측 디코딩용 3.3B DFly2 드래프터가 들어 있다. Hy4, Hy4-FP8, Hy4 base 가중치를 공개했다. 모델 카드 그래프의 수치는 다음과 같다. Terminal Bench 4.0은 44.4%이다. GLM 5.3은 42.9%, DeepSeek-V4.1-Flash-1017은 40.0%, GPT 6.1 Sol은 55.5%, Claude Opus 5.5는 66.4%, Kimi K3.1 Pro는 66.8%이다. FrontierCode 2.0은 31.0%이다(Opus 5.5 46.4%). OSWorld 2.1은 78.9%이다(Opus 5.5 81.8%). 베이스 모델 MMLU-Pro는 73.9이다(DeepSeek-V4-Pro-Base 73.4). Tencent도 최상위 상용 모델과 차이가 남아 있다고 쓴다. 라이선스는 Tencent Hy License(자체 라이선스)이다. 예시 서빙은 GPU 8장(FP8, 텐서 병렬 8)이다. GGUF 버전이 있다. API 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 오픈 가중치 모델 중 가장 큰 축에 든다. 에이전트 벤치마크에서 GLM 5.3, DeepSeek-V4.1-Flash보다 높다. 그러나 대부분 항목에서 Opus 5.5, Kimi K3.1 Pro보다 낮다. 로컬 실행은 서버급 GPU 8장이 기준이다. 11-18에 다룬 Hy4 flash의 상위 모델이다.</p>
+<p class="m">반응. HF 좋아요 122. GitHub 별 63. HN에는 System Card 글만 1점이다. X 뉴스에서 다뤘다. 링크: <a href="https://huggingface.co/tencent/Hy4" style="color:#0b3d91">원문</a> · <a href="https://github.com/Tencent-Hunyuan/Hy4" style="color:#0b3d91">GitHub</a> · <a href="https://hy.tencent.ai/Hy4_system_card.pdf" style="color:#0b3d91">System Card</a> · <a href="https://x.com/i/trending/2123631483525210159" style="color:#0b3d91">X 뉴스</a></p>
+<h3>2. <a href="https://alpo.ge/remark.pdf" style="color:#0b3d91">Levent Alpöge, Claude와 함께 일반화 리만 가설 증명 주장</a></h3>
+<p class="m">출처. alpo.ge PDF (11-20)</p>
+<p><b>요약.</b> 수학자 Levent Alpöge가 짧은 글을 올렸다. 그는 Claude와 함께 리만 가설의 증명을 찾았다고 쓴다. 같은 방법이 일반화 리만 가설(GRH)도 푼다고 한다. Lean 형식화를 마쳤다고 한다. Lean 파일은 14개 조각으로 공개했다. 그는 마지막 단계에서 Claude가 자신보다 앞섰다고 쓴다. 증명은 아직 매우 길다. 전문가 검증 결과는 아직 없다.</p>
+<p><b>왜 중요한가.</b> 사실이면 AI 보조 수학의 가장 큰 결과이다. Lean 증명이 있어서 검증이 빠를 수 있다. 같은 날 Terence Tao와 Scott Aaronson도 관련 글을 썼다(AFTER 참고).</p>
+<p class="m">반응. HN 2,215점, 댓글 1,515개. 이날 HN 1위이다. 링크: <a href="https://alpo.ge/remark.pdf" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50574968" style="color:#0b3d91">HN</a></p>
+<h3>3. <a href="https://architectlabs.com/blog/frostbite" style="color:#0b3d91">Frostbite: AI가 설계·검증한 새 CPU 아키텍처</a></h3>
+<p class="m">출처. Architect Labs 블로그 (11-18 미국 시간)</p>
+<p><b>요약.</b> Frostbite는 새 명령어 집합을 쓰는 범용 CPU이다. 계산 모델은 interaction net이다. AI 에이전트가 컴파일러, ISA, RTL, 검증, 최종 GDS까지 반복 설계했다. 7nm 공정에서 최종 GDS 기준 500MHz이다. 워크로드 25개에서 비교 CPU(듀얼 이슈 in-order 코어) 대비 전력당 성능이 4.59배이다(기하 평균). 튜닝에 쓰지 않은 15개에서는 3.83배이다. 면적당 성능은 평균 8.77배이다. 전력 수치는 실리콘 이전 추정치이다.</p>
+<p><b>왜 중요한가.</b> AI가 칩 아키텍처 탐색부터 레이아웃까지 맡은 사례이다. 다만 비교 대상은 작은 in-order 코어이다. 실제 칩 측정값은 아직 없다.</p>
+<p class="m">반응. HN 597점, 댓글 315개. 링크: <a href="https://architectlabs.com/blog/frostbite" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50572503" style="color:#0b3d91">HN</a></p>
+<h3>4. <a href="https://www.anthropic.com/research/claude-black-hole-physics" style="color:#0b3d91">Claude가 블랙홀 물리 미해결 문제 2개를 풀었다</a></h3>
+<p class="m">출처. Anthropic 연구 블로그 (11-19 미국 시간)</p>
+<p><b>요약.</b> Anthropic 연구원이 Claude에게 열린 문제 목록을 만들게 했다. Claude는 후보 22개를 냈다. 문제마다 별도 에이전트를 두고 약 6주 동안 실행했다. 에이전트가 두 문제를 풀었다. 하나는 20년 넘게 풀리지 않은 Hawking-Page 전이 계산이다. 두 번째 결과는 9월에 Lean으로 형식 검증되었다. 물리학자가 주요 결과를 모두 확인했다. 페이지 제목에는 Claude Fable 5.2가 표기되어 있다.</p>
+<p><b>왜 중요한가.</b> 특별한 설정 없이 장기 에이전트가 연구 결과를 낸 사례이다. 사람 검토와 Lean 검증을 함께 썼다.</p>
+<p class="m">반응. HN 551점, 댓글 266개. 링크: <a href="https://www.anthropic.com/research/claude-black-hole-physics" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50563148" style="color:#0b3d91">HN</a></p>
+<h3>5. <a href="https://git-aarvin.github.io/mei/" style="color:#0b3d91">Models Engineering Index: Gemini 4 Neon 1위</a></h3>
+<p class="m">출처. MEI (오픈소스 지표 사이트)</p>
+<p><b>요약.</b> MEI는 코딩 벤치마크 16개를 합친 지수이다. 평균 모델이 50이 되도록 보정한다. Gemini 4 Neon이 68.4로 1위이다. GPT-6.2 Astra는 67.1, Claude Fable 5.2는 66.7, Opus 5.5는 61.5이다. 비용 배수는 Neon 2.1×, Astra 2.1×, Fable 5.2 5.8×이다. 오픈 가중치 중에서는 Hy4 42.8, GLM 5.3 42.0이다. 사이트는 오차 막대가 없다고 밝힌다. 작은 차이는 의미가 없다고 쓴다.</p>
+<p><b>왜 중요한가.</b> 상위 3개 모델의 차이는 2점 안이다. GPT-6.2 Sol은 60.6점이고 비용 배수는 0.54×이다.</p>
+<p class="m">반응. HN 362점, 댓글 240개. 링크: <a href="https://git-aarvin.github.io/mei/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50568130" style="color:#0b3d91">HN</a></p>
+<h3>6. <a href="https://syntheticsciences.ai/research/frontierml" style="color:#0b3d91">FrontierML: 에이전트의 자율 ML 연구 벤치마크</a></h3>
+<p class="m">출처. Synthetic Sciences (11-19 미국 시간)</p>
+<p><b>요약.</b> 과제는 열린 ML 연구 문제 25개이다. 에이전트는 12시간 동안 가상 연구실 Lab0에서 일한다. H100 대여, 예산 지갑, 고정된 arXiv 사본을 쓴다. 에이전트는 점수를 조회할 수 없다. 제출물은 비공개 데이터로 채점한다. 1위는 Claude Fable 5.2로 0.523(0~1 정규화)이다. 다음은 Opus 5.5, GPT-6 Astra이다. 15개 과제를 Apache-2.0 코드로 공개했다.</p>
+<p><b>왜 중요한가.</b> 검증 점수 없이 스스로 진척을 판단하는 능력을 잰다. 최고 모델도 목표 수준(1.0)의 절반 정도이다.</p>
+<p class="m">반응. HN 반응 없음. X 뉴스에서 다뤘다. 링크: <a href="https://syntheticsciences.ai/research/frontierml" style="color:#0b3d91">원문</a> · <a href="https://github.com/synthetic-sciences/FrontierML" style="color:#0b3d91">GitHub</a> · <a href="https://x.com/i/trending/2123337188947734794" style="color:#0b3d91">X 뉴스</a></p>
+<h3>7. <a href="https://www.science.org/content/article/exclusive-i-got-eavesdrop-ai-agents-doing-science-it-was-eye-opening" style="color:#0b3d91">Agent AlphaXiv: 에이전트 936개가 12주 동안 연구했다</a></h3>
+<p class="m">출처. Science (11-19 미국 시간)</p>
+<p><b>요약.</b> 연구실 35곳이 에이전트 936개를 공동 연구 공간에 넣었다. 에이전트는 채팅방 229개에서 메시지 약 9,500개를 주고받았다. 12주 동안 프리프린트 936편을 올렸다. 한 에이전트가 LLM 심사 패널로 Journal of Agent Research를 만들었다. 이 패널은 5일 동안 263개 연구에 심사 의견 1,408개를 냈다(36Kr 보도). 정답 유출을 고친 한 실험은 정확도가 91.7%에서 64.6%로 내려갔다(36Kr 보도).</p>
+<p><b>왜 중요한가.</b> 에이전트끼리 검증 절차를 스스로 만든 사례이다. 정답 유출 같은 오류도 함께 드러났다.</p>
+<p class="m">반응. HN 관련 글 1~2점. X 뉴스에서 다뤘다. 링크: <a href="https://www.science.org/content/article/exclusive-i-got-eavesdrop-ai-agents-doing-science-it-was-eye-opening" style="color:#0b3d91">원문</a> · <a href="https://eu.36kr.com/en/p/4077710469895302" style="color:#0b3d91">36Kr 요약</a> · <a href="https://x.com/i/trending/2123485364841296259" style="color:#0b3d91">X 뉴스</a></p>
+<h3>8. <a href="https://github.com/onlook-dev/onlook/" style="color:#0b3d91">Onlook: 디자이너용 오픈소스 에이전트 디자인 도구</a></h3>
+<p class="m">출처. GitHub, Launch HN (YC W25)</p>
+<p><b>요약.</b> Onlook은 실제 코드베이스 위에 캔버스를 띄우는 데스크톱 앱이다. 자체 모델은 없다. 사용자의 Claude Code 또는 Codex 계정을 연결한다. MCP 커넥터를 지원한다. 변경은 모두 PR로 남는다. 로컬 우선이며 소스 빌드에는 계정이 필요 없다. 별 27.6k, 포크 2.2k이다. 라이선스는 Apache-2.0이다. 마지막 push는 11-20이다.</p>
+<p><b>왜 중요한가.</b> Figma, v0의 오픈소스 대안이다. 평가: 써볼 만함. 자신의 에이전트와 실제 저장소를 그대로 쓰기 때문이다.</p>
+<p class="m">반응. HN 123점, 댓글 85개. 링크: <a href="https://github.com/onlook-dev/onlook/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50562320" style="color:#0b3d91">HN</a></p>
+<h3>9. <a href="https://huggingface.co/apple/DepthPro2" style="color:#0b3d91">Depth Pro 2 (Apple): 영상용 메트릭 깊이 추정</a></h3>
+<p class="m">출처. Hugging Face, arXiv 2611.26603</p>
+<p><b>요약.</b> 한 장의 사진, 영상, 실시간 영상에서 픽셀별 실제 거리를 추정한다. 경계 선명도와 프레임 간 일관성을 함께 높였다고 한다. 크기는 S 24M, B 97M, L 334M, H+ 872M 네 가지이다. 코드와 가중치를 공개했다. 라이선스는 apple-amlr(자체 라이선스)이다. 외부 개발자의 Show HN은 ONNX/TensorRT 변환으로 RTX 3090에서 278 FPS라고 한다.</p>
+<p><b>왜 중요한가.</b> 로봇, AR, 3D 재구성에 바로 쓸 수 있는 크기이다. 평가: 써볼 만함. 다만 상업 이용 조건은 라이선스를 확인해야 한다.</p>
+<p class="m">반응. HF 좋아요 118. HF 논문 추천 28. 링크: <a href="https://huggingface.co/apple/DepthPro2" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2611.26603" style="color:#0b3d91">논문</a> · <a href="https://news.ycombinator.com/item?id=50573575" style="color:#0b3d91">Show HN</a></p>
+<h3>10. <a href="https://huggingface.co/papers/2611.26409" style="color:#0b3d91">WeMM-Video (Tencent): 오디오+영상 이해 오픈 모델</a></h3>
+<p class="m">출처. Hugging Face 논문</p>
+<p><b>요약.</b> 크기는 2B, 4B, 9B, 35B-A3B이다. 텍스트, 이미지, 오디오, 영상을 함께 처리한다. 약 1.2조 토큰으로 학습했다. 120개 넘는 벤치마크로 평가했다. 35B-A3B는 Qwen3.5-Omni-Flash보다 높다고 한다. 9B는 Qwen3-Omni-30B-A3B-Instruct보다 높다고 한다. FP8, AWQ, GGUF 버전이 있다.</p>
+<p><b>왜 중요한가.</b> 소리까지 보는 영상 이해 모델을 로컬 크기로 쓸 수 있다. 수치는 저자 발표이다.</p>
+<p class="m">반응. HF 논문 추천 39. 35B-A3B 모델 좋아요 20. 링크: <a href="https://huggingface.co/papers/2611.26409" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/tencent/WeMM-Video-35BA3B" style="color:#0b3d91">모델</a></p>
+<h3>11. <a href="https://huggingface.co/papers/2611.21373" style="color:#0b3d91">WeVisForensics: AI 생성 영상 탐지 에이전트</a></h3>
+<p class="m">출처. Hugging Face 논문</p>
+<p><b>요약.</b> 주 조사 에이전트가 시각·오디오 검사 하위 에이전트를 지휘한다. 하위 에이전트 목록은 학습 중에 스스로 개선된다. 평균 탐지 정확도는 95.2%이다. 기존 최고 탐지기보다 9.0%p 높다고 한다. 데이터셋 ForenCue-30K를 함께 만들었다.</p>
+<p><b>왜 중요한가.</b> 판정 근거를 영상 구간으로 제시한다. 생성 영상 확산에 대응하는 연구이다.</p>
+<p class="m">반응. HF 논문 추천 47(이날 1위). 링크: <a href="https://huggingface.co/papers/2611.21373" style="color:#0b3d91">원문</a></p>
+<h3>12. <a href="https://github.com/trending?since=daily" style="color:#0b3d91">GitHub 트렌딩 신규 항목</a></h3>
+<p class="m">출처. GitHub Trending (11-21 아침 확인)</p>
+<p><b>요약.</b> autoclip은 긴 영상을 짧은 영상으로 자동 편집한다. 별 12,138(하루 +983), MIT이다. opensre는 CI/CD 장애 대응 에이전트이다. 별 13,576(하루 +465), Apache-2.0이다. app-store-compliance는 앱 심사 거절 패턴 117개를 정리한다. 별 2,687(하루 +874)이다. 라이선스는 표시되지 않았다.</p>
+<p><b>왜 중요한가.</b> autoclip: 지켜볼 만함(중국 플랫폼 중심이다). opensre: 지켜볼 만함(운영 자동화 수요가 크다). app-store-compliance: 써볼 만함(앱 출시 전 점검표로 쓸 수 있다).</p>
+<p class="m">반응. GitHub 별 수치만 확인했다. 링크: <a href="https://github.com/trending?since=daily" style="color:#0b3d91">원문</a> · <a href="https://github.com/zhouxiaoka/autoclip" style="color:#0b3d91">autoclip</a> · <a href="https://github.com/Tracer-Cloud/opensre" style="color:#0b3d91">opensre</a> · <a href="https://github.com/mjmirza/app-store-compliance" style="color:#0b3d91">app-store-compliance</a></p>
+<h3>13. <a href="https://www.fermionresearch.com/research/mapping-every-neuron-in-qwen3-8b/" style="color:#0b3d91">Qwen3-8B의 모든 뉴런 지도</a></h3>
+<p class="m">출처. Fermion Research 블로그</p>
+<p><b>요약.</b> Qwen3-8B의 뉴런 442,368개를 하나씩 조작했다. 뉴런 하나만 올려도 성격이 바뀌는 경우가 있다. 5층 5,224번 뉴런은 질문 30개 모두에서 답을 독일어로 바꾼다. 9층 7,601번 뉴런은 30개 모두에서 해적 말투를 만든다. 같은 층의 무작위 뉴런 30개는 이런 효과가 없었다.</p>
+<p><b>왜 중요한가.</b> 별도로 학습한 특징 사전 없이 모델 자체 뉴런으로 모델을 조정할 수 있다는 결과이다.</p>
+<p class="m">반응. HN 32점. 링크: <a href="https://www.fermionresearch.com/research/mapping-every-neuron-in-qwen3-8b/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50569783" style="color:#0b3d91">HN</a></p>
+<h3>14. <a href="https://thedataexchange.media/pete-warden-moonshine/" style="color:#0b3d91">Pete Warden 인터뷰: 로컬 AI와 음성 인터페이스</a></h3>
+<p class="m">출처. The Data Exchange 팟캐스트</p>
+<p><b>요약.</b> Moonshine Voice 공동 제작자 Pete Warden의 인터뷰이다. 그는 약 9B 모델이 이제 많은 일을 한다고 말한다. Qwen 계열을 예로 든다. 음성 인터페이스에서는 지연 시간이 중요하다고 말한다. GPU 중심 하드웨어를 바꿀 새 방식도 다룬다.</p>
+<p><b>왜 중요한가.</b> 로컬 실행과 음성 UI 방향을 실무자 관점에서 정리한다. 새 수치는 적다.</p>
+<p class="m">반응. HN 267점, 댓글 247개. 링크: <a href="https://thedataexchange.media/pete-warden-moonshine/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50561508" style="color:#0b3d91">HN</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.reuters.com/business/finance/anthropics-historic-debut-put-ais-promise-peril-wall-st-test-2026-11-19/" style="color:#0b3d91">Anthropic Nasdaq 상장 첫날</a> — Reuters 원문은 접속이 막혀 제목 기준이다. 같은 날 Guardian은 세계 증시가 하락했다고 보도했다(HN 188점). HN 1,127점, 댓글 2,288개. <a href="https://news.ycombinator.com/item?id=50562754" style="color:#0b3d91">HN</a></li>
+<li><a href="https://ounapuu.ee/posts/2026/11/19/unsafeguards/" style="color:#0b3d91">"Fuck Your AI Safeguards"</a> — 개발자가 자기 서비스의 보안 수정 중에 Claude Code 보안 차단을 겪었다고 비판한다. 예외 신청에는 신분증 제출과 며칠 대기가 필요하다고 쓴다. HN 596점, 댓글 246개. <a href="https://news.ycombinator.com/item?id=50562262" style="color:#0b3d91">HN</a></li>
+<li><a href="https://restofworld.org/2026/ai-jobs-skills-gig-work/" style="color:#0b3d91">AI가 일을 저임금 긱 노동으로 바꾼다</a> — Rest of World 기사이다. AI가 일자리를 없애기보다 단가를 낮춘다는 내용이다. HN 144점, 댓글 80개. <a href="https://news.ycombinator.com/item?id=50562500" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.techdirt.com/2026/11/19/court-tells-cops-that-the-4th-amendment-doesnt-cover-ai-generated-probable-cause/" style="color:#0b3d91">법원, AI 얼굴 인식만으로는 상당한 이유가 아니다</a> — 경찰이 AI 얼굴 인식 결과 하나만 보고 체포 영장을 받았다. 법원은 이것이 상당한 이유가 되지 않는다고 보았다. 체포된 사람은 다른 주에서 일하고 있었다. HN 68점. <a href="https://news.ycombinator.com/item?id=50567735" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>이전 본문 항목(Gemini 4 Neon 출시, DaisyRose-27B, Hy4 flash, Mastra Factory 등)은 다시 본문에 넣지 않았다. MEI 항목은 새 순위표라서 넣었다.</li>
+<li>GitHub 트렌딩 재등장: Claude-BugHunter(+1,660), superpowers(+888), CLI-Anything(+774), last30days-skill(+685), firecrawl(+1,226).</li>
+<li>Vercel Board(11-18 미국 시간 발표)와 GAO 챗봇 공격 계획 보고서(11-18 발표)는 기간 밖이라 뺐다.</li>
+<li>DeepMind 에세이 "What Comes After AGI?"(HN 156점)는 본문을 열지 못했다. Reddit은 접근이 차단되었다.</li>
+</ul><h2>AFTER (11-21 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50581260" style="color:#0b3d91">Inkling 2 Mini (Thinking Machines): 총 26.4B, 활성 3.4B, 루프 트랜스포머, 약 20GB, DeepSWE v1.1 48.2%, Apache-2.0</a> HN 456점 / 댓글 68개</li>
+<li><a href="https://news.ycombinator.com/item?id=50579568" style="color:#0b3d91">Hurried Announcement: Alessandro Masullo GRH</a> HN 1,240점 / 댓글 571개</li>
+<li><a href="https://news.ycombinator.com/item?id=50578358" style="color:#0b3d91">Terence Tao: Unforced Navier-Stokes Singularity and the GRH</a> HN 277점 / 댓글 90개</li>
+<li><a href="https://news.ycombinator.com/item?id=50577265" style="color:#0b3d91">Language Models Can Rewrite Their Own Weights (arXiv 2611.21885)</a> HN 308점 / 댓글 102개</li>
+<li><a href="https://news.ycombinator.com/item?id=50576232" style="color:#0b3d91">Finite-time blow-up for the Navier–Stokes equations</a> HN 235점 / 댓글 76개</li>
+<li><a href="https://news.ycombinator.com/item?id=50581084" style="color:#0b3d91">Scott Aaronson: The stochastic parrots have apparently proved the Riemann Hypothesis</a> HN 152점 / 댓글 113개</li>
+<li><a href="https://news.ycombinator.com/item?id=50578794" style="color:#0b3d91">Anthropic shares tank after IPO as the Nasdaq erases 2026 gains</a> HN 170점 / 댓글 170개</li>
+<li><a href="https://news.ycombinator.com/item?id=50581438" style="color:#0b3d91">Nvidia accounting under SEC investigation</a> HN 153점 / 댓글 65개</li>
+<li><a href="https://openai.com/index/introducing-medchembench/" style="color:#0b3d91">OpenAI MedChemBench: GPT-6.2 Astra 84.5%</a></li>
+<li><a href="https://x.com/i/trending/2123869673720549464" style="color:#0b3d91">OpenAI 증류 방어 공개: 추론 추출 성공률 54%→0.2%</a></li>
+<li><a href="https://x.com/i/trending/2123797469125575004" style="color:#0b3d91">미 하원 위원회, 중국 오픈 가중치 모델 제거 권고</a></li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
