@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-22</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-22</h1>
+<p class="m">대상 기간: 2026-11-22 00:00–24:00 KST. HN·GitHub·Hugging Face 수치는 2026-11-23 07:55 KST 전후에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>일요일이라 큰 모델 발표는 적었다.</li>
+<li>Ant Group(inclusionAI)이 의료 특화 오픈 가중치 모델 LingSante-3.1-flash를 공개했다. 총 560B, 활성 25B, 문맥 1M이다. 라이선스는 MIT이다.</li>
+<li>Sarvam이 Sarvam-105B-1711을 공개했다. 활성 10.3B인 MoE이다. τ²-Bench는 85.5이다. 라이선스는 Apache 2.0이다.</li>
+<li>lookatmyquant가 Inkling-2-Mini를 12.8GB로 줄였다. 이 크기에서 원본과 같은 점수를 냈다. HN 578점이다.</li>
+<li>Dragos가 AI 제공자에게 프롬프트 약 200만 개를 보내 추적했다. 최소 3개 제공자에서 데이터 노출 흔적을 찾았다. OpenRouter는 제공자 3곳을 내보냈다.</li>
+<li>Reddit은 이번에도 접근이 차단되었다. HF 일일 논문은 일요일이라 새 목록이 없다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://huggingface.co/inclusionAI/LingSante-3.1-flash" style="color:#0b3d91">LingSante-3.1-flash: Ant Group의 의료 특화 오픈 가중치 MoE 모델</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (inclusionAI). X 뉴스 요약 (11-23 07:47 KST)</p>
+<p><b>요약.</b> LingSante-3.1-flash는 Ling-3.1-flash를 바탕으로 만든 의료 특화 모델이다. 구조는 하이브리드 선형 MoE이다. 총 파라미터는 560B이고 토큰당 활성 파라미터는 25B이다. 문맥은 1M 토큰이다. 라이선스는 MIT이다. 모델 카드는 벤치마크를 그림으로만 보여 준다. X 뉴스 요약에 따르면 HealthBench Professional 점수는 65.72이다. 같은 요약은 GPT-6 Astra와 Claude Opus 5.5보다 높다고 쓴다. 권장 서버는 H200 8장 또는 GB300 4장이다. MXFP4 변형은 11-22에 올라왔다. 가격은 출처에 없음. 카드는 의료 기기가 아니고 연구용이라고 밝힌다.</p>
+<p><b>왜 중요한가.</b> 의료 영역에서 큰 오픈 가중치 모델이 MIT 라이선스로 나왔다. 개인 PC에서는 돌릴 수 없다. 벤치마크 수치는 카드 본문 표가 아니라 뉴스 요약에서 나왔다.</p>
+<p class="m">반응. HF 좋아요 40개 (MXFP4 변형 7개). HN 출처에 없음. 링크: <a href="https://huggingface.co/inclusionAI/LingSante-3.1-flash" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/inclusionAI/LingSante-3.1-flash-MXFP4" style="color:#0b3d91">MXFP4 변형</a></p>
+<h3>2. <a href="https://huggingface.co/sarvamai/sarvam-105b-1711" style="color:#0b3d91">Sarvam-105B-1711: 도구 호출과 인도어를 강화한 105B MoE</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (sarvamai). X 뉴스 요약 (11-22 공개)</p>
+<p><b>요약.</b> Sarvam-105B-1711은 Sarvam-105B와 같은 기본 모델을 다시 후학습한 것이다. 총 105B, 활성 10.3B인 MoE이다. 라이선스는 Apache 2.0이다. 카드 표의 BF16 점수는 다음과 같다. τ²-Bench는 85.5이다(Gemini 3.5 Flash-Lite 83.1, Gemma-4-31B 81.1). IFBench는 82.5이다(Gemini 3.5 Flash-Lite 73.5). GPQA Diamond는 80.4로 Gemma-4-31B(84.3)보다 낮다. LiveCodeBench v6는 75.3이다(Gemma-4-31B 81.9). 모든 점수는 Sarvam 자체 측정이다. B200 1장에서 사용자 1명일 때 사용자당 576 tok/s이다. 96GB RTX PRO 6000 1장에서도 NVFP4 빌드가 돈다(사용자 1명 61.8 tok/s). X 뉴스 요약에 따르면 API 가격은 100만 토큰당 $0.15이다. 문맥 최대 길이는 출처에 없음(시험 설정은 128k).</p>
+<p><b>왜 중요한가.</b> 지시 따르기와 도구 호출 점수가 같은 급 오픈 모델보다 높다. 수학·코딩·지식 점수는 Gemma-4-31B보다 낮다. 워크스테이션 GPU 1장에서 돌릴 수 있다.</p>
+<p class="m">반응. HF 좋아요 8개 (BF16 저장소 8개). HN 출처에 없음. 링크: <a href="https://huggingface.co/sarvamai/sarvam-105b-1711" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/sarvamai/sarvam-105b-1711-bf16" style="color:#0b3d91">BF16 가중치</a></p>
+<h3>3. <a href="https://github.com/ShinMegamiBoson/lookatmyquant" style="color:#0b3d91">lookatmyquant: Inkling-2-Mini를 3.9~12.8GB로 줄인 양자화 컴파일러</a></h3>
+<p class="m">출처. GitHub 저장소 README, Hacker News</p>
+<p><b>요약.</b> lookatmyquant는 양자화 컴파일러이다. 모델의 각 부분이 압축으로 출력을 얼마나 해치는지 잰다. 그다음 크기 예산 안에서 부분마다 다른 코드를 고른다. Inkling-2-Mini 텍스트 가중치 18.89GB를 Apple silicon용 MLX 빌드 6개로 줄였다. 12.76GB 빌드는 GSM8K 200문제 중 193개, HumanEval 164문제 중 152개를 풀었다. 이 수치는 BF16 원본과 같다. 8.87GB 빌드는 원본 점수의 99.2%를 유지했다. 이 빌드의 KL은 Unsloth 9.14GB UD-Q2_K_XL GGUF보다 2.34배 낮다. 5.38GB 빌드는 HumanEval이 71.3%로 떨어진다. 별 576개, MIT 라이선스, 마지막 푸시 11-23 06:48 KST이다. 평가: 써볼 만함. 32GB 미만 Mac에서 Inkling-2-Mini를 돌릴 수 있다.</p>
+<p><b>왜 중요한가.</b> 어제 공개된 Inkling-2-Mini를 작은 기기에서 돌릴 길을 연다. 8~13GB 빌드는 품질 손실이 거의 없다고 저자가 측정했다. 측정은 저자 자체 수치이다.</p>
+<p class="m">반응. HN 578점, 댓글 137개. 링크: <a href="https://github.com/ShinMegamiBoson/lookatmyquant" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50591853" style="color:#0b3d91">HN</a></p>
+<h3>4. <a href="https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens" style="color:#0b3d91">Dragos 카나리 토큰 실험: AI 제공자 3곳 이상에서 프롬프트 데이터 노출</a></h3>
+<p class="m">출처. Dragos 블로그, OpenRouter 블로그, Together AI 보안 공지</p>
+<p><b>요약.</b> Dragos는 7월부터 11월까지 AI 서비스에 프롬프트 약 200만 개를 보냈다. 각 프롬프트에는 추적용 URL과 가짜 AWS 자격 증명을 넣었다. 최소 3개 제공자의 데이터가 노출된 흔적을 찾았다. 추론 마켓플레이스의 일부 재판매자는 일반 로그 기능으로 고객 프롬프트를 보고 보관했다. 미국 제공자에게 보낸 프롬프트가 중국 AI 조직으로 간 사례도 있었다. OpenRouter는 제공자 3곳을 내보냈다. 또 엔드포인트 125개를 Zero Data Retention(ZDR) 대상에서 뺐다. Together AI는 AI 코딩 에이전트가 자격 증명을 공개 저장소에 커밋했다고 밝혔다. 그 자격 증명으로 제3자가 6~7월 프롬프트 샘플을 내려받았다. Together는 새 계정의 기본값을 ZDR로 바꿨다.</p>
+<p><b>왜 중요한가.</b> 오픈 모델을 외부 추론 제공자로 쓰면 프롬프트가 새어 나갈 수 있다. ZDR 표시만으로는 보장이 안 된다. 코딩 에이전트의 자격 증명 커밋도 실제 사고 원인이 되었다.</p>
+<p class="m">반응. OpenRouter 글 HN 277점, 댓글 92개. Dragos 글 HN 97점, 댓글 22개. Together 글 HN 47점, 댓글 11개. 링크: <a href="https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens" style="color:#0b3d91">원문</a> · <a href="https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/" style="color:#0b3d91">OpenRouter 공지</a> · <a href="https://www.together.ai/blog/security-event-prompt-leakage-for-requests-in-june-and-july-of-2026" style="color:#0b3d91">Together 공지</a> · <a href="https://news.ycombinator.com/item?id=50595554" style="color:#0b3d91">HN(OpenRouter)</a> · <a href="https://news.ycombinator.com/item?id=50596511" style="color:#0b3d91">HN(Dragos)</a> · <a href="https://news.ycombinator.com/item?id=50595816" style="color:#0b3d91">HN(Together)</a></p>
+<h3>5. <a href="https://github.com/EL4CTEO/fast-anything" style="color:#0b3d91">fast-anything: 앱 전체 대신 느린 함수만 Rust로 옮기는 도구</a></h3>
+<p class="m">출처. GitHub 저장소 README, Hacker News</p>
+<p><b>요약.</b> fast-anything은 앱을 프로파일링해서 느린 함수를 찾는다. 코딩 에이전트(Claude Code, Codex, Cursor 등)로 그 함수를 Rust로 옮긴다. 실제 호출을 최대 500개 녹화한다. Rust 버전이 같은 결과를 내는지 녹화한 호출로 확인한다. 바꾸기는 한 명령으로 되돌릴 수 있다. Python, Node, Ruby, Java, Go, PHP, C, C++, C#을 지원한다. README 예시에서 함수 단위 속도 향상은 2.7배~116배이다. 별 1,817개, MIT 라이선스, 저장소 생성 11-21, 마지막 푸시 11-23 02:14 KST이다. 평가: 지켜볼 만함. 생긴 지 이틀 된 저장소이다.</p>
+<p><b>왜 중요한가.</b> 에이전트가 쓴 코드를 실제 호출로 검증하는 흐름이 좋다. 전체 재작성 없이 성능을 올릴 수 있다.</p>
+<p class="m">반응. HN 174점, 댓글 143개. 링크: <a href="https://github.com/EL4CTEO/fast-anything" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50596155" style="color:#0b3d91">HN</a></p>
+<h3>6. <a href="https://github.com/gulivan/worker755" style="color:#0b3d91">worker755: 내가 LLM의 서브에이전트가 되는 게임</a></h3>
+<p class="m">출처. GitHub 저장소 README, Hacker News (Show HN)</p>
+<p><b>요약.</b> 브라우저 게임이다. 실제 LLM(Claude, GPT, Gemini, DeepSeek, GLM, Kimi)이 관리자 에이전트 역할을 한다. 플레이어는 관리자가 부른 서브에이전트가 된다. 지시는 터미널로 오고 90초 제한이 있다. 관리자는 결과를 받아 수정을 지시하고 마지막에 평가서를 쓴다. Ollama나 llama.cpp 서버로 관리자를 돌릴 수도 있다. 별 112개, MIT 라이선스, 마지막 푸시 11-23 05:05 KST이다. 평가: 지켜볼 만함. 오케스트레이터 설계를 몸으로 이해하는 데 쓸 수 있다.</p>
+<p><b>왜 중요한가.</b> 에이전트 오케스트레이션이 서브에이전트에게 어떤 정보를 주는지 직접 볼 수 있다.</p>
+<p class="m">반응. HN 252점, 댓글 58개. 링크: <a href="https://github.com/gulivan/worker755" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50599762" style="color:#0b3d91">HN</a></p>
+<h3>7. <a href="https://github.com/cathrynlavery/diagram-design" style="color:#0b3d91">diagram-design: 다이어그램을 HTML+SVG 한 파일로 그리는 에이전트 스킬</a></h3>
+<p class="m">출처. GitHub 트렌딩, 저장소 README</p>
+<p><b>요약.</b> diagram-design은 Agent Skills 형식의 스킬이다. 아키텍처, 사분면, 시퀀스 등 45가지 다이어그램을 그린다. 결과는 HTML과 SVG로 된 파일 하나이다. 사이트의 색과 글꼴을 가져와 브랜드에 맞출 수 있다. Cursor, Claude Code, Codex, Copilot, Gemini CLI 등에서 쓴다. 별 70,265개, MIT 라이선스, 마지막 푸시 11-22 10:44 KST이다. 평가: 써볼 만함. 설치가 쉽고 결과가 파일 하나이다.</p>
+<p><b>왜 중요한가.</b> 문서와 보고서용 그림을 에이전트로 바로 만들 수 있다. Skills 자산화 흐름의 좋은 예이다.</p>
+<p class="m">반응. GitHub 하루 별 513개. 링크: <a href="https://github.com/cathrynlavery/diagram-design" style="color:#0b3d91">원문</a></p>
+<h3>8. <a href="https://www.pandex.io" style="color:#0b3d91">Pandex: EU와 유럽 7개국 법령·판례를 MCP로 제공</a></h3>
+<p class="m">출처. Pandex 사이트, Hacker News</p>
+<p><b>요약.</b> Pandex는 EU와 유럽 7개국의 법령과 최고 법원 판결을 모은다. 키워드, 의미, 혼합 검색을 지원한다. 영어로 물어 프랑스어 판결을 찾을 수 있다. MCP 또는 API로 연결한다. 조문마다 과거 버전과 시행일을 보여 준다. 키는 무료이다. 오픈소스 여부와 라이선스는 출처에 없음. 평가: 지켜볼 만함. 아직 문서를 불러오는 중이다.</p>
+<p><b>왜 중요한가.</b> 법률 에이전트가 실제 조문을 인용하게 할 수 있다. MCP 생태계에 공공 데이터 서버가 늘고 있다.</p>
+<p class="m">반응. HN 138점, 댓글 33개. 링크: <a href="https://www.pandex.io" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50593481" style="color:#0b3d91">HN</a></p>
+<h3>9. <a href="https://simonwillison.net/2026/Nov/21/muru/" style="color:#0b3d91">Muru: mod_wsgi 저자가 AI 도움으로 만드는 Python용 Rust 서버</a></h3>
+<p class="m">출처. Simon Willison 블로그, Hacker News</p>
+<p><b>요약.</b> mod_wsgi 저자 Graham Dumpleton이 Muru를 만들고 있다. Muru는 ASGI와 WSGI Python 앱을 돌리는 Rust 서버이다. 개발 과정을 아주 자세히 공개한다. 저자는 AI가 표면 작업을 많이 하지만 품질 판단은 자신이 한다고 쓴다. 별 수와 라이선스는 출처에 없음. 평가: 지켜볼 만함. 아직 개발 중이다.</p>
+<p><b>왜 중요한가.</b> 숙련 개발자가 AI 코딩을 어떻게 쓰는지 보여 주는 공개 기록이다.</p>
+<p class="m">반응. HN 69점, 댓글 11개. 링크: <a href="https://simonwillison.net/2026/Nov/21/muru/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50597959" style="color:#0b3d91">HN</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/" style="color:#0b3d91">Anthropic 전력의 87%는 가스, 11%는 석탄이 될 것이라는 분석</a> — Better Data Center Project의 추정이다. Anthropic의 2028년 배출량을 중간값 3,200만 톤 CO2로 추정한다. Anthropic은 미국에서 재생 에너지 직접 계약이 없다고 쓴다. HN 828점, 댓글 851개. <a href="https://news.ycombinator.com/item?id=50597612" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.economist.com/business/2026/11/19/jensen-huang-fall-is-bad-news-for-silicon-valley-s-accelerationists" style="color:#0b3d91">Jensen Huang's fall is bad news for Silicon Valley's accelerationists (Economist)</a> — Economist 칼럼이다. 본문은 유료라서 열지 못했다. HN 174점, 댓글 375개. <a href="https://news.ycombinator.com/item?id=50591835" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.theguardian.com/technology/2026/nov/21/international-talks-control-autonomous-weapons-collapse" style="color:#0b3d91">자율 무기 통제 UN 협상 결렬 (Guardian)</a> — HN 제목 기준이다. 본문은 열지 않았다. HN 47점, 댓글 34개. <a href="https://news.ycombinator.com/item?id=50594564" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>Inkling 2 Mini(11-21 본문)는 HF 트렌딩 1위를 지켰다(좋아요 4.94k). unsloth GGUF는 다운로드 806k이다. 다시 본문에 넣지 않았다.</li>
+<li>리만 가설 Lean 증명(11-21 본문)의 검증 파일이 MIT에 올라왔다. 독립 커널 nanoda와 con-leche가 전체 증명을 받아들였다. HN 127점, 댓글 46개. <a href="https://math.mit.edu/~drew/grh/" style="color:#0b3d91">검증 페이지</a> · <a href="https://news.ycombinator.com/item?id=50590441" style="color:#0b3d91">HN</a></li>
+<li>OpenRouter MiniMax 건은 11-21 기업 항목에서 다뤘다. 오늘은 공식 발표와 Dragos 보고서라는 새 사실 때문에 4번에 넣었다.</li>
+<li>"Harsher on Male?" 논문(GAMA-Bench, 1,298 시나리오, LLM 10개)은 HN 89점이다. 2026-06 논문이라 본문에서 뺐다. <a href="https://news.ycombinator.com/item?id=50597743" style="color:#0b3d91">HN</a></li>
+<li>GitHub 트렌딩은 대부분 재등장이었다: Claude-BugHunter(+1,721), firecrawl(+910), superpowers(+785), CLI-Anything(+687).</li>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning)은 접근이 차단되어 확인하지 못했다. HF 일일 논문은 일요일이라 새 목록이 없다.</li>
+</ul><h2>AFTER (11-23 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50601525" style="color:#0b3d91">Perplexity and Intelligence (OpenAI, Jakub Pachocki): 퍼플렉서티를 업계 공통 지표로 쓰자는 제안. GPT-3.5 log-perplexity 약 0.99, 약 0.76 모델부터 수학 성과가 나왔다고 씀</a> HN 421점 / 댓글 289개</li>
+<li><a href="https://news.ycombinator.com/item?id=50603845" style="color:#0b3d91">A Beginner&#x27;s Guide to Local AI with Inkling, Qwen, and Unsloth</a> HN 78점 / 댓글 18개</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
