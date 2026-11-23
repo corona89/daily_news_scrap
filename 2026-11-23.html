@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-23</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-23</h1>
+<p class="m">대상 기간: 2026-11-23 00:00–24:00 KST. HN·GitHub·Hugging Face 수치는 2026-11-24 08:00 KST 전후에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>Z.ai가 GLM-5.4를 발표했다. 첫 루프 트랜스포머 플래그십이다. 750B 규모이고 문맥은 1M이다. HN 1,000점이다.</li>
+<li>Ant Group(inclusionAI)이 Ling-3.2-air를 MIT 라이선스로 공개했다. 총 124B, 활성 5.5B이다.</li>
+<li>Nari Labs가 Qwen3.8-27B를 10.1GB 3비트 파일로 줄였다. 에이전트 과제에서 BF16과 같은 수준을 냈다.</li>
+<li>OpenAI 수석 과학자가 퍼플렉서티를 업계 공통 안전 지표로 쓰자고 제안했다. 내부 수치도 처음 공개했다.</li>
+<li>Nvidia 이사회가 Jensen Huang을 CEO로 복귀시켰다. CNBC에 따르면 주가는 31% 올랐다.</li>
+<li>Reddit은 이번에도 접근이 차단되었다(HTTP 403).</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://z.ai/blog/glm-5.4" style="color:#0b3d91">GLM-5.4: Z.ai의 첫 루프 트랜스포머 플래그십 모델</a></h3>
+<p class="m">출처. Z.ai 공식 블로그 (11-23). Hacker News</p>
+<p><b>요약.</b> GLM-5.4는 GLM-5 기본 모델의 28개 층을 2번 반복해서 실행한다. 규모는 750B이다. 문맥은 1M 토큰이다. Z.ai는 2T~3T 파라미터 모델과 비슷한 지능이라고 주장한다. 같은 구조의 30B 모델 비교에서 학습 연산을 약 10% 더 쓰고 수학·과학·긴 문맥 점수가 올랐다고 쓴다. GPQA-Diamond와 MMLU-Pro에서 평균 출력 길이는 10–14% 줄었다. 속도는 한가한 시간에 최대 200 tok/s, 혼잡한 시간에 70–80 tok/s이다. 블로그의 벤치마크 결과는 그림으로만 있다. 그래서 경쟁 모델과 비교한 숫자는 출처 본문에 없음. 지금은 GLM Coding Plan에서 쓸 수 있다. API는 곧 나온다. 가중치는 안전 작업 뒤에 공개할 계획이다. 가격은 출처에 없음. 주간 할당량은 GLM-5.3보다 50% 많다.</p>
+<p><b>왜 중요한가.</b> 큰 상용 모델이 루프(가중치 공유 반복) 구조를 처음으로 쓴 사례이다. 회사는 긴 "마라톤 사고"가 약점이라고 스스로 밝혔다. 가중치가 나오기 전에는 로컬 실행을 할 수 없다.</p>
+<p class="m">반응. HN 1,000점 / 댓글 328개. 별도 HN 글 58점 / 11개. 발표 X 글 좋아요 8,910개, 조회 약 110만. 링크: <a href="https://z.ai/blog/glm-5.4" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50609685" style="color:#0b3d91">HN</a> · <a href="https://x.com/i/status/2124719275864670681" style="color:#0b3d91">X 발표</a></p>
+<h3>2. <a href="https://huggingface.co/inclusionAI/Ling-3.2-air" style="color:#0b3d91">Ling-3.2-air: inclusionAI의 124B 멀티모달 MoE (MIT)</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (inclusionAI, 11-23 12:55 KST 생성)</p>
+<p><b>요약.</b> Ling-3.2-air는 하이브리드 선형 MoE이다. 총 124B이고 활성 파라미터는 5.5B이다. 구조는 Ling-3.0-flash-VL과 같은 네이티브 멀티모달이다. 라이선스는 MIT이다. 카드는 이전 모델과 비교한다. AutomationBench-AA는 15.7%에서 61%로 올랐다. AA-Briefcase v1.1 Elo는 987에서 1340으로 올랐다. Terminal-Bench 4.0은 0%에서 27%로 올랐다. Artificial Analysis Intelligence Index v5.0.1 점수는 23이다. 다른 회사 모델과 비교한 숫자는 출처에 없음. 권장 실행 환경은 256K 문맥에서 141GB급 GPU 4장이다. 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 활성 5.5B라서 같은 크기 모델보다 추론 비용이 낮다. 다만 총 124B이므로 일반 PC에서는 돌리기 어렵다. 업무 자동화와 문서 작업에 초점을 맞춘 오픈 가중치 모델이다.</p>
+<p class="m">반응. HF 좋아요 97개. HN 출처에 없음. 링크: <a href="https://huggingface.co/inclusionAI/Ling-3.2-air" style="color:#0b3d91">원문</a></p>
+<h3>3. <a href="https://huggingface.co/nari-labs/Qwen3.8-27B-NariQ-GGUF" style="color:#0b3d91">NariQ: Qwen3.8-27B를 10GB 파일로 줄여도 BF16 수준</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (nari-labs). Hacker News</p>
+<p><b>요약.</b> NariQ는 트렐리스 부호화 방식의 사후 양자화이다. 실제 코딩 에이전트 기록으로 보정했다. 3비트 파일은 10.1GB이다. BF16 원본은 53.8GB이다. DeepSWE v1.1에서 3비트는 41.0%, BF16은 39.8%이다. Terminal-Bench 2.1에서 3비트는 63.8%, BF16은 62.6%이다. 2비트(6.8GB)는 DeepSWE 28.6%로 크게 떨어진다. 24GB GPU에서 3비트는 약 135K 문맥이 들어간다. 전용 llama.cpp 포크가 필요하다. 라이선스는 Apache 2.0이다.</p>
+<p><b>왜 중요한가.</b> 24GB GPU 1장으로 27B 코딩 에이전트 모델을 거의 손실 없이 쓸 수 있다. 수치는 Nari Labs 자체 측정이다. 평가: 써볼 만함. 단, 포크 의존이 단점이다.</p>
+<p class="m">반응. HN 99점 / 댓글 15개. HF 좋아요 44개, 다운로드 2,243회. 포크 저장소 별 8개. 링크: <a href="https://huggingface.co/nari-labs/Qwen3.8-27B-NariQ-GGUF" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50611402" style="color:#0b3d91">HN</a> · <a href="https://github.com/nari-labs/nari-llama.cpp" style="color:#0b3d91">llama.cpp 포크</a> · <a href="https://arxiv.org/abs/2611.26157" style="color:#0b3d91">기술 보고서</a></p>
+<h3>4. <a href="https://openai.com/index/perplexity-and-intelligence/" style="color:#0b3d91">OpenAI "Perplexity and Intelligence": 퍼플렉서티를 공통 안전 지표로</a></h3>
+<p class="m">출처. OpenAI 블로그 (Jakub Pachocki, 11-22 미국 시간). Hacker News</p>
+<p><b>요약.</b> OpenAI 수석 과학자가 내부 log-perplexity 수치를 처음 공개했다. GPT-3.5는 약 0.99이다. GPT-4는 약 0.91이다. 현재 모델은 0.8 아래이다. 약 0.76 모델부터 수학 미해결 문제에서 큰 결과가 나왔다고 쓴다. 다음 구간인 0.68–0.7에서 새 능력이 나올 것으로 예상한다. 글은 업계가 이 지표로 공동 개발 한도를 정하자고 제안한다. 글은 한계도 밝힌다. 연구소마다 평가 데이터가 다르다. 사고 사슬(CoT) 효과는 이 지표에 나타나지 않는다.</p>
+<p><b>왜 중요한가.</b> 프론티어 연구소가 사전학습 진척 수치를 공개한 드문 사례이다. 안전 규제 논의에서 기준 지표가 될 수 있다.</p>
+<p class="m">반응. HN 693점 / 댓글 440개. (11-22 다이제스트에서는 AFTER로 짧게 언급했다.) 링크: <a href="https://openai.com/index/perplexity-and-intelligence/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50601525" style="color:#0b3d91">HN</a></p>
+<h3>5. <a href="https://huggingface.co/papers/2611.24636" style="color:#0b3d91">Clover-35B-A3B-Preview 기술 보고서: 확산(diffusion) MoE 언어 모델</a></h3>
+<p class="m">출처. Hugging Face 일일 논문 (11-23). GitHub (DiffuSpace)</p>
+<p><b>요약.</b> Clover는 블록 확산 방식으로 글을 만드는 MoE 모델이다. 총 35B, 활성 약 3B이다. Qwen3.6-35B-A3B를 바탕으로 만들었다. 문맥은 128K이다. 보고서는 SWE-bench Verified 73.6, Terminal-Bench 2.1 51.7을 보고한다. 비교한 7개 에이전트 지표에서 모두 1위라고 쓴다. GB300 1장, BF16, 배치 1에서 680 tok/s라고 보고한다. 모델 라이선스는 Apache 2.0이다. BF16 가중치는 약 69GB이다.</p>
+<p><b>왜 중요한가.</b> 자기회귀가 아닌 확산 모델이 에이전트 코딩 점수에서 경쟁력을 보였다. 속도 수치는 회사 내부 작업 기준이다. 평가: 지켜볼 만함.</p>
+<p class="m">반응. HF 논문 추천 36개. GitHub 별 163개 (마지막 푸시 11-19). 링크: <a href="https://huggingface.co/papers/2611.24636" style="color:#0b3d91">원문</a> · <a href="https://github.com/DiffuSpace/Clover-35B-A3B-Preview" style="color:#0b3d91">GitHub</a> · <a href="https://diffuspace.ai/blog/clover-35b/" style="color:#0b3d91">출시 블로그</a></p>
+<h3>6. <a href="https://github.com/mjwsolo/localcode" style="color:#0b3d91">LocalCode: Mac에서 로컬 모델로 돌리는 에이전트 코딩 도구</a></h3>
+<p class="m">출처. GitHub 저장소. Hacker News</p>
+<p><b>요약.</b> LocalCode는 한 명령으로 Mac에서 코딩 에이전트를 실행한다. 파일 편집, 테스트, Git, 셸 명령을 프로젝트 안에서 처리한다. 프로젝트 밖을 건드릴 때는 먼저 묻는다. 모델 12종과 양자화 선택지 169개를 고른다. 목록에는 Qwen 3.8 27B, Inkling 2 Mini, DeepSeek V4 Flash가 있다. 요구 사항은 Apple Silicon과 메모리 16GB 이상이다. OpenAI 호환 API도 제공한다.</p>
+<p><b>왜 중요한가.</b> 로컬 모델 선택, 다운로드, 실행을 한 도구로 묶었다. 클라우드 비용 없이 코딩 에이전트를 쓰려는 Mac 사용자에게 맞다. 평가: 써볼 만함. 별은 아직 적지만 커밋 879개로 활발하다.</p>
+<p class="m">반응. HN 70점 / 댓글 21개. GitHub 별 149개, 최신 릴리스 v0.5.43 (11-23 00:43 KST), 라이선스 Apache-2.0. 링크: <a href="https://github.com/mjwsolo/localcode" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50604540" style="color:#0b3d91">HN</a></p>
+<h3>7. <a href="https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth" style="color:#0b3d91">초보자를 위한 로컬 AI 가이드: Inkling, Qwen, Unsloth</a></h3>
+<p class="m">출처. GPU Partner 블로그 (11-22). Hacker News</p>
+<p><b>요약.</b> 글은 Windows PC에 Unsloth Desktop을 깔고 양자화 모델을 돌리는 방법을 설명한다. 저자는 RTX 5090(32GB VRAM)을 쓴다. Qwen3.8-27B 4비트와 128K 문맥이 32GB 카드에 들어간다고 쓴다. 원본 Qwen은 약 56GB라서 일반 GPU에 들어가지 않는다. 설치는 다운로드 시간을 빼고 10–15분이라고 쓴다. 집 안 네트워크에서 같이 쓰는 방법도 다룬다.</p>
+<p><b>왜 중요한가.</b> HN에서 로컬 AI에 대한 관심이 크다는 것을 보여 준다. 글쓴이는 GPU 판매 회사이다.</p>
+<p class="m">반응. HN 736점 / 댓글 295개. (11-22 다이제스트에서는 AFTER로 짧게 언급했다.) 링크: <a href="https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50603845" style="color:#0b3d91">HN</a></p>
+<h3>8. <a href="https://micjm.com/blog/yes-17m-lines-of-lean-is-a-lot/" style="color:#0b3d91">"Yes, 17M lines of Lean is a lot": AI 증명 길이 비교</a></h3>
+<p class="m">출처. micjm 블로그 (11-22). Hacker News</p>
+<p><b>요약.</b> 리만 가설 Lean 증명은 1,700만 줄이다. 저자는 공개된 Lean 패키지 938개와 비교했다. Mathlib의 유명 정리 259개는 사람이 썼고 모두 훨씬 짧다. AI가 만든 CFSG 증명은 8,800만 줄이고 아직 진행 중이다. Anthropic의 페르마 마지막 정리 증명은 2,700만 줄이다. 사람이 쓰는 FLT 프로젝트(약 6만 줄)보다 약 450배 길다.</p>
+<p><b>왜 중요한가.</b> AI가 만든 증명은 기계가 검증해도 사람이 읽기 어렵다. 증명 길이와 이해 가능성이 새 논점이 되었다.</p>
+<p class="m">반응. HN 252점 / 댓글 330개. 링크: <a href="https://micjm.com/blog/yes-17m-lines-of-lean-is-a-lot/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50607668" style="color:#0b3d91">HN</a></p>
+<h3>9. <a href="https://pequalnp.com/" style="color:#0b3d91">pequalnp.com: AI 에이전트 무리가 P vs NP에 공개 도전</a></h3>
+<p class="m">출처. 프로젝트 사이트. Hacker News</p>
+<p><b>요약.</b> 여러 AI 에이전트가 P vs NP 문제를 공개적으로 나누어 공격한다. 사용자는 한 줄 명령을 자기 에이전트(Claude Code, Cursor, Codex, Gemini CLI)에 붙여 참여한다. 에이전트는 배정받은 보조정리 하나를 Lean으로 증명한다. 모든 증명은 같은 검사기를 거친다. 사이트는 후원금도 받는다. 현재 판정은 "열림(미해결)"이다.</p>
+<p><b>왜 중요한가.</b> 분산 에이전트 연구의 공개 실험이다. 실제 성과는 아직 출처에 없음. 평가: 지켜볼 만함.</p>
+<p class="m">반응. HN 180점 / 댓글 159개. 링크: <a href="https://pequalnp.com/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50604314" style="color:#0b3d91">HN</a></p>
+<h3>10. <a href="https://huggingface.co/papers/date/2026-11-23" style="color:#0b3d91">HF 일일 논문: cmHC, NoPeWorld</a></h3>
+<p class="m">출처. Hugging Face 일일 논문 (11-23)</p>
+<p><b>요약.</b> cmHC는 하이퍼커넥션(mHC)의 잔차 흐름 섞기를 조절하는 방법이다. 새 파라미터 없이 섞기 정도를 제한한다. Ascend NPU 전용 연산으로 지연을 최대 44.8% 줄였다. NoPeWorld는 영상 월드 모델에서 물체 관통 오류를 막는다. 고정된 DiT 은닉 상태 위에 작은 예측 헤드를 붙인다. 6개 월드 모델 평균 물리 위반율을 74%에서 16%로 낮췄다. 코드, 벤치마크, 가중치를 공개했다.</p>
+<p><b>왜 중요한가.</b> cmHC는 대형 사전학습 안정화에 쓸 수 있다. NoPeWorld는 단순한 방법으로 위반율을 크게 줄였다.</p>
+<p class="m">반응. HF 추천 cmHC 88개, NoPeWorld 54개. 링크: <a href="https://huggingface.co/papers/date/2026-11-23" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2611.27193" style="color:#0b3d91">cmHC</a> · <a href="https://huggingface.co/papers/2611.27963" style="color:#0b3d91">NoPeWorld</a></p>
+<h3>11. <a href="https://github.com/trending?since=daily" style="color:#0b3d91">GitHub 트렌딩: Claude-BugHunter, superpowers, CLI-Anything</a></h3>
+<p class="m">출처. GitHub 트렌딩 (일간, 11-24 08:00 KST 전후 확인)</p>
+<p><b>요약.</b> Claude-BugHunter는 버그 사냥과 레드팀용 Claude Code 스킬 묶음이다. 스킬 82개와 슬래시 명령 15개가 있다. 이날 별이 2,037개 늘어 총 19,653개이다. 라이선스는 MIT이다. obra/superpowers(에이전트 스킬 프레임워크)는 이날 별 838개를 얻었다. HKUDS/CLI-Anything(모든 소프트웨어를 에이전트용 CLI로)은 이날 별 783개를 얻었다.</p>
+<p><b>왜 중요한가.</b> 에이전트 스킬 묶음이 트렌딩 상위를 계속 차지한다. Claude-BugHunter는 공격 도구로도 쓸 수 있어 사용에 주의가 필요하다.</p>
+<p class="m">반응. 수치는 GitHub 트렌딩 페이지와 GitHub API 값. 링크: <a href="https://github.com/trending?since=daily" style="color:#0b3d91">원문</a> · <a href="https://github.com/elementalsouls/Claude-BugHunter" style="color:#0b3d91">Claude-BugHunter</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo.html" style="color:#0b3d91">Nvidia, Jensen Huang을 CEO로 복귀시킴</a> — 이사회는 만장일치로 복귀를 결정했다. 이사회는 미국 정부 고위층의 의견을 받았다고 밝혔다. Huang은 11-13에 사임했었다. CNBC에 따르면 주가는 31% 올랐다. HN 1,819점 / 댓글 2,907개. <a href="https://news.ycombinator.com/item?id=50611576" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.theverge.com/ai-artificial-intelligence/1039745/dario-amodei-video-games-ai-joblessness" style="color:#0b3d91">Amodei, 2015년 영상에서 "AI 실업 뒤 게임으로 대중을 달랠 수 있다"고 말했다는 보도 (The Verge)</a> — 2015년 영상 관련 보도이다. 본문은 열지 않았다. HN 72점 / 댓글 81개. <a href="https://news.ycombinator.com/item?id=50610830" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>GRH Lean 증명은 11-20·11-21 본문에서 다뤘다. 이날 <a href="https://claude.ai/artifact/CtQyX8qfYAF822bgHJHHE3" style="color:#0b3d91">Masullo 원고 Lean 형식화 진행 지도</a>(HN 256점 / 193, <a href="https://news.ycombinator.com/item?id=50605045" style="color:#0b3d91">HN</a>)와 <a href="https://pengowray.github.io/riemann-zeta-proof-visualizer/" style="color:#0b3d91">리만 가설 증명 트리맵</a>(HN 184점 / 72, <a href="https://news.ycombinator.com/item?id=50606499" style="color:#0b3d91">HN</a>)이 올라왔다.</li>
+<li>Inkling 2 Mini(11-21 본문)는 HF 트렌딩 1위를 유지했다(좋아요 5.47k). Unsloth GGUF판은 좋아요 1.1k이다.</li>
+<li>Docker 새 브랜드 글(<a href="https://news.ycombinator.com/item?id=50607194" style="color:#0b3d91">HN</a> 119점)은 11-19 게시 글이라 뺐다.</li>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning)은 HTTP 403으로 접근하지 못했다.</li>
+<li>11-22 다이제스트는 정상 발송·커밋되었다. 빠진 날은 없다.</li>
+</ul><h2>AFTER (11-24 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50615308" style="color:#0b3d91">Dario is hyping the dangers so OSS models are illegal (Yann LeCun, X)</a> HN 854점 / 497</li>
+<li><a href="https://news.ycombinator.com/item?id=50620102" style="color:#0b3d91">VP ≠ VNP over Every Field — Anthropic 내부 Claude 모델이 찾은 증명과 Lean 형식화. 사람 검토는 아직 없다.</a> HN 60점 / 25</li>
+<li><a href="https://news.ycombinator.com/item?id=50618490" style="color:#0b3d91">Congress shreds Nvidia&#x27;s return of Huang (CNBC)</a> HN 58점 / 50</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
