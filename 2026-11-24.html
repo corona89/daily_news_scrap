@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-24</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-24</h1>
+<p class="m">대상 기간: 2026-11-24 00:00–24:00 KST. HN·GitHub·Hugging Face 수치는 2026-11-25 08:10 KST 전후에 확인했다. 벤치마크는 각 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>KRAFTON이 Raon-1 mini를 Apache 2.0으로 공개했다. 처음부터 직접 학습한 30B-A4B MoE이다. 한국어 대화와 에이전트 작업에 강하다고 밝혔다.</li>
+<li>Aleph Alpha가 Kolibri 1.1을 공개했다. 총 75B, 활성 3B, 문맥 1M이다. 작업당 GPU 시간은 1.0보다 3.4배 적다.</li>
+<li>Baidu가 ERNIE 5.5 Flash Preview(280B, 활성 14B) 가중치를 Apache 2.0으로 올렸다.</li>
+<li>Anthropic이 내부 Claude 모델이 찾은 "VP ≠ VNP" 증명과 Lean 형식화를 공개했다. 사람 검토는 아직 없다. HN 357점이다.</li>
+<li>OpenAI와 Cisco가 eBPF 기반 오픈소스 보안 런타임 Shirudo를 냈다. Anthropic은 PR 검토·수정·승인 도구 Claude Ship(베타)을 냈다.</li>
+<li>사회 쪽에서는 LeCun의 Dario 비판 글이 HN 1,978점을 받았다. Reddit은 이번에도 접근이 차단되었다(HTTP 403).</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://huggingface.co/KRAFTON/Raon-1-mini" style="color:#0b3d91">Raon-1 mini: KRAFTON이 처음부터 학습한 30B-A4B MoE (Apache 2.0)</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (KRAFTON, 11-24 22:17 KST 생성)</p>
+<p><b>요약.</b> Raon-1 mini는 KRAFTON AI가 처음부터 학습한 MoE 언어 모델이다. 총 28.8B, 활성 4.3B이다. 문맥은 262,144 토큰이다. 25개 층 중 18개는 선형 어텐션(Raon Delta Attention)이고 7개는 MLA이다. 라이선스는 Apache 2.0이다. 카드의 MoE 비교(Qwen3.6-35B-A3B, Gemma 4 26B-A4B, Inkling 2 Mini)에서 GPQA Diamond는 86.0(83.2, 80.7, 86.6)이다. MultiChallenge는 64.9로 비교 MoE 중 가장 높다. BrowseComp Plus는 55.9이다. SWE-Verified는 71.0이고 Inkling 2 Mini(74.2)보다 낮다. 내부 한국어 대화 평가는 92.7이다. 2027 수능 전체(450점, 문항별 입력)는 401.3점이다. NVFP4판은 RTX 5090(32GB) 1장에서 돈다고 쓴다. 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 한국 회사가 자체 학습한 오픈 가중치 모델이다. 활성 4.3B라서 단일 GPU에서 돌릴 수 있다. 한국어 평가는 내부 벤치마크라서 외부 검증이 필요하다.</p>
+<p class="m">반응. HF 좋아요 33개(공개 직후). HN 출처에 없음. 링크: <a href="https://huggingface.co/KRAFTON/Raon-1-mini" style="color:#0b3d91">원문</a></p>
+<h3>2. <a href="https://aleph-alpha.com/en/blog/kolibri-1-1/" style="color:#0b3d91">Kolibri 1.1: Aleph Alpha의 영어·독일어 오픈 가중치 MoE</a></h3>
+<p class="m">출처. Aleph Alpha 공식 블로그 (11-23). Hugging Face. Hacker News</p>
+<p><b>요약.</b> Kolibri 1.1은 총 75B, 활성 3B MoE이다. 문맥은 최대 1M 토큰이다. 라이선스는 Apache 2.0이다. 새 희소 어텐션 구조를 썼다. 작업당 GPU 시간은 Kolibri 1.0보다 3.4배 적다. 출력 토큰은 평균 41% 줄었다. 1M 문맥에서 GPU당 출력 속도는 1.0보다 최대 14배 빠르다. SWE-bench Verified는 64.0에서 70.4로 올랐다. Terminal-Bench 2.1은 25.8에서 35.6으로 올랐다. 같은 체급 Qwen3.6 35B-A3B와 비교하면 AIME 2026은 95.8 대 89.2이고 SWE-bench Verified는 70.4 대 70.2이다. 가장 작은 GGUF판은 24GB GPU에서 돈다. 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> EU 규정을 지키며 학습한 소버린 모델이다. 온프레미스에 둘 수 있는 크기이다. 단 사용자 1명당 디코딩 속도는 1.0보다 느리다(0.76–0.86배).</p>
+<p class="m">반응. HN 19점 / 댓글 2개. HF 좋아요 111개. 링크: <a href="https://aleph-alpha.com/en/blog/kolibri-1-1/" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/Aleph-Alpha/Kolibri-1.1" style="color:#0b3d91">HF</a> · <a href="https://news.ycombinator.com/item?id=50613084" style="color:#0b3d91">HN</a></p>
+<h3>3. <a href="https://huggingface.co/baidu/ERNIE-5.5-Flash-Preview" style="color:#0b3d91">ERNIE 5.5 Flash Preview 가중치 공개 (Baidu, Apache 2.0)</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (baidu). Baidu 블로그. Hacker News</p>
+<p><b>요약.</b> Baidu가 ERNIE 5.5 Flash Preview 가중치를 Hugging Face에 올렸다. 총 280B, 활성 14B MoE이다. 문맥은 1,048,576 토큰이다. 라이선스는 Apache 2.0이다. FP4 전문가판, FP8판, BF16판이 있다. 카드는 Baidu 자체 평가이다. Terminal-Bench 4.0은 46.5이고 Hy4는 44.4, DeepSeek-V4.1-Flash-1017은 42.3, Claude Opus 5.5는 66.4이다. AutomationBench는 61.9로 표에서 가장 높다. DeepSWE v1.1은 71.2이고 DeepSeek-V4.1-Flash-1017(77.0)보다 낮다. 카드의 SGLang 예시는 GPU 4장(--tp 4)을 쓴다. 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> API 출시(11-11 본문) 때 약속한 가중치가 실제로 나왔다. 280B급 오픈 가중치 에이전트 모델이 하나 더 늘었다. 훈련이 끝나지 않은 중간 체크포인트라고 회사가 밝혔다.</p>
+<p class="m">반응. HF 좋아요 252개. HN 5점 / 댓글 0개. 링크: <a href="https://huggingface.co/baidu/ERNIE-5.5-Flash-Preview" style="color:#0b3d91">원문</a> · <a href="https://ernie.baidu.com/release/ernie-5-5-flash-preview/" style="color:#0b3d91">Baidu 블로그</a> · <a href="https://news.ycombinator.com/item?id=50625707" style="color:#0b3d91">HN</a></p>
+<h3>4. <a href="https://github.com/anthropics/formal-math/tree/main/vp-vnp" style="color:#0b3d91">VP ≠ VNP over Every Field: Claude가 찾은 대수 복잡도 증명</a></h3>
+<p class="m">출처. Anthropic GitHub (formal-math). Hacker News</p>
+<p><b>요약.</b> Anthropic이 논문과 Lean 4 형식화를 공개했다. 모든 체에서 해밀턴 순환 다항식 회로는 m^(c(log m)^(1/3))개보다 많은 게이트가 필요하다고 증명한다. 그래서 VP는 VNP의 진부분집합이라고 결론 낸다. 이 결과는 P vs NP를 풀지 않는다. 내부 연구용 Claude 모델이 결과를 찾았다. 논문과 Lean 코드는 AI가 썼다. 사람 수학자는 아직 증명을 검토하지 않았다. 라이선스는 Apache 2.0이다.</p>
+<p><b>왜 중요한가.</b> 대수 복잡도 이론의 핵심 미해결 문제를 AI가 풀었다는 주장이다. Lean 검사는 통과하지만 명제가 원래 주장과 같은지는 사람이 확인해야 한다. AFTER에 OpenAI도 같은 결과를 먼저 풀었다고 주장했다.</p>
+<p class="m">반응. HN 357점 / 댓글 329개. 링크: <a href="https://github.com/anthropics/formal-math/tree/main/vp-vnp" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50620102" style="color:#0b3d91">HN</a></p>
+<h3>5. <a href="https://openai.com/index/introducing-shirudo/" style="color:#0b3d91">Shirudo: OpenAI·Cisco의 eBPF 기반 오픈소스 보안 런타임</a></h3>
+<p class="m">출처. OpenAI 공식 블로그 (11-23). GitHub. Hacker News</p>
+<p><b>요약.</b> Shirudo는 패치 전 Linux 시스템을 재시작 없이 보호하는 런타임이다. eBPF 프로그램인 "shield"로 취약한 코드 경로를 막는다. shield는 서명 검증을 거쳐 올라간다. TPM으로 적용·제거 기록을 남긴다. 통제 실험에서 Codex가 만든 shield가 실행 중인 Elasticsearch의 Java4Shell 공격을 막았다. GitHub 저장소는 별 1,673개이고 마지막 push는 11-25이다. 라이선스는 BSD-2-Clause이고 BPF 코드는 BSD/GPL 이중이다. 평가: 지켜볼 만함. 공개 초기이고 운영 사례가 아직 없다.</p>
+<p><b>왜 중요한가.</b> AI 에이전트가 임시 방어 코드를 만들고 사람이 승인하는 구조이다. 패치 공백 기간을 줄이는 방법이다.</p>
+<p class="m">반응. HN 83점 / 댓글 25개. GitHub 별 1,673개. 링크: <a href="https://openai.com/index/introducing-shirudo/" style="color:#0b3d91">원문</a> · <a href="https://github.com/shirudo-dev/shirudo" style="color:#0b3d91">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50619630" style="color:#0b3d91">HN</a></p>
+<h3>6. <a href="https://claude.com/resources/articles/introducing-claude-ship" style="color:#0b3d91">Claude Ship(베타): PR 검토·수정·승인을 맡는 Anthropic 에이전트</a></h3>
+<p class="m">출처. Anthropic 글 (11-23). Hacker News</p>
+<p><b>요약.</b> Claude Ship은 Code Review(정식), PR Steward(베타), Claude Approvals(베타)로 구성된다. PR Steward는 실패한 CI, 병합 충돌, 리뷰 의견을 고친다. PR Steward는 승인과 병합을 하지 않는다. Claude Approvals는 저장소의 정책 파일에 따라 일상 변경을 승인한다. Claude Code에서 /ship 명령으로 쓸 수 있다. Claude Code 팀에서는 6월부터 9월까지 병합 PR이 2배 넘게 늘었다. 되돌린 PR 비율은 40% 넘게 줄었다. 가격은 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 코드 작성 뒤의 검토·승인 단계까지 에이전트가 맡는다. 처음에는 관찰 전용 모드로 켜라고 회사가 권한다.</p>
+<p class="m">반응. HN 86점 / 댓글 32개. 링크: <a href="https://claude.com/resources/articles/introducing-claude-ship" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50618513" style="color:#0b3d91">HN</a></p>
+<h3>7. <a href="https://huggingface.co/llamaindex/OCRia-nano-1" style="color:#0b3d91">OCRia-nano-1: CPU에서 도는 8.1M 파라미터 문서 OCR (LlamaIndex)</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (llamaindex). Show HN</p>
+<p><b>요약.</b> OCRia-nano-1은 8.1M 파라미터 문서 파싱 파이프라인이다. 4B 문서 VLM인 OCRia-1을 1/500 크기로 증류했다. ParseBench-2 점수는 59.2이다. CPU 파서 Indra는 55.1, Marker는 52.5이다. 16 vCPU에서 초당 27.8쪽을 처리한다. 코어 1개에서 쪽당 426ms이다. 오픈소스 LiteParse(별 13,313개, Apache-2.0) 안에서 돈다. 모델 라이선스는 자체 라이선스(other)이다. 평가: 써볼 만함. GPU 없이 표와 레이아웃까지 뽑는다.</p>
+<p><b>왜 중요한가.</b> RAG 전처리를 GPU 없이 싸게 할 수 있다. 다만 모델 라이선스 조건은 따로 확인해야 한다.</p>
+<p class="m">반응. HN 9점 / 댓글 3개. HF 좋아요 151개. 링크: <a href="https://huggingface.co/llamaindex/OCRia-nano-1" style="color:#0b3d91">원문</a> · <a href="https://github.com/run-llama/liteparse" style="color:#0b3d91">LiteParse</a> · <a href="https://news.ycombinator.com/item?id=50615375" style="color:#0b3d91">HN</a></p>
+<h3>8. <a href="https://www.harmonic.fun/news/celeste-classic-speedrun/" style="color:#0b3d91">Aristotle, Celeste Classic 스피드런이 최적임을 Lean으로 증명 (Harmonic)</a></h3>
+<p class="m">출처. Harmonic 뉴스. Hacker News</p>
+<p><b>요약.</b> Harmonic의 Aristotle이 PICO-8 게임 Celeste Classic을 Lean으로 옮겼다. 기존 기록 2,843프레임보다 빠른 런이 없다고 증명했다. 단순 상한 계산으로는 약 1,800프레임만 나왔다. 그래서 탐색 공간을 줄이는 증명을 따로 만들었다. 다른 부문에서는 새 PICO-8 기록을 세우고 최적성도 증명했다.</p>
+<p><b>왜 중요한가.</b> AI 형식 검증이 수학 밖의 실제 프로그램 성질로 넓어진 사례이다.</p>
+<p class="m">반응. HN 43점 / 댓글 0개. 링크: <a href="https://www.harmonic.fun/news/celeste-classic-speedrun/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50622612" style="color:#0b3d91">HN</a></p>
+<h3>9. <a href="https://davidtemkin.github.io/declarelang/" style="color:#0b3d91">Declare: 사람과 AI가 함께 쓰는 UI 언어</a></h3>
+<p class="m">출처. 프로젝트 페이지. Hacker News</p>
+<p><b>요약.</b> Declare는 사용자 인터페이스용 DSL이다. 컴파일러가 프로그램을 검사한다. 예제 달력 앱은 코드 568줄이고 전송 크기는 177KB이다. 데스크톱 예제는 3,529줄이다. 예제 코드는 사람이 설계하고 AI가 작성했다고 쓴다. 라이선스와 GitHub 별 수는 출처에 없음. 평가: 지켜볼 만함. 예제는 인상적이지만 생태계가 아직 없다.</p>
+<p><b>왜 중요한가.</b> LLM이 쓰기 쉽고 검증 가능한 언어를 따로 만드는 흐름이다.</p>
+<p class="m">반응. HN 102점 / 댓글 87개. 링크: <a href="https://davidtemkin.github.io/declarelang/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50622854" style="color:#0b3d91">HN</a></p>
+<h3>10. <a href="https://huggingface.co/papers/date/2026-11-24" style="color:#0b3d91">HF 일일 논문: Motion Mamba 2.0, Embo-Harness, WorldLeague</a></h3>
+<p class="m">출처. Hugging Face Daily Papers (11-24)</p>
+<p><b>요약.</b> <a href="https://huggingface.co/papers/2611.29897" style="color:#0b3d91">Motion Mamba 2.0</a>은 Mamba 기반 휴머노이드 동작 생성 모델이다. RTX 4090에서 창 지연 중앙값을 1,685ms에서 276ms로 줄였다(6.1배). 추천 171. <a href="https://huggingface.co/papers/2611.31201" style="color:#0b3d91">Embo-Harness</a>는 프런티어 모델을 로봇 정책으로 쓰는 하니스를 분석한다. RoboLab-120 성공률은 83.3%이고 기존 최고보다 26.2%p 높다. 추천 90. <a href="https://huggingface.co/papers/2611.30989" style="color:#0b3d91">WorldLeague</a>는 모의 로봇 과제 60개 벤치마크이다. 13개 시스템 중 Claude Fable 5.2가 13개 목표를 달성해 1위이다(평균 28.58/100). 추천 77.</p>
+<p><b>왜 중요한가.</b> 이날 상위 논문은 로봇과 물리 에이전트에 몰렸다. 최고 모델도 물리 목표의 대부분을 못 이룬다.</p>
+<p class="m">반응. HF 추천 수는 위에 적었다. 링크: <a href="https://huggingface.co/papers/date/2026-11-24" style="color:#0b3d91">원문</a></p>
+<h3>11. <a href="https://github.com/trending?since=daily" style="color:#0b3d91">GitHub 트렌딩: cursor/plugins, opensre, stitch-skills</a></h3>
+<p class="m">출처. GitHub Trending (일간)</p>
+<p><b>요약.</b> <a href="https://github.com/cursor/plugins" style="color:#0b3d91">cursor/plugins</a>는 Cursor 플러그인 규격과 공식 플러그인 모음이다. 이날 별 +359(총 19,172)이다. 라이선스는 출처에 없음. <a href="https://github.com/Tracer-Cloud/opensre" style="color:#0b3d91">opensre</a>는 CI/CD 안정성용 오픈소스 에이전트이다. 이날 +408(총 15,165, Apache-2.0)이다. <a href="https://github.com/google-labs-code/stitch-skills" style="color:#0b3d91">stitch-skills</a>는 Stitch MCP 서버용 Agent Skills 모음이다. 이날 +401(총 12,628, Apache-2.0)이다. 세 저장소 모두 11-24~25에 push가 있었다.</p>
+<p><b>왜 중요한가.</b> 에이전트 플러그인과 스킬 규격 경쟁이 이어진다. 평가: 셋 모두 지켜볼 만함.</p>
+<p class="m">반응. 별 수는 위에 적었다. 링크: <a href="https://github.com/trending?since=daily" style="color:#0b3d91">원문</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://twitter.com/ylecun/status/2124550037912920090" style="color:#0b3d91">LeCun: "Dario는 오픈 모델을 불법으로 만들려고 위험을 과장한다"</a> — Yann LeCun이 X에 Dario Amodei를 비판했다. 위험 과장이 오픈 모델 규제와 통제 유지를 위한 것이라고 썼다. X 좋아요는 23,108개이다. HN 1,978점 / 댓글 1,165개. <a href="https://news.ycombinator.com/item?id=50615308" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.bloomberg.com/news/articles/2026-11-24/anthropic-breaks-below-83-ipo-price-in-premarket-trading" style="color:#0b3d91">Anthropic 주가, IPO 공모가 $83 아래로 하락 (Bloomberg)</a> — Bloomberg 본문은 HTTP 403으로 열지 못했다. 제목 기준 정보이다. HN 290점 / 댓글 583개. <a href="https://news.ycombinator.com/item?id=50627836" style="color:#0b3d91">HN</a></li>
+<li><a href="https://deucalionn.vercel.app/polymarket-delit-initie-jensen-huang-nvidia/" style="color:#0b3d91">Polymarket의 Jensen Huang 복귀 내부자 거래 분석</a> — 개인 분석가가 온체인 거래를 추적했다. 발표 전 의심 거래가 있었다고 주장한다. HN 465점 / 댓글 268개. <a href="https://news.ycombinator.com/item?id=50626578" style="color:#0b3d91">HN</a></li>
+<li><a href="https://michaelharley.net/posts/2026/11/01/llm-agents-work-for-their-parent-companies-not-for-you/" style="color:#0b3d91">"LLM 에이전트는 사용자가 아니라 모회사를 위해 일한다" (에세이)</a> — 저자가 Claude Code로 음악 구매 스킬을 만든 경험을 쓴다. 에이전트가 플랫폼 이익을 따른다고 주장한다. HN 854점 / 댓글 354개. <a href="https://news.ycombinator.com/item?id=50627340" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li>GRH 증명은 11-20·11-21 본문에서 다뤘다. 이날 <a href="https://twitter.com/__alpoge__/status/2124987173439209561" style="color:#0b3d91">Alpöge 본인 코멘트</a>가 HN 108점 / 117을 받았다(<a href="https://news.ycombinator.com/item?id=50620250" style="color:#0b3d91">HN</a>).</li>
+<li>Inkling 2 Mini(11-21 본문)는 HF 트렌딩 1위를 유지했다(좋아요 5,769). Claude-BugHunter(11-23 트렌딩)는 이날 별 +1,833(총 21,367)이다.</li>
+<li>OpenRouter는 지난주 Google 모델 지출이 OpenAI보다 많았다고 밝혔다. Gemini 4 Neon·Carbon 출시가 원인이라고 썼다(<a href="https://twitter.com/openrouter/status/2124925631012209137" style="color:#0b3d91">X</a>, 좋아요 823).</li>
+<li>뺀 항목: "Latent Introspection"(<a href="https://news.ycombinator.com/item?id=50620328" style="color:#0b3d91">HN</a> 72점)은 2026년 2월 arXiv 논문이다. Greptile TREX 글(<a href="https://news.ycombinator.com/item?id=50615520" style="color:#0b3d91">HN</a> 58점)은 11-19 게시 글이다. Ladybird·Stalwart·GPUI 등은 AI 주제가 아니다.</li>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning)은 HTTP 403으로 접근하지 못했다. Bloomberg도 403이었다.</li>
+<li>11-20~11-23 다이제스트는 모두 정상 발송되었다. 빠진 날은 없다.</li>
+</ul><h2>AFTER (11-25 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50633922" style="color:#0b3d91">Ternary Bonsai 2.5 27B (PrismML)</a> HN 218점 / 68</li>
+<li><a href="https://news.ycombinator.com/item?id=50632756" style="color:#0b3d91">OpenAI reveals they solved VP ≠ VNP before Anthropic</a> HN 81점 / 88</li>
+<li><a href="https://news.ycombinator.com/item?id=50634658" style="color:#0b3d91">GPT-6 models demonstrate intrinsic protein-design capabilities (OpenAI)</a> HN 72점 / 12</li>
+<li><a href="https://news.ycombinator.com/item?id=50634734" style="color:#0b3d91">Working with AI (Anthropic 연구)</a> HN 60점 / 53</li>
+<li><a href="https://news.ycombinator.com/item?id=50629231" style="color:#0b3d91">songe: 유휴 컴퓨팅으로 로컬 모델을 학습하는 엔진</a> HN 153점 / 41</li>
+<li><a href="https://news.ycombinator.com/item?id=50629962" style="color:#0b3d91">The KL Divergence Is Never Negative, Except in PyTorch</a> HN 77점 / 31</li>
+<li><a href="https://news.ycombinator.com/item?id=50630309" style="color:#0b3d91">Tidal, AI 생성 음악 금지 (Variety)</a> HN 310점 / 294</li>
+<li><a href="https://news.ycombinator.com/item?id=50630809" style="color:#0b3d91">Ask HN: Anthropic이 우리 회사를 증류 혐의로 지목했다</a> HN 206점 / 160</li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
