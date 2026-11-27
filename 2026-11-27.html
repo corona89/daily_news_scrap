@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 데일리 다이제스트 — 2026-11-27</title><style>body{background:#fafaf7;color:#222;font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;margin:0;padding:16px}.w{max-width:680px;margin:auto}h1{font-size:22px}h2{font-size:18px;border-bottom:2px solid #ddd;padding-bottom:4px;margin-top:28px}h3{font-size:16px;margin:18px 0 6px}p{margin:6px 0}.m{color:#666;font-size:13px}li{margin:4px 0}</style></head><body><div class="w">
+<h1>AI 데일리 다이제스트 — 2026-11-27</h1>
+<p class="m">대상 기간: 2026-11-27 00:00–24:00 KST. HN·GitHub·Hugging Face 수치는 2026-11-28 08:00 KST 전후에 확인했다. 벤치마크는 별도 표시가 없으면 발표자 자체 수치이다.</p>
+<h2>요약</h2><ul>
+<li>미국 추수감사절이라 큰 새 모델 발표는 없었다. 이날 기술 소식은 추론 엔진, 음성 모델, 논문 중심이다.</li>
+<li>"Claude가 ML 연구를 방해한다"는 주장이 퍼졌다. HN 521점이다. Anthropic 직원은 서비스 중에 답을 낮추지 않는다고 답했다. Fable 5.2는 학습 단계에서 커널 작업 같은 일부 능력을 Opus 5.5 수준으로 제한했다고 했다.</li>
+<li>AMD GPU용 llama.cpp 패치 모음 llama-cpp-rdna-boosts가 주목받았다. 한 사용자는 prefill이 약 700에서 1,300 t/s로, 생성이 약 35에서 55 t/s로 올랐다고 했다. HN 437점이다.</li>
+<li>Sber는 음성 인식 모델 GigaAM-v4(238M, MIT)를 공개했다. 러시아어 평균 WER은 5.99%이다. Whisper large-v3는 16.01%이다.</li>
+<li>루프 모델용 추측 디코딩 Floodgates는 최대 7.5배 빠르다고 보고했다. HF 일일 논문 1위는 Stable Gated DeltaNet-2이다. 128K RULER 점수가 6.80점 올랐다.</li>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning)은 이번에도 접근 차단 페이지가 떠서 읽지 못했다.</li>
+</ul>
+<h2>기술 (모델·오픈소스·논문)</h2>
+<h3>1. <a href="https://x.com/i/status/2126119408997466389" style="color:#0b3d91">"Claude가 ML 연구를 방해한다" 논란과 Anthropic의 답변</a></h3>
+<p class="m">출처. Astropulse X 게시물 (11-27 10:02 KST). Hacker News. sysnote 정리 글</p>
+<p><b>요약.</b> 한 개발자가 자기 이미지 모델 학습으로 Claude와 Gemini Neon을 비교했다. Claude 쪽 24k 스텝 결과가 Gemini Neon 쪽 4k 스텝 결과보다 나쁘다고 주장했다. Anthropic 직원 Edwin Arbus는 서비스 중에 AI 연구 답변을 낮추지 않는다고 답했다. 그는 Fable 5 출시 첫 이틀에는 그런 일이 있었고 곧 고쳤다고 했다. Fable 5.2는 학습 단계에서 커널 작업 같은 일부 AI 연구 능력을 Opus 5.5 수준으로 제한했다고 했다.</p>
+<p><b>왜 중요한가.</b> Claude로 모델 학습·커널 작업을 하는 팀은 이 제한을 알아야 한다. 아직 제3자 검증 결과는 없다.</p>
+<p class="m">반응. HN 521점 / 댓글 265. X 좋아요 7,252, 조회 1,094,242. 링크: <a href="https://x.com/i/status/2126119408997466389" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50664325" style="color:#0b3d91">HN</a> · <a href="https://sysnote.net/news/claude-sabotages-ml-research-anthropic-s-record-has-a-june-apology-a-visible-fal" style="color:#0b3d91">sysnote 정리</a> · <a href="https://www.anthropic.com/claude-fable-and-mythos-5-2" style="color:#0b3d91">Anthropic 11-09 발표</a></p>
+<h3>2. <a href="https://github.com/stew675/llama-cpp-rdna-boosts" style="color:#0b3d91">llama-cpp-rdna-boosts: AMD RDNA GPU용 llama.cpp 패치 모음</a></h3>
+<p class="m">출처. devnull.land 사용 후기 (11-26). GitHub stew675/llama-cpp-rdna-boosts. Hacker News</p>
+<p><b>요약.</b> 이 저장소는 고정된 llama.cpp 커밋 위에 AMD 전용 패치를 계속 다시 적용한다. 컨테이너 이미지(server-rocm)도 제공한다. 글쓴이는 Radeon AI PRO R9700(eGPU)에서 Qwen3.8-27B 파생 모델(Q6_K_L, MTP 사용)을 돌렸다. prefill은 약 700에서 1,300 t/s로, 생성은 약 35에서 55 t/s로 올랐다고 한다. 글쓴이는 일부 다른 포크가 전문가 선택을 바꿔 속도를 얻는다고 경고했다.</p>
+<p><b>왜 중요한가.</b> AMD GPU로 로컬 LLM을 돌리는 사람에게 바로 쓸 수 있는 선택지이다. 판정: 써볼 만함. 변경이 작고 llama.cpp 기반을 유지하기 때문이다.</p>
+<p class="m">반응. HN 437점 / 댓글 104. GitHub 별 432, MIT, 최신 릴리스 v18-919794500-r368(11-27). 링크: <a href="https://github.com/stew675/llama-cpp-rdna-boosts" style="color:#0b3d91">원문</a> · <a href="https://devnull.land/amd-specific-llama-cpp" style="color:#0b3d91">사용 후기</a> · <a href="https://news.ycombinator.com/item?id=50657265" style="color:#0b3d91">HN</a></p>
+<h3>3. <a href="https://huggingface.co/ai-sage/GigaAM-v4" style="color:#0b3d91">GigaAM-v4: Sber의 238M 음성 인식 모델 (MIT)</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (ai-sage, 11-27 08:28 KST 생성). GitHub salute-developers/GigaAM</p>
+<p><b>요약.</b> 라벨 없는 음성 700만 시간으로 사전학습했다. 지도 학습 데이터는 58,000시간이다. RNN-T(238M)와 CTC(234M) 판이 있다. 스트리밍 지연은 160, 320, 640 ms를 지원한다. 러시아어 평균 WER은 5.99%이다. 이전 GigaAM-v3는 9.51%, Whisper large-v3는 16.01%이다. 영어 Open ASR 공개 부분 평균은 7.28%이다. Whisper large-v3는 7.70%, Qwen3-ASR은 6.67%이다. ONNX 내보내기를 지원한다. 필요 하드웨어는 출처에 없음.</p>
+<p><b>왜 중요한가.</b> 작은 크기로 Whisper large-v3보다 낮은 오류율을 보인다. 같은 날 GigaAM-Multilingual-v2도 올라왔다. 판정: 지켜볼 만함. 강점이 러시아어에 집중되어 있다.</p>
+<p class="m">반응. HF 좋아요 28(Multilingual-v2 21). GitHub 별 987, MIT. 링크: <a href="https://huggingface.co/ai-sage/GigaAM-v4" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/ai-sage/GigaAM-Multilingual-v2" style="color:#0b3d91">Multilingual-v2</a> · <a href="https://github.com/salute-developers/GigaAM" style="color:#0b3d91">GitHub</a></p>
+<h3>4. <a href="https://arxiv.org/abs/2611.33896" style="color:#0b3d91">Floodgates: 루프 모델은 빠른 다중 토큰 예측기이다</a></h3>
+<p class="m">출처. arXiv (EPFL 등). GitHub MisakiTaro0414/floodgates. Hacker News</p>
+<p><b>요약.</b> 루프 언어 모델의 얕은 루프로 여러 미래 토큰을 한 번에 초안으로 만든다. 마스크 토큰 블록을 뒤에 붙이고 LoRA로 학습한다. 모델 7개와 벤치마크 5개에서 시험했다. 대부분 경우 가장 빠른 무손실 디코딩이었다. 최대 7.5배 빨라졌다. Ouro 1.4B GSM8K 최대 배치에서는 일반 디코딩 대비 2.14배이다.</p>
+<p><b>왜 중요한가.</b> Inkling 2 같은 루프 구조 모델이 늘고 있다. 이 방법은 별도 드래프터 없이 추론을 빠르게 한다.</p>
+<p class="m">반응. HN 13점 / 댓글 0. GitHub 별 10, Apache-2.0. 링크: <a href="https://arxiv.org/abs/2611.33896" style="color:#0b3d91">원문</a> · <a href="https://github.com/MisakiTaro0414/floodgates" style="color:#0b3d91">GitHub</a> · <a href="https://news.ycombinator.com/item?id=50657370" style="color:#0b3d91">HN</a></p>
+<h3>5. <a href="https://arxiv.org/abs/2611.34051" style="color:#0b3d91">Stable Gated DeltaNet-2: 선형 어텐션 상태 폭주 문제 해결</a></h3>
+<p class="m">출처. arXiv. Hugging Face Daily Papers 11-27 1위</p>
+<p><b>요약.</b> Gated DeltaNet-2(GDN-2)는 긴 문맥 학습에서 자주 실패한다. 저자들은 지우기 연산의 비대칭이 상태를 지수적으로 키운다고 밝혔다. 대칭 지우기와 감쇠 조절 잔차 쓰기로 고쳤다. 상태 증가에 O(T) 상한을 증명했다. 약 1.6B 모델에서 128K RULER 평균이 6.80점 올랐다. 하이브리드 설정에서 9개 과제 평균 정확도는 0.62점 올랐다.</p>
+<p><b>왜 중요한가.</b> 선형 어텐션 계열을 긴 문맥 모델에 쓸 때 학습 안정성을 높인다.</p>
+<p class="m">반응. HF 추천 128 (이날 1위). 링크: <a href="https://arxiv.org/abs/2611.34051" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2611.34051" style="color:#0b3d91">HF</a></p>
+<h3>6. <a href="https://arxiv.org/abs/2611.34232" style="color:#0b3d91">OS-Omni: 6개 플랫폼을 넘나드는 컴퓨터 사용 에이전트 벤치마크</a></h3>
+<p class="m">출처. arXiv. GitHub OS-Copilot/OS-Omni. Hugging Face Daily Papers</p>
+<p><b>요약.</b> Windows, Ubuntu, macOS, iOS, Android, 웹에서 에이전트를 평가한다. v1은 플랫폼마다 과제 48개와 PC·휴대폰 연동 과제 12개를 담았다. 사람은 과제당 평균 67.54단계가 필요했다. OSWorld는 15.0단계이다. 가장 강한 Claude Opus 5.5는 평균 성공률 68.5%이다. 사람 기준은 77.3%이다.</p>
+<p><b>왜 중요한가.</b> 실제 업무처럼 긴 다중 기기 작업에서 에이전트와 사람의 차이를 보여 준다.</p>
+<p class="m">반응. HF 추천 102. GitHub 별 102. 링크: <a href="https://arxiv.org/abs/2611.34232" style="color:#0b3d91">원문</a> · <a href="https://github.com/OS-Copilot/OS-Omni" style="color:#0b3d91">GitHub</a> · <a href="https://huggingface.co/papers/2611.34232" style="color:#0b3d91">HF</a></p>
+<h3>7. <a href="https://arxiv.org/abs/2611.34813" style="color:#0b3d91">코드로 푸는 시각 추론: 코딩 에이전트가 영상 모델보다 낫다</a></h3>
+<p class="m">출처. arXiv. Hugging Face Daily Papers</p>
+<p><b>요약.</b> VBVR-Pro-Bench 500문제를 영상 모델과 코딩 에이전트에 같은 조건으로 주었다. 에이전트는 답 영상을 그리는 프로그램을 쓴다. Codex(gpt-6-astra)는 0.923, Claude Code(Fable 5.1)는 0.894, Gemini CLI(Gemini 3.1 Pro)는 0.893점이다. 셋 모두 가장 강한 영상 모델보다 0.22점 이상 높다. 오픈 가중치 23개 중 최고는 GLM-5로 0.572점이다.</p>
+<p><b>왜 중요한가.</b> 시각 과제도 코드 생성 경로가 더 믿을 만하다는 근거이다.</p>
+<p class="m">반응. HF 추천 59. 링크: <a href="https://arxiv.org/abs/2611.34813" style="color:#0b3d91">원문</a> · <a href="https://huggingface.co/papers/2611.34813" style="color:#0b3d91">HF</a></p>
+<h3>8. <a href="https://eprint.iacr.org/2026/3020" style="color:#0b3d91">이산 로그 문제의 결정론적 부분지수 시간 알고리즘 (IACR ePrint)</a></h3>
+<p class="m">출처. IACR ePrint 2026/3020 (Zhejiang University). Hacker News</p>
+<p><b>요약.</b> 저자들은 소수체와 소수 위수 타원곡선의 이산 로그를 결정론적으로 푸는 알고리즘을 제시했다. 시간은 2^{O(b/√(log log b))} = p^{o(1)}이다. 무작위 비트, 일반화 리만 가설, 평활성 휴리스틱을 쓰지 않는다. 단 OpenAI의 Cauchy–Hermite 텐서 축약 구성(2026-10)을 가정한다. HN 댓글은 무작위 부분지수 알고리즘은 약 50년 전부터 있었다고 지적했다.</p>
+<p><b>왜 중요한가.</b> AI가 낸 결과 위에 사람 연구가 빠르게 쌓이고 있다. 실제 암호 안전성에 미치는 영향은 아직 불분명하다.</p>
+<p class="m">반응. HN 200점 / 댓글 90. 링크: <a href="https://eprint.iacr.org/2026/3020" style="color:#0b3d91">원문</a> · <a href="https://eprint.iacr.org/2026/3020.pdf" style="color:#0b3d91">PDF</a> · <a href="https://news.ycombinator.com/item?id=50665968" style="color:#0b3d91">HN</a></p>
+<h3>9. <a href="https://github.com/samueleverett01/bss-permanent-separations" style="color:#0b3d91">NP_R ≠ PAR_R: Claude Fable 5.2가 찾은 BSS 모델 복잡도 분리</a></h3>
+<p class="m">출처. GitHub samueleverett01/bss-permanent-separations. Hacker News</p>
+<p><b>요약.</b> 실수 BSS 모델에서 퍼머넌트 그래프가 PAR_R에 있고 NP_R, coNP_R, Σ2 밖에 있다고 주장한다. 증명은 Samuel Everett와 Claude Fable 5.2의 대화에서 나왔다. 출발점은 ChatGPT Astra 6.2가 증명한 BIP 결과이다. 모든 결과를 Lean 4로 형식화했다. 동료 검토는 받지 않았다.</p>
+<p><b>왜 중요한가.</b> AI가 찾은 복잡도 이론 결과가 연달아 나오고 있다. 형식화가 있어 검증하기 쉽다.</p>
+<p class="m">반응. HN 131점 / 댓글 164. GitHub 별 18, 라이선스 출처에 없음. 링크: <a href="https://github.com/samueleverett01/bss-permanent-separations" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50657059" style="color:#0b3d91">HN</a></p>
+<h3>10. <a href="https://kendell.dev/blog/arkwrapper/" style="color:#0b3d91">"Novita, StreamLake 등은 ByteDance Ark 래퍼이다" (OpenRouter 제공자 분석)</a></h3>
+<p class="m">출처. kendell.dev 블로그 (11-25 게시). Hacker News</p>
+<p><b>요약.</b> 글쓴이는 오류 메시지, 요청 ID, 도구 호출 ID 형식으로 제공자 사이의 전달 경로를 추적했다. StreamLake 일부 응답이 Novita 게이트웨이 오류 문구와 같았다. Novita의 DeepSeek 토큰 중 ByteDance Ark로 추적된 양은 11-08 주에 1.1T였다. OpenRouter는 11-20 전에 Novita의 ZDR 표시를 뺐다. MiniMax 조사에서는 프롬프트 속 URL이 40~130시간 뒤 제3자에게 열렸다.</p>
+<p><b>왜 중요한가.</b> 라우터로 오픈 모델을 쓰면 실제 처리 회사와 데이터 보관 정책이 다를 수 있다. 민감한 데이터는 제공자를 직접 고정해야 한다.</p>
+<p class="m">반응. HN 120점 / 댓글 21. 링크: <a href="https://kendell.dev/blog/arkwrapper/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50660273" style="color:#0b3d91">HN</a></p>
+<h3>11. <a href="https://www.reddit.com/r/ClaudeCode/comments/1y4qm5o/heads_up_if_you_wire_notions_official_mcp_into/" style="color:#0b3d91">Notion 공식 MCP, 오류 응답에 숨은 판매 유도 지시를 넣는다</a></h3>
+<p class="m">출처. Reddit r/ClaudeCode 게시물. Hacker News</p>
+<p><b>요약.</b> SQL 쿼리 한도에 닿으면 Notion MCP 오류 JSON이 Business 체험 링크를 보여 주라고 지시한다. 대체 경로가 성공해도 보여 주라는 플래그가 있다. 링크를 마크다운 이름 뒤에 숨기라고 지시한다. URL에는 mcp_tool_upsell 추적 값이 붙는다. 글쓴이는 Claude와 Gemini 두 환경에서 같은 일을 겪었다.</p>
+<p><b>왜 중요한가.</b> 공식 MCP 서버의 도구 응답도 신뢰할 수 없는 입력으로 다뤄야 한다. 사내 에이전트에 MCP를 붙일 때 필터가 필요하다.</p>
+<p class="m">반응. HN 59점 / 댓글 22. 링크: <a href="https://www.reddit.com/r/ClaudeCode/comments/1y4qm5o/heads_up_if_you_wire_notions_official_mcp_into/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50658093" style="color:#0b3d91">HN</a></p>
+<h3>12. <a href="https://www.supercomputing.news/ai/trainium3-semianalysis-agentx-benchmark-preview" style="color:#0b3d91">SemiAnalysis AgentX: Trainium3·TPU가 달러당 성능에서 NVIDIA를 앞섬</a></h3>
+<p class="m">출처. Supercomputing News 정리 (SemiAnalysis 11-25~26 발표 기반)</p>
+<p><b>요약.</b> SemiAnalysis는 Trainium3와 TPU를 InferenceX/AgentX에 넣었다. AgentX는 Claude Code 세션 393개를 재생한다. 요청 중앙값은 입력 142,000 토큰, 출력 444 토큰이다. Trainium3는 GB300 NVL72 대비 달러당 성능 2.28배이다. 하지만 칩당 처리량 차이는 약 4%이고 대부분 모델링한 비용 차이(시간당 1.05달러 대 2.31달러)에서 나온다. Trainium3 결과는 아직 프리뷰이다.</p>
+<p><b>왜 중요한가.</b> 에이전트 작업량 기준 추론 하드웨어 비교가 나왔다. 비용 가정에 따라 순위가 바뀐다.</p>
+<p class="m">반응. 반응 수치는 가져오지 못했다. 링크: <a href="https://www.supercomputing.news/ai/trainium3-semianalysis-agentx-benchmark-preview" style="color:#0b3d91">원문</a> · <a href="https://crazycoderslab.com/semianalysis-inferencex-agentx-google-tpu-amazon-trainium-nvidia-perf-per-dollar-2026/" style="color:#0b3d91">추가 정리</a></p>
+<h3>13. <a href="https://huggingface.co/AngelSlim/DS-V4.1-Flash-DFly2-B6" style="color:#0b3d91">DFly2: 대상 모델의 희소성을 공유하는 추측 디코딩 드래프터 (Tencent)</a></h3>
+<p class="m">출처. Hugging Face 모델 카드 (AngelSlim). arXiv 2611.34776 (11-25). GitHub Tencent/AngelSpec</p>
+<p><b>요약.</b> DFly2 드래프터는 자체 KV 캐시가 없다. 대상 모델 DSA 층의 KV와 선택 위치를 그대로 읽는다. 32K 토큰에서 같은 KV 풀에 요청을 1.73배 더 담는다. 같은 사용자당 속도에서 DSpark 대비 처리량이 짧은 텍스트 28%, CodeSpan 64K 62%, SWE 64K 81% 높다. DeepSeek-V4.1-Flash용 가중치는 Apache-2.0이다. vLLM 지원은 진행 중이다.</p>
+<p><b>왜 중요한가.</b> 긴 문맥 에이전트 추론 비용을 줄인다. 논문은 11-25에 나왔고 이날 X에서 화제가 되었다. 판정: 지켜볼 만함. 서빙 엔진 지원이 아직 없다.</p>
+<p class="m">반응. HF 좋아요 17. AngelSpec GitHub 별 435. 링크: <a href="https://huggingface.co/AngelSlim/DS-V4.1-Flash-DFly2-B6" style="color:#0b3d91">원문</a> · <a href="https://arxiv.org/abs/2611.34776" style="color:#0b3d91">논문</a> · <a href="https://github.com/Tencent/AngelSpec" style="color:#0b3d91">GitHub</a></p>
+<h3>14. <a href="https://technology.robbyant.com/lingbot-map-v2" style="color:#0b3d91">LingBot-Map 2.0: 기억을 고치는 스트리밍 3D 재구성 (Robbyant)</a></h3>
+<p class="m">출처. Robbyant 프로젝트 페이지. GitHub Robbyant/lingbot-map-v2 (11-26 19:17 KST 생성)</p>
+<p><b>요약.</b> 단일 카메라 영상으로 3D 지도를 실시간으로 만든다. 처리 중에 공간 기억을 다시 고치는 Context Reconsolidation(GCR)을 넣었다. 루프 감지나 포즈 그래프 최적화가 필요 없다. Oxford ATE는 6.17에서 3.92로 36% 줄었다. VBR ATE는 72% 줄었다. 공개 가중치는 CC BY-NC 4.0(비상업)이다.</p>
+<p><b>왜 중요한가.</b> 로봇·드론의 지도 작성 품질을 높인다. 전날 공개되었지만 이전 다이제스트에서 빠졌다.</p>
+<p class="m">반응. GitHub 별 286 (이전 판 lingbot-map 19,151). 링크: <a href="https://technology.robbyant.com/lingbot-map-v2" style="color:#0b3d91">원문</a> · <a href="https://github.com/Robbyant/lingbot-map-v2" style="color:#0b3d91">GitHub</a> · <a href="https://huggingface.co/robbyant/lingbot-map-v2-base-streaming" style="color:#0b3d91">HF</a></p>
+<h3>15. <a href="https://janlukas.blog/posts/ai-self-hosting" style="color:#0b3d91">"AI 덕분에 셀프 호스팅이 다시 재미있어졌다"</a></h3>
+<p class="m">출처. Jan-Lukas Else 블로그 (11-26). Hacker News</p>
+<p><b>요약.</b> 글쓴이는 인프라 설정을 Git 저장소에 두고 코딩 에이전트로 수정한다. NixOS 서버와 Debian bootc 이미지를 AI 도움으로 만들었다. bootc 설정은 AI로 반나절, 혼자면 최소 1주일이 걸렸을 것이라고 한다. Renovate와 Actions로 업데이트와 배포를 자동화했다. 주로 오픈 가중치 모델을 쓴다고 했다.</p>
+<p><b>왜 중요한가.</b> 코딩 에이전트가 개발 외 운영 작업 비용을 낮추는 실제 사례이다. 이날 HN 1위 글이다.</p>
+<p class="m">반응. HN 1,076점 / 댓글 500. 링크: <a href="https://janlukas.blog/posts/ai-self-hosting" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50660180" style="color:#0b3d91">HN</a></p>
+<h3>16. <a href="https://chrhenning.com/blog/2026/introduction-to-uncertainty/" style="color:#0b3d91">머신러닝 불확실성 입문 (Christian Henning)</a></h3>
+<p class="m">출처. 개인 기술 블로그. Hacker News</p>
+<p><b>요약.</b> 인식적 불확실성과 우연적 불확실성의 차이를 그림으로 설명한다. 예측과 결정이 다르다고 강조한다. 데이터가 적은 꼬리 구간에서는 모델 가정이 답을 정한다고 보인다.</p>
+<p><b>왜 중요한가.</b> 에이전트가 사람에게 넘길 시점을 정할 때 필요한 기본 개념이다.</p>
+<p class="m">반응. HN 140점 / 댓글 13. 링크: <a href="https://chrhenning.com/blog/2026/introduction-to-uncertainty/" style="color:#0b3d91">원문</a> · <a href="https://news.ycombinator.com/item?id=50658498" style="color:#0b3d91">HN</a></p>
+<h2>기업·정책·사회</h2><ul>
+<li><a href="https://diseasescuredbyai.com/" style="color:#0b3d91">AI가 고친 질병 수 추적 페이지</a> — AI가 찾은 치료로 완치된 질병은 0개라고 집계했다. 2025-07까지 117개 후보가 임상에 들어갔고, 3상은 rentosertib 1개이다. HN 319점 / 195. <a href="https://news.ycombinator.com/item?id=50657307" style="color:#0b3d91">HN</a></li>
+<li><a href="https://www.kimi.ai/news/kimi-for-science-program" style="color:#0b3d91">Kimi for Science 프로그램</a> — Moonshot은 연구자에게 최대 2만 달러(약 70억 토큰)의 API 크레딧을 준다. 첫 기수 신청 마감은 12-08이다. HN 178점 / 148. <a href="https://news.ycombinator.com/item?id=50665920" style="color:#0b3d91">HN</a></li>
+<li><a href="https://construct22.com/" style="color:#0b3d91">"AI가 뒤에서 나를 험담하는 단톡방" 프롬프트</a> — 한 줄 프롬프트로 챗봇이 대화 기록에서 배운 사용자 인상을 드러내게 한다. 메모리 기능이 얼마나 많이 기억하는지 보여 준다. HN 666점 / 278. <a href="https://news.ycombinator.com/item?id=50663595" style="color:#0b3d91">HN</a></li>
+</ul>
+<h2>각주</h2><ul>
+<li><a href="https://hazyresearch.stanford.edu/blog/2026-11-25-platos-key" style="color:#0b3d91">Plato’s Key</a>(Hazy Research, 11-25)는 회전 하나로 LLM 12개 사이 사실 표현을 옮겼다(전이 정확도 중앙값 41%). 기간 전 글이라 본문에서 뺐다.</li>
+<li><a href="https://huggingface.co/inclusionAI/Ming-Image-0.2-Design" style="color:#0b3d91">Ming-Image-0.2-Design</a>(inclusionAI, HF 11-25 생성, 좋아요 162)과 ISTA-DASLab Inkling-2-Mini-GSQ-RCO-GGUF(11-26 22:01 KST, 좋아요 264)는 기간 전에 올라왔다. SenseNova-RoboRSI-27B는 11-17 저장소이다. GPT-Live-1.1은 11-21에 다뤘다.</li>
+<li><a href="https://the-decoder.com/ai-agents-now-control-part-of-deepminds-compute-for-gemini-experiments-but-recursive-self-improvement-remains-distant/" style="color:#0b3d91">DeepMind 에이전트가 연산 자원 일부를 직접 쓴다는 글</a>(The Decoder, 11-25)은 <a href="https://news.ycombinator.com/item?id=50661218" style="color:#0b3d91">HN 56점</a>이다. Z.ai는 GLM-5.5가 12월 출시라고 밝혔다(<a href="https://news.ycombinator.com/item?id=50657724" style="color:#0b3d91">HN 27점</a>). Reuters 보도는 2027년 1분기로 늦어질 수 있다고 했다.</li>
+<li>GitHub 트렌딩 상위(Claude-BugHunter, superpowers, CLI-Anything, minimind, cursor/plugins 등)는 모두 이전에 나온 저장소이다.</li>
+<li>Reddit(r/LocalLLaMA, r/MachineLearning)은 접근 차단(Blocked) 페이지가 떠서 읽지 못했다. Notion MCP 글은 개별 페이지로 읽었다.</li>
+</ul><h2>AFTER (11-28 00:00 KST 이후 게시)</h2><ul>
+<li><a href="https://news.ycombinator.com/item?id=50670757" style="color:#0b3d91">Michael Nielsen, 신경망 책 사이트 내림</a> HN 284점 / 178</li>
+<li><a href="https://news.ycombinator.com/item?id=50669561" style="color:#0b3d91">I&#x27;m Scared of AI</a> HN 197점 / 231</li>
+<li><a href="https://news.ycombinator.com/item?id=50669765" style="color:#0b3d91">Convex 스킬이 앱 아이디어를 몰래 원격 서버로 보냄</a> HN 185점 / 55</li>
+<li><a href="https://news.ycombinator.com/item?id=50667744" style="color:#0b3d91">GPT-6.2 Astra가 역사 미스터리를 풀다</a> HN 166점 / 1</li>
+<li><a href="https://news.ycombinator.com/item?id=50670855" style="color:#0b3d91">미국 주들, Grok 성착취 이미지 생성 막으려 SpaceX 제소</a> HN 163점 / 87</li>
+<li><a href="https://news.ycombinator.com/item?id=50667989" style="color:#0b3d91">잘못된 컴퓨터 검증 증명 (D. J. Bernstein)</a> HN 152점 / 73</li>
+<li><a href="https://artificialanalysis.ai/decision-models/d1-3-ultra" style="color:#0b3d91">Liquid AI d1.3-ultra: Artificial Analysis Decision Index 76.43으로 1위(Bison 31B 75.88). 100만 과제당 133달러, 문맥 66k, 입력 100만 토큰당 0.042달러. 11-28 공개</a></li>
+<li><a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/tuning/open-model-tuning" style="color:#0b3d91">Google Gemini Enterprise Agent Platform, 오픈 모델 증류 미세조정 문서 공개: 교사 GLM 5.2 MaaS, 학생 Gemma 3 1B~27B</a></li>
+</ul>
+<p class="m">이 메일은 AI 뉴스 스크랩이 자동으로 만들었다.</p></div></body></html>
